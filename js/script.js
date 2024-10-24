@@ -31,7 +31,22 @@
       },
     });
 
-
+    var bestselling_swiper = new Swiper(".bestselling-swiper", {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      speed: 500,
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        991: {
+          slidesPerView: 4,
+        },
+      }
+    });
 
     var testimonial_swiper = new Swiper(".testimonial-swiper", {
       slidesPerView: 1,

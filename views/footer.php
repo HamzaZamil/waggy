@@ -1,5 +1,5 @@
  <!-- Footer -->
- <footer id="footer" class="my-5" style="background: url('../images/background-img.png') no-repeat;">
+ <footer id="footer" style="background: url('../images/background-img.png') no-repeat; margin-bottom: -100px;">
      <div class="container py-5 my-5">
          <div class="row">
 
