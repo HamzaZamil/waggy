@@ -25,6 +25,7 @@
 
                     </div>
                 </div>
+                <!-- slider sectoin -->
                 <div class="swiper-slide py-5">
                     <div class="row banner-content align-items-center">
                         <div class="img-wrapper col-md-5">
