@@ -426,7 +426,7 @@ a.btn-wishlist {
 
 
 /* pet foodies style  */
-button.filter-button {
+button.filter-button , button.filter-button2 {
   letter-spacing: 0.02125rem;
   border: none;
   border-bottom: 2px solid #D9D9D8;
@@ -437,7 +437,9 @@ button.filter-button {
 }
 
 button.filter-button.active,
-button.filter-button:hover {
+button.filter-button:hover,
+button.filter-button2.active,
+button.filter-button2:hover {
   border-bottom: 2px solid #DEAD6F;
 }
 
