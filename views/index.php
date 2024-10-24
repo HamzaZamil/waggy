@@ -134,10 +134,8 @@
                                     <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
                                 </div>
                                 <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
-                                    <p class="testimonial-content fs-2">At the core of our practice is the idea that cities are the
-                                        incubators of our
-                                        greatest achievements, and the best hope for a sustainable future.</p>
-                                    <p class="text-black">- Joshima Lin</p>
+                                    <p class="testimonial-content fs-4">I’ve been buying food and toys for my cats from this shop for over a year, and I couldn’t be happier! The quality of the products is outstanding, and my pets absolutely love their new toys.</p>
+                                    <p class="text-black">- Nouha Yaseen</p>
                                 </div>
                             </div>
                         </div>
@@ -147,10 +145,8 @@
                                     <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
                                 </div>
                                 <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
-                                    <p class="testimonial-content fs-2">At the core of our practice is the idea that cities are the
-                                        incubators of our
-                                        greatest achievements, and the best hope for a sustainable future.</p>
-                                    <p class="text-black">- Joshima Lin</p>
+                                    <p class="testimonial-content fs-4">This pet shop has everything my dogs need! From nutritious food to fun toys and even stylish clothes. My pups are healthier and happier than ever. The staff is always so knowledgeable, and they make sure I get the best items for my pets’ needs.</p>
+                                    <p class="text-black">- Rami Zeyad</p>
                                 </div>
                             </div>
                         </div>
@@ -160,10 +156,8 @@
                                     <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
                                 </div>
                                 <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
-                                    <p class="testimonial-content fs-2">At the core of our practice is the idea that cities are the
-                                        incubators of our
-                                        greatest achievements, and the best hope for a sustainable future.</p>
-                                    <p class="text-black">- Joshima Lin</p>
+                                    <p class="testimonial-content fs-4">I love shopping here for my pets! They have a great variety of food and toys for both cats and dogs, and the clothes are adorable. My cat especially loves the cozy bed I bought here. It’s my go-to place for all my pet supplies.</p>
+                                    <p class="text-black">- Rahaf Bader</p>
                                 </div>
                             </div>
                         </div>
@@ -191,14 +185,11 @@
             <div class="swiper-wrapper">
 
                 <div class="swiper-slide">
-                    <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
                     <div class="card position-relative">
-                        <a href="single-product.html"><img src="../images/item5.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <a href="single-product.html"><img src="../inserted_img/fresh_kisses_treats.jpg" class="img-fluid rounded-4" alt="image" ></a>
                         <div class="card-body p-0">
                             <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
+                                <h3 class="card-title pt-4 m-0">Fresh Kisses</h3>
                             </a>
 
                             <div class="card-text">
@@ -210,7 +201,72 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
 
-                                <h3 class="secondary-font text-primary">$18.00</h3>
+                                <h3 class="secondary-font text-primary">20.54JOD</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card position-relative">
+                        <a href="single-product.html"><img src="../inserted_img/sweater.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card-body p-0">
+                            <a href="single-product.html">
+                                <h3 class="card-title pt-4 m-0">Sweater</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary">7.08JOD </h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card position-relative">
+                        <a href="single-product.html"><img src="../inserted_img/9lives.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card-body p-0">
+                            <a href="single-product.html">
+                                <h3 class="card-title pt-4 m-0">9Lives Seafood</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary">10.89JOD</h3>
 
                                 <div class="d-flex flex-wrap mt-3">
                                     <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
@@ -232,10 +288,10 @@
               New
             </div> -->
                     <div class="card position-relative">
-                        <a href="single-product.html"><img src="../images/item6.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <a href="single-product.html"><img src="../inserted_img/chew_toy.jpg" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
                             <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
+                                <h3 class="card-title pt-4 m-0">Chew Toy</h3>
                             </a>
 
                             <div class="card-text">
@@ -247,41 +303,7 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
 
-                                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="../images/item7.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    5.0</span>
-
-                                <h3 class="secondary-font text-primary">$18.00</h3>
+                                <h3 class="secondary-font text-primary">14.17JOD</h3>
 
                                 <div class="d-flex flex-wrap mt-3">
                                     <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
@@ -299,14 +321,12 @@
                     </div>
                 </div>
                 <div class="swiper-slide">
-                    <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
+
                     <div class="card position-relative">
-                        <a href="single-product.html"><img src="../images/item8.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <a href="single-product.html"><img src="../inserted_img/hoodie.jpg" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
                             <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
+                                <h3 class="card-title pt-4 m-0">Hoodie</h3>
                             </a>
 
                             <div class="card-text">
@@ -318,42 +338,7 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
 
-                                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
-                                </div>
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="../images/item3.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    5.0</span>
-
-                                <h3 class="secondary-font text-primary">$18.00</h3>
+                                <h3 class="secondary-font text-primary">7.08JOD</h3>
 
                                 <div class="d-flex flex-wrap mt-3">
                                     <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
@@ -375,10 +360,10 @@
               New
             </div> -->
                     <div class="card position-relative">
-                        <a href="single-product.html"><img src="../images/item4.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <a href="single-product.html"><img src="../inserted_img/3pcs.jpg" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
                             <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
+                                <h3 class="card-title pt-4 m-0">3Pcs Outfit</h3>
                             </a>
 
                             <div class="card-text">
@@ -390,7 +375,7 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
 
-                                <h3 class="secondary-font text-primary">$18.00</h3>
+                                <h3 class="secondary-font text-primary">9.92JOD</h3>
 
                                 <div class="d-flex flex-wrap mt-3">
                                     <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
@@ -424,10 +409,10 @@
             <div class="offset-md-3 col-md-6 my-5 ">
                 <h2 class="display-3 fw-normal text-center">Get 20% Off on <span class="text-primary">first Purchase</span>
                 </h2>
-                
+
                 <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="./login_register.php" style="color: white;">Register it now</a></button>
-                    </div>
+                    <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="./login_register.php" style="color: white;">Register it now</a></button>
+                </div>
             </div>
         </div>
     </div>
