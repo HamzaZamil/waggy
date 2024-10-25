@@ -38,14 +38,14 @@ class User {
 
     public function createUser($data) {
         $query = "INSERT INTO " . $this->table_name . " (user_first_name, user_last_name, user_email, user_password, user_gender, user_birth_of_date, user_phone_number, user_address_line_one, user_state, user_role) VALUES (:first_name, :last_name, :email, :password, :gender, :birth_date, :phone, :address, :state, :role)";
-
+        $hashed_password = password_hash($data['password'], PASSWORD_DEFAULT); // Hashing password
         $stmt = $this->conn->prepare($query);
 
         // Bind parameters
         $stmt->bindParam(':first_name', $data['first_name']);
         $stmt->bindParam(':last_name', $data['last_name']);
         $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':password', password_hash($data['password'], PASSWORD_DEFAULT)); // Hashing password
+        $stmt->bindParam(':password', $hashed_password);   
         $stmt->bindParam(':gender', $data['gender']);
         $stmt->bindParam(':birth_date', $data['birth_date']);
         $stmt->bindParam(':phone', $data['phone']);
