@@ -13,15 +13,6 @@ $productController->shop($categories, $products);
 $wishlistController = new WishlistController();
 $wishlistItems = $wishlistController->getWishlistItemsForDisplay();
 
-// Helper function to check if a product is in the wishlist
-// function isInWishlist($productId, $wishlistItems) {
-//     foreach ($wishlistItems as $item) {
-//         if ($item['product_id'] == $productId) {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
 $pet_clothing_id = $cat_food_id = $dog_food_id = $cat_toys_tools_id = $dog_toys_tools_id =  null;
 
 foreach ($categories as $category) {
