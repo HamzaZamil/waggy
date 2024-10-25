@@ -1,5 +1,5 @@
 <?php
-include '../model/product.php';
+include_once '../model/product.php';
 
 class ProductController extends Product
 {
