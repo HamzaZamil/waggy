@@ -1,18 +1,28 @@
 <?php
 include 'header.php';
 include '../controllers/productController.php';
+include '../controllers/wishlistController.php';
 
 $categories = [];
 $products = [];
+$wishlistItems = [];
 
 $productController = new ProductController();
 $productController->shop($categories, $products);
 
-$pet_clothing_id = null;
-$cat_food_id = null;
-$dog_food_id = null;
-$cat_toys_tools_id = null;
-$dog_toys_tools_id = null;
+$wishlistController = new WishlistController();
+$wishlistItems = $wishlistController->getWishlistItemsForDisplay();
+
+// Helper function to check if a product is in the wishlist
+// function isInWishlist($productId, $wishlistItems) {
+//     foreach ($wishlistItems as $item) {
+//         if ($item['product_id'] == $productId) {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+$pet_clothing_id = $cat_food_id = $dog_food_id = $cat_toys_tools_id = $dog_toys_tools_id =  null;
 
 foreach ($categories as $category) {
     switch ($category['category_name']) {
@@ -73,8 +83,14 @@ foreach ($categories as $category) {
                                             <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                                                 <h5 class="text-uppercase m-0">Add to Cart</h5>
                                             </a>
-                                            <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                                <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                            <a href="#" class="btn-wishlist px-4 pt-3">
+                                                <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
+                                                    <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                                    <input type="hidden" name="action" value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
+                                                    <button type="submit" style="border: none; background: none;">
+                                                        <iconify-icon icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>" class="fs-5"></iconify-icon>
+                                                    </button>
+                                                </form>
                                             </a>
                                         </div>
                                     </div>
@@ -135,7 +151,13 @@ foreach ($categories as $category) {
                                             <h5 class="text-uppercase m-0">Add to Cart</h5>
                                         </a>
                                         <a href="#" class="btn-wishlist px-4 pt-3">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                            <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
+                                                <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                                <input type="hidden" name="action" value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
+                                                <button type="submit" style="border: none; background: none;">
+                                                    <iconify-icon icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>" class="fs-5"></iconify-icon>
+                                                </button>
+                                            </form>
                                         </a>
                                     </div>
                                 </div>
@@ -177,7 +199,13 @@ foreach ($categories as $category) {
                                             <h5 class="text-uppercase m-0">Add to Cart</h5>
                                         </a>
                                         <a href="#" class="btn-wishlist px-4 pt-3">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                            <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
+                                                <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                                <input type="hidden" name="action" value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
+                                                <button type="submit" style="border: none; background: none;">
+                                                    <iconify-icon icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>" class="fs-5"></iconify-icon>
+                                                </button>
+                                            </form>
                                         </a>
                                     </div>
                                 </div>
@@ -237,7 +265,13 @@ foreach ($categories as $category) {
                                             <h5 class="text-uppercase m-0">Add to Cart</h5>
                                         </a>
                                         <a href="#" class="btn-wishlist px-4 pt-3">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                            <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
+                                                <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                                <input type="hidden" name="action" value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
+                                                <button type="submit" style="border: none; background: none;">
+                                                    <iconify-icon icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>" class="fs-5"></iconify-icon>
+                                                </button>
+                                            </form>
                                         </a>
                                     </div>
                                 </div>
@@ -279,7 +313,13 @@ foreach ($categories as $category) {
                                             <h5 class="text-uppercase m-0">Add to Cart</h5>
                                         </a>
                                         <a href="#" class="btn-wishlist px-4 pt-3">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                            <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
+                                                <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                                <input type="hidden" name="action" value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
+                                                <button type="submit" style="border: none; background: none;">
+                                                    <iconify-icon icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>" class="fs-5"></iconify-icon>
+                                                </button>
+                                            </form>
                                         </a>
                                     </div>
                                 </div>
@@ -295,3 +335,4 @@ foreach ($categories as $category) {
 </section>
 
 <?php include 'footer.php'; ?>
+<!-- fluent:heart-28-filled -->

@@ -1,7 +1,7 @@
 <?php
 class DBConnection
 {
-    protected function connect()
+    public function connect()
     {
         $dsn = 'mysql:host=127.0.0.1;dbname=waggy_shop';
         $username = 'root';
