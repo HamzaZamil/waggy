@@ -13,6 +13,21 @@
     <link rel="stylesheet" type="text/css" href="../css/vendor.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+
+    <style>
+        .heart-icon {
+            cursor: pointer;
+            font-size: 1.5em;
+            color: red;
+        }
+        .heart-icon.filled {
+            color: red;
+        }
+        .heart-icon.outline {
+            color: gray;
+        }
+    </style>
 </head>
 
 <body>
