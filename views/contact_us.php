@@ -109,7 +109,7 @@
             return true; // Validation passed
         }
 
-        function sendMail(event) {
+            function sendMail(event) {
             event.preventDefault(); // Prevent the default form submission
 
             // Validate the form
@@ -126,11 +126,19 @@
             emailjs.send("service_42l0n3f", "template_48gya0r", params)
                 .then(function(res) {
                     showToast("Success! Your message has been sent.", "success");
+                    clearForm(); // Call to clear the form fields
                 })
                 .catch(function(error) {
                     showToast("Failed to send email. " + error, "error");
                 });
         }
+
+         function clearForm() {
+            document.getElementById("fullName").value = '';
+            document.getElementById("email_id").value = '';
+            document.getElementById("message").value = '';
+        }
+
 
         function showToast(message, type) {
             const toastBody = document.getElementById("toast-body");
@@ -146,7 +154,7 @@
 
             // Show the toast
             toast.style.display = 'block';
-            const bsToast = new bootstrap.Toast(toast, { autohide: true, delay: 1500 });
+            const bsToast = new bootstrap.Toast(toast, { autohide: true, delay: 1300 });
             bsToast.show();
         }
     </script>
