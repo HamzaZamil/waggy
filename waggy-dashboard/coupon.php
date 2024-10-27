@@ -1,5 +1,14 @@
 <?php
-include("includes/header.php")
+include("includes/header.php");
+require_once 'model/Coupon.php';
+
+$couponModel = new Coupon();
+$coupons = $couponModel->getAllCoupons();
+$couponData = null;
+if (isset($_GET['edit_id'])) {
+    $editId = $_GET['edit_id'];
+    $couponData = $couponModel->getCouponById($editId); // Make sure to create this method
+}
 ?>
 
 <!-- Begin Page Content -->
@@ -32,107 +41,110 @@ include("includes/header.php")
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($coupons as $coupon): ?>
                     <tr>
-                        <td data-label="Product Image"><img src="https://via.placeholder.com/50" alt="Product 1"></td>
-                        <td data-label="Product Category">Widgets</td>
-                        <td data-label="Product Quantity">100</td>
-                        <td data-label="Product Status">Instock</td>
+                        <td><?= htmlspecialchars($coupon['coupon_id']); ?></td>
+                        <td><?= htmlspecialchars($coupon['coupon_discount']); ?></td>
+                        <td><?= htmlspecialchars($coupon['coupon_expiry_date']); ?></td>
+                        <td><?= htmlspecialchars($coupon['coupon_status']); ?></td>
                         <td data-label="Actions">
                             <div class="action-buttons">
                                 <button class="edit-btn" onclick="openEditModal(this)">Edit</button>
-                                <button class="delete-btn">Delete</button>
+                                <form method="POST" action="process_coupon.php" style="display:inline;">
+                                    <input type="hidden" name="action" value="delete_coupon">
+                                    <input type="hidden" name="coupon_id"
+                                        value="<?= htmlspecialchars($coupon['coupon_id']); ?>">
+                                    <button class="delete-btn" type="submit"
+                                        onclick="return confirm('Are you sure you want to delete this coupon?');">Delete</button>
+                                </form>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
 
-                        <td data-label="Product Image"><img src="https://via.placeholder.com/50" alt="Product 2"></td>
-                        <td data-label="Product Category">Gadgets</td>
-                        <td data-label="Product Quantity">50</td>
-                        <td data-label="Product Status">Out of Stock</td>
-                        <td data-label="Actions">
-                            <div class="action-buttons">
-                                <button class="edit-btn" onclick="openEditModal(this)">Edit</button>
-                                <button class="delete-btn">Delete</button>
-                            </div>
-                        </td>
                     </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
+    <!-- Add Modal, Edit Modal, Footer, and Scripts here -->
+</div> <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper --
     <!-- Edit Modal -->
-    <div id="editModal" class="modal"
-        style="display: none; justify-content: center; align-items: center; height: 100vh;">
-        <div class="modal-content" style="width: 50%; text-align: center;">
-            <button class="close-btn" style="background:#db4f4f;" onclick="closeEditModal()">X</button>
-            <h2>Edit Coupon</h2>
-            <form id="addForm">
-                <div class="form-group">
-                    <label for="newProductName">Coupon Discount:</label>
-                    <input type="text" id="newProductName" name="newProductName"><br><br>
-                </div>
-                <div class="form-group">
-                    <label for="newProductDescription">DeadLine:</label>
-                    <input type="text" id="newProductDescription" name="newProductDescription"><br><br>
-                </div>
-                <div class="form-group">
-                    <label for="newProductStatus">Validity:</label>
-                    <select id="newProductStatus" name="newProductStatus">
-                        <option value="instock">Instock</option>
-                        <option value="outofstock">Out of Stock</option>
-                    </select><br><br>
-                </div>
-                <button class="save-btn" type="submit"
-                    style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add Modal -->
-    <div id="addModal" class="modal"
-        style="display: none; justify-content: center; align-items: center; height: 100vh;">
-        <div class="modal-content" style="width: 50%; text-align: center;">
-            <button class="close-btn" style="background:#db4f4f;" onclick="closeAddModal()">X</button>
-            <h2>Add Coupon</h2>
-            <form id="addForm">
-                <div class="form-group">
-                    <label for="newProductName">Coupon Discount:</label>
-                    <input type="text" id="newProductName" name="newProductName"><br><br>
-                </div>
-                <div class="form-group">
-                    <label for="newProductDescription">DeadLine:</label>
-                    <input type="text" id="newProductDescription" name="newProductDescription"><br><br>
-                </div>
-                <div class="form-group">
-                    <label for="newProductStatus">Validity:</label>
-                    <select id="newProductStatus" name="newProductStatus">
-                        <option value="instock">Instock</option>
-                        <option value="outofstock">Out of Stock</option>
-                    </select><br><br>
-                </div>
-                <button class="save-btn" type="submit"
-                    style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
-                </button>
-            </form>
-        </div>
-    </div>
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2020</span>
+<div id="editModal" class="modal" style="display: none; justify-content: center; align-items: center; height: 100vh;">
+    <div class="modal-content" style="width: 50%; text-align: center;">
+        <button class="close-btn" style="background:#db4f4f;" onclick="closeEditModal()">X</button>
+        <h2>Edit Coupon</h2>
+        <form id="editForm" action="process_coupon.php" method="POST">
+            <input type="hidden" name="action" value="edit_coupon">
+            <input type="hidden" id="editCouponId" name="coupon_id" required>
+            <div class="form-group">
+                <label for="editDiscount">Coupon Discount:</label>
+                <input type="text" id="editDiscount" name="coupon_discount" required><br><br>
             </div>
+            <div class="form-group">
+                <label for="editExpiryDate">Deadline:</label>
+                <input type="date" id="editExpiryDate" name="coupon_expiry_date" required> <br><br>
+            </div>
+            <div class="form-group">
+                <label for="editStatus">Validity:</label>
+                <select id="editStatus" name="coupon_status">
+                    <option value="Valid">Valid</option>
+                    <option value="Invalid">Invalid</option>
+                </select><br><br>
+            </div>
+            <button class="save-btn" type="submit"
+                style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save</button>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- Add Modal -->
+<div id="addModal" class="modal" style="display: none; justify-content: center; align-items: center; height: 100vh;">
+    <div class="modal-content" style="width: 50%; text-align: center;">
+        <button class="close-btn" style="background:#db4f4f;" onclick="closeAddModal()">X</button>
+        <h2>Add Coupon</h2>
+        <form id="addForm" action="process_coupon.php" method="POST">
+            <input type="hidden" name="action" value="add_coupon">
+            <div class="form-group">
+                <label for="coupon_discount">Coupon Discount:</label>
+                <input type="text" id="coupon_discount" name="coupon_discount" required><!-- Changed here -->
+            </div>
+            <div class="form-group">
+                <label for="coupon_expiry_date">Deadline:</label>
+                <input type="date" id="coupon_expiry_date" name="coupon_expiry_date" required><!-- Changed here -->
+            </div>
+            <div class="form-group">
+                <label for="coupon_status">Validity:</label>
+                <select id="coupon_status" name="coupon_status" required>
+                    <!-- Changed here -->
+                    <option value="Valid">Valid</option>
+                    <option value="Invalid">Invalid</option>
+                </select>
+            </div>
+            <button class="save-btn" type="submit"
+                style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
+            </button>
+        </form>
+
+    </div>
+</div>
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
         </div>
-    </footer>
-    <!-- End of Footer -->
+    </div>
+</footer>
+<!-- End of Footer -->
 
-</div>
-<!-- End of Content Wrapper -->
 
-</div>
-<!-- End of Page Wrapper -->
+
+
+
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
@@ -159,6 +171,7 @@ include("includes/header.php")
     </div>
 </div>
 
+
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -169,6 +182,24 @@ include("includes/header.php")
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 <script src="js/modal.js"></script>
+<script>
+function openEditModal(button) {
+    const row = button.closest('tr');
+    const id = row.cells[0].innerText; // Assuming coupon_id is in the first column
+    const discount = row.cells[1].innerText;
+    const expiryDate = row.cells[2].innerText;
+    const status = row.cells[3].innerText;
+
+    document.getElementById('editCouponId').value = id;
+    document.getElementById('editDiscount').value = discount;
+    document.getElementById('editExpiryDate').value = expiryDate;
+    document.getElementById('editStatus').value = status;
+
+    document.getElementById('editModal').style.display = 'flex';
+}
+</script>
+
+
 
 </body>
 
