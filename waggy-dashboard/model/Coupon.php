@@ -15,7 +15,7 @@ class Coupon {
 
 
     public function getAllCoupons() {
-        $query = "SELECT * FROM coupon WHERE is_deleted = 0";
+        $query = "SELECT * FROM coupons WHERE is_deleted = 0";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -24,7 +24,7 @@ class Coupon {
 
 
     public function addCoupon($discount, $expiry_date, $status) {
-        $query = "INSERT INTO coupon (coupon_discount, coupon_expiry_date, coupon_status) VALUES (:discount, :expiry_date, :status)";
+        $query = "INSERT INTO coupons (coupon_discount, coupon_expiry_date, coupon_status) VALUES (:discount, :expiry_date, :status)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':discount', $discount);
         $stmt->bindParam(':expiry_date', $expiry_date);
@@ -34,7 +34,7 @@ class Coupon {
 
 
     public function updateCoupon($id, $discount, $expiry_date, $status) {
-        $query = "UPDATE coupon SET coupon_discount = :discount, coupon_expiry_date = :expiry_date, coupon_status = :status WHERE coupon_id = :id";
+        $query = "UPDATE coupons SET coupon_discount = :discount, coupon_expiry_date = :expiry_date, coupon_status = :status WHERE coupon_id = :id";
         $stmt = $this->conn->prepare($query);
         
         $stmt->bindParam(':id', $id);
@@ -47,7 +47,7 @@ class Coupon {
 
 
     public function deleteCoupon($id) {
-    $query = "UPDATE coupon SET is_deleted = 1 WHERE coupon_id = :id";
+    $query = "UPDATE coupons SET is_deleted = 1 WHERE coupon_id = :id";
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':id', $id);
     return $stmt->execute();
