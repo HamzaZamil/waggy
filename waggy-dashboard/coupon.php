@@ -46,6 +46,7 @@ if (isset($_GET['edit_id'])) {
                     <thead>
                         <tr>
                             <th>Coupon Id</th>
+                            <th>Coupon Name</th>
                             <th>Coupon Discount</th>
                             <th>Deadline</th>
                             <th>Validity</th>
@@ -56,6 +57,7 @@ if (isset($_GET['edit_id'])) {
                         <?php foreach ($coupons as $coupon): ?>
                         <tr>
                             <td><?= htmlspecialchars($coupon['coupon_id']); ?></td>
+                            <td><?= htmlspecialchars($coupon['coupon_name']); ?></td>
                             <td><?= htmlspecialchars($coupon['coupon_discount']); ?></td>
                             <td><?= htmlspecialchars($coupon['coupon_expiry_date']); ?></td>
                             <td><?= htmlspecialchars($coupon['coupon_status']); ?></td>
@@ -81,7 +83,7 @@ if (isset($_GET['edit_id'])) {
         <!-- Add Modal, Edit Modal, Footer, and Scripts here -->
     </div> <!-- End of Content Wrapper -->
     </div>
-    <!-- End of Page Wrapper --
+    <!-- End of Page Wrapper -->
     <!-- Edit Modal -->
     <div id="editModal" class="modal"
         style="display: none; justify-content: center; align-items: center; height: 100vh;">
@@ -92,12 +94,16 @@ if (isset($_GET['edit_id'])) {
                 <input type="hidden" name="action" value="edit_coupon">
                 <input type="hidden" id="editCouponId" name="coupon_id" required>
                 <div class="form-group">
+                    <label for="coupon_name">Coupon Name:</label>
+                    <input type="text" id="editCouponName" name="coupon_name" >  <!-- Changed here -->
+                </div>
+                <div class="form-group">
                     <label for="editDiscount">Coupon Discount:</label>
-                    <input type="text" id="editDiscount" name="coupon_discount" required><br><br>
+                    <input type="text" id="editDiscount" name="coupon_discount" ><br><br>
                 </div>
                 <div class="form-group">
                     <label for="editExpiryDate">Deadline:</label>
-                    <input type="date" id="editExpiryDate" name="coupon_expiry_date" required> <br><br>
+                    <input type="date" id="editExpiryDate" name="coupon_expiry_date" > <br><br>
                 </div>
                 <div class="form-group">
                     <label for="editStatus">Validity:</label>
@@ -123,16 +129,20 @@ if (isset($_GET['edit_id'])) {
             <form id="addForm" action="process_coupon.php" method="POST">
                 <input type="hidden" name="action" value="add_coupon">
                 <div class="form-group">
+                    <label for="coupon_name">Coupon Name:</label>
+                    <input type="text" id="coupon_name" name="coupon_name" > <!-- Changed here -->
+                </div>
+                <div class="form-group">
                     <label for="coupon_discount">Coupon Discount:</label>
-                    <input type="text" id="coupon_discount" name="coupon_discount" required><!-- Changed here -->
+                    <input type="text" id="coupon_discount" name="coupon_discount" > <!-- Changed here -->
                 </div>
                 <div class="form-group">
                     <label for="coupon_expiry_date">Deadline:</label>
-                    <input type="date" id="coupon_expiry_date" name="coupon_expiry_date" required><!-- Changed here -->
+                    <input type="date" id="coupon_expiry_date" name="coupon_expiry_date" > <!-- Changed here -->
                 </div>
                 <div class="form-group">
                     <label for="coupon_status">Validity:</label>
-                    <select id="coupon_status" name="coupon_status" required>
+                    <select id="coupon_status" name="coupon_status" >
                         <!-- Changed here -->
                         <option value="Valid">Valid</option>
                         <option value="Invalid">Invalid</option>
@@ -226,11 +236,13 @@ endif;
     function openEditModal(button) {
         const row = button.closest('tr');
         const id = row.cells[0].innerText; // Assuming coupon_id is in the first column
-        const discount = row.cells[1].innerText;
-        const expiryDate = row.cells[2].innerText;
-        const status = row.cells[3].innerText;
+        const name = row.cells[1].innerText; // changed by me
+        const discount = row.cells[2].innerText;
+        const expiryDate = row.cells[3].innerText;
+        const status = row.cells[4].innerText;
 
         document.getElementById('editCouponId').value = id;
+        document.getElementById('editCouponName').value = name; // changed by me
         document.getElementById('editDiscount').value = discount;
         document.getElementById('editExpiryDate').value = expiryDate;
         document.getElementById('editStatus').value = status;
