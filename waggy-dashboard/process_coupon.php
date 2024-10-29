@@ -7,11 +7,12 @@ $couponModel = new Coupon();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['action'] === 'add_coupon') {
         // Adding a new coupon
+        $name = $_POST['coupon_name'];
         $discount = $_POST['coupon_discount'];
         $expiry_date = $_POST['coupon_expiry_date'];
         $status = $_POST['coupon_status'];
 
-        if ($couponModel->addCoupon($discount, $expiry_date, $status)) {
+        if ($couponModel->addCoupon( $name, $discount, $expiry_date, $status)) {
             $_SESSION['sweetalert'] = [
                 "type" => "success",
                 "message" => "Coupon added successfully!"
@@ -27,11 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($_POST['action'] === 'edit_coupon') {
         // Editing an existing coupon
         $id = $_POST['coupon_id'];
+        $name = $_POST['coupon_name'];
         $discount = $_POST['coupon_discount'];
         $expiry_date = $_POST['coupon_expiry_date'];
         $status = $_POST['coupon_status'];
 
-        if ($couponModel->updateCoupon($id, $discount, $expiry_date, $status)) {
+        if ($couponModel->updateCoupon($id,$name, $discount, $expiry_date, $status)) {
             $_SESSION['sweetalert'] = [
                 "type" => "success",
                 "message" => "Coupon updated successfully!"
