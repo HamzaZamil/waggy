@@ -1,6 +1,8 @@
  <!-- Footer -->
- <footer id="footer" style="background: url('../images/background-img.png') no-repeat; margin-bottom: -100px;">
-     <div class="container py-5 my-5">
+  
+
+ <footer id="footer" style="margin-top:0;background: url('../images/background-img.png') no-repeat; margin-bottom: -100px;">
+     <div class="container my-5 py-5">
          <div class="row">
 
              <div class="col-md-4">
