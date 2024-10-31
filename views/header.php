@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Waggy - Free eCommerce Pet Shop HTML Website Template</title>
+    <title>Waggy</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +13,83 @@
     <link rel="stylesheet" type="text/css" href="../css/vendor.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
+    <!-- cart style sheet -->
+    <link rel="stylesheet" href="../css/cart_style.css">
 
     <style>
+        .alert-position {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: none;
+        }
+
         .heart-icon {
             cursor: pointer;
             font-size: 1.5em;
             color: red;
         }
+
         .heart-icon.filled {
             color: red;
         }
+
         .heart-icon.outline {
             color: gray;
+        }
+
+        .rounded-sweetalert {
+            border-radius: 20px !important;
+        }
+
+        /* Container styling */
+        .section {
+            padding-top: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        /* Card styling */
+        .card {
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .card h5 {
+            font-weight: bold;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Sale badge */
+        .card .sale-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: black;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        /* Footer button */
+        .card-footer button {
+            background-color: #dfb074;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .card-footer button:hover {
+            background-color: #c6a56b;
         }
     </style>
 </head>
@@ -35,51 +99,6 @@
         <div class="preloader">
         </div>
     </div> -->
-
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
-        <div class="offcanvas-header justify-content-center">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <!-- Cart content must be edited -->
-            <div class="order-md-last">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Your cart</span>
-                    <span class="badge bg-primary rounded-circle pt-2">3</span>
-                </h4>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Grey Hoodie</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$12</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Dog Food</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$8</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Soft Toy</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span class="fw-bold">Total (USD)</span>
-                        <strong>$20</strong>
-                    </li>
-                </ul>
-
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-            </div>
-
-        </div>
-    </div>
 
     <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="Search">
         <div class="offcanvas-header justify-content-center">
@@ -140,7 +159,6 @@
                                 <iconify-icon onify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                             </a>
                         </li>
-                        <!-- Updated href for wishlist -->
                         <li>
                             <a href="wishlist.php" class="mx-3">
                                 <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
@@ -181,8 +199,17 @@
                             <li class="nav-item">
                                 <a href="index.php" class="nav-link <?php echo $currentPage == 'index.php' ? 'active' : ''; ?>">Home</a>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
+                                    aria-expanded="false">Shop</a>
+                                <ul class="dropdown-menu" aria-labelledby="pages">
+                                    <li><a href="shop2.php?categ-id=1" class="dropdown-item">All</a></li>
+                                    <li><a href="shop2.php?categ-id=2" class="dropdown-item">Cats</a></li>
+                                    <li><a href="shop2.php?categ-id=3" class="dropdown-item">Dogs</a></li>
+                                </ul>
+                            </li>
                             <li class="nav-item">
-                                <a href="shop.php" class="nav-link <?php echo $currentPage == 'shop.php' ? 'active' : ''; ?>">Shop</a>
+                                <a href="about_us.php" class="nav-link <?php echo $currentPage == 'about_us.php' ? 'active' : ''; ?>">About Us</a>
                             </li>
                             <li class="nav-item">
                                 <a href="contact_us.php" class="nav-link <?php echo $currentPage == 'contact_us.php' ? 'active' : ''; ?>">Contact Us</a>
@@ -202,10 +229,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                                        <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                                        <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">03</span>
-                                    </a>
+                                    <div class="icon-cart">
+                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="filled" viewBox="0 0 18 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+                                        </svg>
+                                        <span id="iconCartQuantity">0</span>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -215,3 +244,15 @@
             </nav>
         </div>
     </header>
+
+    <div class="overlay"></div>
+    <div class="cartTab">
+        <h1>Shopping Cart</h1>
+        <div class="listCart">
+
+        </div>
+        <div class="btns">
+            <button class="close">CLOSE</button>
+            <button class="checkOut"><a href="#">Check Out</a></button>
+        </div>
+    </div>

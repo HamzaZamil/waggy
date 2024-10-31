@@ -1,7 +1,10 @@
 <?php
+ob_start();
+
 include 'header.php';
 include '../controllers/productController.php';
 include '../controllers/wishlistController.php';
+include '../controllers/cartController.php';
 
 $categories = [];
 $products = [];
@@ -12,6 +15,8 @@ $productController->shop($categories, $products);
 
 $wishlistController = new WishlistController();
 $wishlistItems = $wishlistController->getWishlistItemsForDisplay();
+
+$cartController = new CartController();
 
 $pet_clothing_id = $cat_food_id = $dog_food_id = $cat_toys_tools_id = $dog_toys_tools_id =  null;
 
@@ -34,6 +39,13 @@ foreach ($categories as $category) {
             break;
     }
 }
+
+// Handle the Add to Cart action
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
+    $productId = $_POST['product_id'];
+    $quantity = $_POST['quantity'] ?? 1; // Default quantity to 1 if not provided
+    $cartController->addToCart($productId, $quantity);
+}
 ?>
 
 <!-- Clothing Section -->
@@ -51,9 +63,21 @@ foreach ($categories as $category) {
                 ?>
                         <div class="swiper-slide">
                             <div class="card position-relative">
-                                <a href="single-product.html"><img src="<?= $product_item["product_img"] ?>" class="img-fluid rounded-4" alt="image"></a>
+                                <a href="javascript:void(0);" onclick="showProductDetails(
+                                    '<?= $product_item["product_img"] ?>',
+                                    '<?= htmlspecialchars($product_item["product_name"]) ?>',
+                                    '<?= htmlspecialchars($product_item["product_description"]) ?>',
+                                    '<?= $product_item["product_price"] ?> JOD'
+                                )">
+                                    <img src="<?= $product_item["product_img"] ?>" class="img-fluid rounded-4" alt="image">
+                                </a>
                                 <div class="card-body p-0">
-                                    <a href="single-product.html">
+                                    <a href="javascript:void(0);" onclick="showProductDetails(
+                                        '<?= $product_item["product_img"] ?>',
+                                        '<?= htmlspecialchars($product_item["product_name"]) ?>',
+                                        '<?= htmlspecialchars($product_item["product_description"]) ?>',
+                                        '<?= $product_item["product_price"] ?> JOD'
+                                    )">
                                         <h3 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h3>
                                     </a>
 
@@ -71,9 +95,15 @@ foreach ($categories as $category) {
                                         <h3 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h3>
 
                                         <div class="d-flex flex-wrap mt-3">
-                                            <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                                <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                            </a>
+                                            <!-- Add to Cart Button as a form submission -->
+                                            <form method="POST" action="">
+                                                <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <input type="hidden" name="action" value="add_to_cart">
+                                                <button type="submit" class="btn-cart me-3 px-4 pt-3 pb-3" style="border: 1px solid lightgrey; border-radius:6px; background: none;">
+                                                    <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                                </button>
+                                            </form>
                                             <a href="#" class="btn-wishlist px-4 pt-3">
                                                 <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
                                                     <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
@@ -138,9 +168,14 @@ foreach ($categories as $category) {
                                     <h3 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h3>
 
                                     <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
+                                        <form method="POST" action="">
+                                            <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" name="action" value="add_to_cart">
+                                            <button type="submit" class="btn-cart me-3 px-4 pt-3 pb-3" style="border: 1px solid lightgrey; border-radius:6px; background: none;">
+                                                <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                            </button>
+                                        </form>
                                         <a href="#" class="btn-wishlist px-4 pt-3">
                                             <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
                                                 <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
@@ -186,9 +221,14 @@ foreach ($categories as $category) {
                                     <h3 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h3>
 
                                     <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
+                                        <form method="POST" action="">
+                                            <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" name="action" value="add_to_cart">
+                                            <button type="submit" class="btn-cart me-3 px-4 pt-3 pb-3" style="border: 1px solid lightgrey; border-radius:6px; background: none;">
+                                                <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                            </button>
+                                        </form>
                                         <a href="#" class="btn-wishlist px-4 pt-3">
                                             <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
                                                 <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
@@ -252,9 +292,14 @@ foreach ($categories as $category) {
                                     <h3 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h3>
 
                                     <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
+                                        <form method="POST" action="">
+                                            <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" name="action" value="add_to_cart">
+                                            <button type="submit" class="btn-cart me-3 px-4 pt-3 pb-3" style="border: 1px solid lightgrey; border-radius:6px; background: none;">
+                                                <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                            </button>
+                                        </form>
                                         <a href="#" class="btn-wishlist px-4 pt-3">
                                             <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
                                                 <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
@@ -300,9 +345,14 @@ foreach ($categories as $category) {
                                     <h3 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h3>
 
                                     <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
+                                        <form method="POST" action="">
+                                            <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" name="action" value="add_to_cart">
+                                            <button type="submit" class="btn-cart me-3 px-4 pt-3 pb-3" style="border: 1px solid lightgrey; border-radius:6px; background: none;">
+                                                <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                            </button>
+                                        </form>
                                         <a href="#" class="btn-wishlist px-4 pt-3">
                                             <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
                                                 <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
@@ -325,5 +375,34 @@ foreach ($categories as $category) {
     </div>
 </section>
 
-<?php include 'footer.php'; ?>
-<!-- fluent:heart-28-filled -->
+<script>
+function showProductDetails(img, name, description, price) {
+    Swal.fire({
+        html: `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <img src="${img}" alt="${name}" style="width: 50%; border-radius: 8px; margin-bottom: 15px;">
+                    <h3 style="text-align: center;">${name}</h3>
+                </div>
+                <div style="text-align: center; max-width: 80%;">
+                    <h4>Description:</h4>
+                    <p>${description}</p>
+                    <h4 class="text-primary">${price}</h4>
+                </div>
+            </div>
+        `,
+        showCloseButton: true,
+        showConfirmButton: false,
+        width: '50%',
+        customClass: {
+            popup: 'rounded-sweetalert'
+        }
+    });
+}
+</script>
+
+
+<?php
+include 'footer.php';
+ob_end_flush();
+?>

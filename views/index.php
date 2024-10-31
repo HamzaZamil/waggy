@@ -202,15 +202,6 @@
                                     5.0</span>
 
                                 <h3 class="secondary-font text-primary">20.54JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
-                                </div>
                             </div>
 
                         </div>
@@ -234,16 +225,6 @@
                                     5.0</span>
 
                                 <h3 class="secondary-font text-primary">7.08JOD </h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
-                                </div>
-
                             </div>
 
                         </div>
@@ -267,28 +248,14 @@
                                     5.0</span>
 
                                 <h3 class="secondary-font text-primary">10.89JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
-                                </div>
-
-
                             </div>
 
                         </div>
                     </div>
                 </div>
                 <div class="swiper-slide">
-                    <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
                     <div class="card position-relative">
-                        <a href="single-product.html"><img src="../inserted_img/chew_toy.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <a href="single-product.html"><img src="../inserted_img/chew_toy.png" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
                             <a href="single-product.html">
                                 <h3 class="card-title pt-4 m-0">Chew Toy</h3>
@@ -304,17 +271,6 @@
                                     5.0</span>
 
                                 <h3 class="secondary-font text-primary">14.17JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
-                                </div>
-
-
                             </div>
 
                         </div>
@@ -339,26 +295,11 @@
                                     5.0</span>
 
                                 <h3 class="secondary-font text-primary">7.08JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
-                                </div>
-
-
                             </div>
-
                         </div>
                     </div>
                 </div>
                 <div class="swiper-slide">
-                    <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="../inserted_img/3pcs.jpg" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
@@ -376,17 +317,6 @@
                                     5.0</span>
 
                                 <h3 class="secondary-font text-primary">9.92JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
-                                </div>
-
-
                             </div>
 
                         </div>

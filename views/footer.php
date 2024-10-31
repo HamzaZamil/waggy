@@ -36,6 +36,12 @@
                          <li class="menu-item">
                              <a href="./contact_us.php" class="nav-link">Conatct Us</a>
                          </li>
+                         <li class="menu-item">
+                             <a href="./about_us.php" class="nav-link">About Us</a>
+                         </li>
+                         <li class="menu-item">
+                             <a href="./faq.php" class="nav-link">FAQ</a>
+                         </li>
                      </ul>
                  </div>
              </div>
@@ -75,6 +81,10 @@
  <script src="../js/plugins.js"></script>
  <script src="../js/script.js"></script>
  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
- </body>
+ <!-- Script for cart -->
+  <script src="../js/cart.js"></script>
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
 
  </html>
