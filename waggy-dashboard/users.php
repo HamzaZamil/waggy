@@ -5,16 +5,13 @@ require_once 'model/User.php';
 $user = new User();
 
 // Pagination variables
-$limit = 5; // Number of users per page
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
-$offset = ($page - 1) * $limit; // Offset for SQL query
 
 // Get users
-$users = $user->getAllUsers($limit, $offset);
+$users = $user->getAllUsers();
 
 // Get total users for pagination
 $totalUsers = $user->getTotalUsers();
-$totalPages = ceil($totalUsers / $limit);
+
 ?>
 
 
@@ -28,6 +25,7 @@ $totalPages = ceil($totalUsers / $limit);
     <title>user</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <style>
     .pagination {
         display: flex;
@@ -88,31 +86,12 @@ $totalPages = ceil($totalUsers / $limit);
                 </button>
             </div>
 
-            <div class="pt-5 pb-3">
+            <div class="table_pro_item">
+            <div class="pt-5 pb-3 ">
                 <h2>Users Table</h2>
-                <!-- Pagination Section -->
-                <nav aria-label="Page navigation">
-    <ul class="pagination">
-        <!-- Previous Button -->
-        <li class="page-item <?= ($page == 1) ? 'disabled' : '' ?>">
-            <a class="page-link" href="?page=<?= $page - 1 ?>" tabindex="-1">Previous</a>
-        </li>
-
-        <!-- Page Number Links -->
-        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-        <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
-            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-        </li>
-        <?php endfor; ?>
-
-        <!-- Next Button -->
-        <li class="page-item <?= ($page == $totalPages) ? 'disabled' : '' ?>">
-            <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>
-        </li>
-    </ul>
-</nav>
-                <table class="responsive-table">
-                    <thead>
+                
+                <table class="responsive-table"id="myTable">
+                    <thead >
                         <tr>
                             <th>User ID</th>
                             <th>First Name</th>
@@ -159,7 +138,7 @@ $totalPages = ceil($totalUsers / $limit);
             </div>
 
         </div>
-
+        </div>
         <!-- /.container-fluid -->
 
         <!-- Edit Modal -->
@@ -168,7 +147,7 @@ $totalPages = ceil($totalUsers / $limit);
         <div class="modal" id="editModal"
             style="display: none; justify-content: center; align-items: center; height: 100vh;">
             <div class="modal-content" style="width: 50%; text-align: center;">
-                <button class="close-btn" style="background:#db4f4f;" onclick="closeEditModal()">X</button>
+                <button class="close-btn delete-btn" style="background:#db4f4f;" onclick="closeEditModal()">X</button>
                 <h3>Edit User</h3>
                 <form id="editForm" method="POST" action="process_user.php">
                     <input type="hidden" id="editUserId" name="editUserId">
@@ -218,7 +197,7 @@ $totalPages = ceil($totalUsers / $limit);
                             <option value="user">User</option>
                         </select>
                     </div>
-                    <button class="save-btn" type="submit"
+                    <button class="save-btn edit-btn" type="submit"
                         style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
                         User</button>
                 </form>
@@ -227,64 +206,70 @@ $totalPages = ceil($totalUsers / $limit);
 
 
         <!-- Add User Modal -->
-        <div class="modal" id="addModal"
-            style="display: none; justify-content: center; align-items: center; height: 100vh;">
-            <div class="modal-content" style="width: 50%; text-align: center;">
-                <button class="close-btn" style="background:#db4f4f;" onclick="closeAddModal()">X</button>
-                <h3 style="text-align: center;">Add New User</h3>
-                <form id="addForm" method="POST" action="process_user.php">
-                    <div class="form-group">
-                        <label for="newFirstName">First Name:</label>
-                        <input type="text" id="newFirstName" name="newFirstName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newLastName">Last Name:</label>
-                        <input type="text" id="newLastName" name="newLastName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newEmail">Email:</label>
-                        <input type="email" id="newEmail" name="newEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newGender">Gender:</label>
-                        <select id="newGender" name="newGender" required>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="newBirthDate">Birth Date:</label>
-                        <input type="date" id="newBirthDate" name="newBirthDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newPhone">Phone Number:</label>
-                        <input type="text" id="newPhone" name="newPhone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newAddress">Address:</label>
-                        <input type="text" id="newAddress" name="newAddress" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newState">State:</label>
-                        <select id="newState" name="newState" required>
-                            <option value="Active">Active</option>
-                            <option value="Deactivate">Deactivate</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="newRole">Role:</label>
-                        <select id="newRole" name="newRole" required>
-                            <option value="SuperAdmin">Superadmin</option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                        </select>
-                    </div>
-                    <button class="save-btn" type="submit"
-                        style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
-                        User</button>
-                </form>
+        <!-- Add User Modal -->
+<div class="modal" id="addModal"
+    style="display: none; justify-content: center; align-items: center; height: 100vh;">
+    <div class="modal-content" style="width: 50%; text-align: center;">
+        <button class="close-btn delete-btn" style="background:#db4f4f;" onclick="closeAddModal()">X</button>
+        <h3 style="text-align: center;">Add New User</h3>
+        <form id="addForm" method="POST" action="process_user.php">
+            <div class="form-group">
+                <label for="newFirstName">First Name:</label>
+                <input type="text" id="newFirstName" name="newFirstName" required>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="newLastName">Last Name:</label>
+                <input type="text" id="newLastName" name="newLastName" required>
+            </div>
+            <div class="form-group">
+                <label for="newEmail">Email:</label>
+                <input type="email" id="newEmail" name="newEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="newPassword">Password:</label> <!-- New password input -->
+                <input type="password" id="newPassword" name="newPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="newGender">Gender:</label>
+                <select id="newGender" name="newGender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="newBirthDate">Birth Date:</label>
+                <input type="date" id="newBirthDate" name="newBirthDate" required>
+            </div>
+            <div class="form-group">
+                <label for="newPhone">Phone Number:</label>
+                <input type="text" id="newPhone" name="newPhone" required>
+            </div>
+            <div class="form-group">
+                <label for="newAddress">Address:</label>
+                <input type="text" id="newAddress" name="newAddress" required>
+            </div>
+            <div class="form-group">
+                <label for="newState">State:</label>
+                <select id="newState" name="newState" required>
+                    <option value="Active">Active</option>
+                    <option value="Deactivate">Deactivate</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="newRole">Role:</label>
+                <select id="newRole" name="newRole" required>
+                    <option value="SuperAdmin">Superadmin</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+            </div>
+            <button class="save-btn edit-btn" type="submit"
+                style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
+                User</button>
+        </form>
+    </div>
+</div>
+
 
 
 
@@ -397,6 +382,29 @@ endif;
         document.getElementById("editModal").style.display = "none";
     }
     </script>
+      
+ <!-- Bootstrap core JavaScript-->
+ <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+      
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+        <script src="js/modal.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+            <script src="js/modal.js"></script>
+            <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+            <script>
+            let table = new DataTable('#myTable', {
+    // options
+});
+</script>
 </body>
 
 </html>

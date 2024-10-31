@@ -12,17 +12,16 @@ class Product {
     }
 
     // Updated getAllProducts method with pagination support
-    public function getAllProducts($limit = 10, $offset = 0) {
+    public function getAllProducts() {
         $query = "
             SELECT p.*, c.category_name 
             FROM products p 
             LEFT JOIN categories c ON p.category_id = c.category_id 
             WHERE p.deleted_at IS NULL
-            LIMIT :limit OFFSET :offset"; // Limit and offset for pagination
+            "; // Limit and offset for pagination
     
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+   
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

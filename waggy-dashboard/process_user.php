@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "type" => "warning",
                 "message" => "This email is already in use."
             ];
-            // Optionally, you can redirect back to the form with an error message
-             header("Location: users.php");
+            // Redirect back to the form with an error message
+            header("Location: users.php");
             exit; // Stop further processing
         }
 
@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'first_name' => $_POST['newFirstName'],
             'last_name' => $_POST['newLastName'],
             'email' => $_POST['newEmail'],
-            'password' => $_POST['newPassword'], // Consider hashing this password
             'gender' => $_POST['newGender'],
             'birth_date' => $_POST['newBirthDate'],
             'phone' => $_POST['newPhone'],
@@ -36,12 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user->createUser($data)) {
             $_SESSION['sweetalert'] = [
                 "type" => "success",
-                "message" => "Coupon updated successfully!"
+                "message" => "User created successfully!"
             ];
         } else {
             $_SESSION['sweetalert'] = [
                 "type" => "error",
-                "message" => "Failed to update coupon."
+                "message" => "Failed to create user."
             ];
         }
         header("Location: users.php");
@@ -56,12 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user->softDeleteUser($user_id)) {
             $_SESSION['sweetalert'] = [
                 "type" => "success",
-                "message" => "Coupon deleted successfully!"
+                "message" => "User deleted successfully!"
             ];
-        }else{
+        } else {
             $_SESSION['sweetalert'] = [
                 "type" => "error",
-                "message" => "Failed to delete coupon."
+                "message" => "Failed to delete user."
             ];
         }
         header("Location: users.php");
@@ -87,16 +86,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user->updateUser($data)) {
             $_SESSION['sweetalert'] = [
                 "type" => "success",
-                "message" => "Coupon deleted successfully!"
+                "message" => "User updated successfully!"
             ];
-        }else{
+        } else {
             $_SESSION['sweetalert'] = [
                 "type" => "error",
-                "message" => "Failed to delete coupon."
+                "message" => "Failed to update user."
             ];
         }
         header("Location: users.php");
         exit();
-        
     }
 }
+?>

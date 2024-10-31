@@ -22,10 +22,18 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
     html {
         overflow: scroll !important;
+    
+    }
+    .table_pro_item
+    {
+        overflow-x: auto;
     }
     </style>
 
@@ -45,7 +53,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink" style="color:#000;"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3" style="color:#000;">Admin</div>
+                <div class="sidebar-brand-text mx-3" style="color:#000;">Waggy</div>
             </a>
 
             <!-- Divider -->
