@@ -1,8 +1,9 @@
 <?php include './header.php'; ?>
 
-<!-- Hero Section -->
-<section id="banner" style="background: #F9F3EC;">
-    <div class="container">
+
+    <!-- Hero Section -->
+    <section id="banner" style="background: #F9F3EC;">
+        <div class="container ">
         <div class="swiper main-swiper">
             <div class="swiper-wrapper">
 
@@ -21,9 +22,9 @@
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                     <use xlink:href="#arrow-right"></use>
                                 </svg></a>
+                            </div>
+                            
                         </div>
-
-                    </div>
                 </div>
                 <!-- slider sectoin -->
                 <div class="swiper-slide py-5">
@@ -34,17 +35,17 @@
                         <div class="content-wrapper col-md-7 p-5 mb-5">
                             <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
                             <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                                    pets</span>
+                                pets</span>
                             </h2>
                             <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                 shop now
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                     <use xlink:href="#arrow-right"></use>
                                 </svg></a>
-                        </div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
                 <div class="swiper-slide py-5">
                     <div class="row banner-content align-items-center">
                         <div class="img-wrapper col-md-5">
@@ -53,21 +54,21 @@
                         <div class="content-wrapper col-md-7 p-5 mb-5">
                             <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
                             <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                                    pets</span>
+                                pets</span>
                             </h2>
                             <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                 shop now
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                     <use xlink:href="#arrow-right"></use>
                                 </svg></a>
-                        </div>
+                            </div>
 
-                    </div>
+                        </div>
                 </div>
             </div>
-
+            
             <div class="swiper-pagination mb-5"></div>
-
+            
         </div>
     </div>
 </section>
@@ -108,15 +109,15 @@
             <div class="content-wrapper col-12 offset-md-1 col-md-5 p-5">
                 <div class="secondary-font text-primary text-uppercase mb-3 fs-4">Upto 40% off</div>
                 <h2 class="banner-title display-1 fw-normal">Clearance sale !!!
-                </h2>
-                <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                    </h2>
+                    <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                     shop now
                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                         <use xlink:href="#arrow-right"></use>
                     </svg></a>
+                </div>
+                
             </div>
-
-        </div>
     </div>
 </section>
 
@@ -127,7 +128,7 @@
             <div class="offset-md-1 col-md-10">
                 <div class="swiper testimonial-swiper">
                     <div class="swiper-wrapper">
-
+                        
                         <div class="swiper-slide">
                             <div class="row ">
                                 <div class="col-2">
@@ -163,27 +164,27 @@
                         </div>
 
                     </div>
-
+                    
                     <div class="swiper-pagination"></div>
-
+                    
                 </div>
             </div>
         </div>
     </div>
-
+    
 </section>
 
 <!-- Best Selling Section -->
 <section id="bestselling" class="my-5 overflow-hidden">
     <div class="container py-5 mb-5">
-
+        
         <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
             <h2 class="display-3 fw-normal">Best selling products</h2>
         </div>
-
+        
         <div class=" swiper bestselling-swiper">
             <div class="swiper-wrapper">
-
+                
                 <div class="swiper-slide">
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="../inserted_img/fresh_kisses_treats.jpg" class="img-fluid rounded-4" alt="image" ></a>
@@ -191,7 +192,7 @@
                             <a href="single-product.html">
                                 <h3 class="card-title pt-4 m-0">Fresh Kisses</h3>
                             </a>
-
+                            
                             <div class="card-text">
                                 <span class="rating secondary-font">
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
@@ -200,11 +201,11 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
-
-                                <h3 class="secondary-font text-primary">20.54JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                    
+                                    <h3 class="secondary-font text-primary">20.54JOD</h3>
+                                    
+                                    <div class="d-flex flex-wrap mt-3">
+                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                                         <h5 class="text-uppercase m-0">Add to Cart</h5>
                                     </a>
                                     <a href="#" class="btn-wishlist px-4 pt-3 ">
@@ -212,7 +213,7 @@
                                     </a>
                                 </div>
                             </div>
-
+                            
                         </div>
                     </div>
                 </div>
@@ -223,7 +224,7 @@
                             <a href="single-product.html">
                                 <h3 class="card-title pt-4 m-0">Sweater</h3>
                             </a>
-
+                            
                             <div class="card-text">
                                 <span class="rating secondary-font">
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
@@ -232,20 +233,20 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
-
-                                <h3 class="secondary-font text-primary">7.08JOD </h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                    
+                                    <h3 class="secondary-font text-primary">7.08JOD </h3>
+                                    
+                                    <div class="d-flex flex-wrap mt-3">
+                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                                         <h5 class="text-uppercase m-0">Add to Cart</h5>
                                     </a>
                                     <a href="#" class="btn-wishlist px-4 pt-3 ">
                                         <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                                     </a>
                                 </div>
-
+                                
                             </div>
-
+                            
                         </div>
                     </div>
                 </div>
@@ -256,7 +257,7 @@
                             <a href="single-product.html">
                                 <h3 class="card-title pt-4 m-0">9Lives Seafood</h3>
                             </a>
-
+                            
                             <div class="card-text">
                                 <span class="rating secondary-font">
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
@@ -265,35 +266,35 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
+                                    
+                                    <h3 class="secondary-font text-primary">10.89JOD</h3>
+                                    
+                                    <div class="d-flex flex-wrap mt-3">
+                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                        </a>
+                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
+                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                        </a>
+                                    </div>
 
-                                <h3 class="secondary-font text-primary">10.89JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
+                                    
                                 </div>
-
-
+                                
                             </div>
-
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="../inserted_img/chew_toy.jpg" class="img-fluid rounded-4" alt="image"></a>
+                    <div class="swiper-slide">
+                        <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                            New
+                        </div> -->
+                        <div class="card position-relative">
+                            <a href="single-product.html"><img src="../inserted_img/chew_toy.jpg" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
                             <a href="single-product.html">
                                 <h3 class="card-title pt-4 m-0">Chew Toy</h3>
                             </a>
-
+                            
                             <div class="card-text">
                                 <span class="rating secondary-font">
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
@@ -302,21 +303,21 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
-
-                                <h3 class="secondary-font text-primary">14.17JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                    
+                                    <h3 class="secondary-font text-primary">14.17JOD</h3>
+                                    
+                                    <div class="d-flex flex-wrap mt-3">
+                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                                         <h5 class="text-uppercase m-0">Add to Cart</h5>
                                     </a>
                                     <a href="#" class="btn-wishlist px-4 pt-3 ">
                                         <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                                     </a>
                                 </div>
-
-
+                                
+                                
                             </div>
-
+                            
                         </div>
                     </div>
                 </div>
@@ -328,7 +329,7 @@
                             <a href="single-product.html">
                                 <h3 class="card-title pt-4 m-0">Hoodie</h3>
                             </a>
-
+                            
                             <div class="card-text">
                                 <span class="rating secondary-font">
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
@@ -338,9 +339,9 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
 
-                                <h3 class="secondary-font text-primary">7.08JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
+                                    <h3 class="secondary-font text-primary">7.08JOD</h3>
+                                    
+                                    <div class="d-flex flex-wrap mt-3">
                                     <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                                         <h5 class="text-uppercase m-0">Add to Cart</h5>
                                     </a>
@@ -349,23 +350,23 @@
                                     </a>
                                 </div>
 
-
+                                
                             </div>
-
+                            
                         </div>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
+                        New
+                    </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="../inserted_img/3pcs.jpg" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
                             <a href="single-product.html">
                                 <h3 class="card-title pt-4 m-0">3Pcs Outfit</h3>
                             </a>
-
+                            
                             <div class="card-text">
                                 <span class="rating secondary-font">
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
@@ -374,11 +375,11 @@
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
                                     5.0</span>
-
-                                <h3 class="secondary-font text-primary">9.92JOD</h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                    
+                                    <h3 class="secondary-font text-primary">9.92JOD</h3>
+                                    
+                                    <div class="d-flex flex-wrap mt-3">
+                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                                         <h5 class="text-uppercase m-0">Add to Cart</h5>
                                     </a>
                                     <a href="#" class="btn-wishlist px-4 pt-3 ">
@@ -392,30 +393,30 @@
                         </div>
                     </div>
                 </div>
-
+                
 
             </div>
         </div>
         <!-- / category-carousel -->
-
-
+        
+        
     </div>
 </section>
 
 <!-- Register Section -->
-<section id="register" style="background: url('../images/background-img.png') no-repeat;">
+<section id="register" style="background: url('../images/background-img.png') repeat;">
     <div class="container ">
         <div class="row my-5 py-5">
             <div class="offset-md-3 col-md-6 my-5 ">
                 <h2 class="display-3 fw-normal text-center">Get 20% Off on <span class="text-primary">first Purchase</span>
-                </h2>
-
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="./login_register.php" style="color: white;">Register it now</a></button>
-                </div>
+            </h2>
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="./login_register.php" style="color: white;">Register it now</a></button>
             </div>
         </div>
     </div>
+</div>
 </section>
 
 <!-- Services Section -->
@@ -466,9 +467,9 @@
                     </div>
                 </div>
             </div>
-
+            
         </div>
     </div>
 </section>
-
+<?php include './our_coustomers.php'; ?>
 <?php include './footer.php'; ?>
