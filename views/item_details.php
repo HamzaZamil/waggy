@@ -1,11 +1,6 @@
 <?php
-// session_start();
 include './header.php';
 require_once '../includes/autoload.php'; // Autoloader for controllers
-
-// unset($_SESSION['user_id']);
-// echo "user id : ".$_SESSION['user_id'];
-// $_SESSION['user_id'] = 1; // Temporarily hardcode a logged-in user for testing
 
 $product_id = $_GET['product_id'] ?? null;
 $productController = new ProductController();
@@ -65,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <?php foreach ($relatedProducts as $relatedProduct): ?>
                 <div class="col mb-5">
-                    <div class="card h-100 position-relative">
+                    <div class="card1 card h-100 position-relative">
                         <!-- Product image-->
                         <img class="card-img-top" src="<?= $relatedProduct['product_img'] ?>" alt="<?= $relatedProduct['product_name'] ?>" />
 
@@ -127,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // User is logged in, proceed with AJAX request
             const formData = new FormData();
             formData.append('product_id', <?= json_encode($product_id) ?>);
-            formData.append('quantity', quantityInput.value); // Use inputQuantity value directly
+            formData.append('quantity', quantityInput.value);
 
             fetch('../controllers/add_to_cart.php', {
                     method: 'POST',

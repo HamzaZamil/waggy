@@ -4,11 +4,6 @@ ob_start();
 include './header.php';
 include '../controllers/productController.php';
 include '../controllers/wishlistController.php';
-include '../controllers/cartController.php';
-
-
-// $alert = new Alert();
-// $alert->showAlert();
 
 $categId = $_GET['categ-id']; //if it's 1->All 2-> Cats 3->Dogs
 $categories = [];
@@ -50,26 +45,26 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                     <div class="item col-md-4 col-lg-3 my-4">
                         <div class="card position-relative">
 
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image" style="height: 250px; width: 250px;">
+                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
 
 
-                            <div class="card-body p-0">
+                            <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
                                 </a>
 
-                                <div class="card-text">
+                                <div class="card-text d-flex flex-column align-items-center">
                                     <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h4>
 
-                                    <div class="d-flex gap-3 mt-3">
+                                    <div class="d-flex gap-3 mt-2">
                                         <div class="d-flex gap-3 mt-3">
                                             <form action="item_details.php?product_id=<?= $product_item['product_id'] ?>" method="POST" style="display:inline;">
                                                 <input type="hidden" name="img" value="<?= htmlspecialchars($product_item['product_img']) ?>">
                                                 <input type="hidden" name="name" value="<?= htmlspecialchars($product_item['product_name']) ?>">
                                                 <input type="hidden" name="description" value="<?= htmlspecialchars($product_item['product_description']) ?>">
                                                 <input type="hidden" name="price" value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
-                                                <button type="submit" class="btn-cart px-4 pt-3 pb-3" style="background:none; border:1px solid lightgrey; border-radius:6px;">
-                                                    <h5 class="text-uppercase m-0 fs-6" >Add to Cart</h5>
+                                                <button type="submit" class="btn-cart px-2 pt-3 pb-3" style="background:none; border:1px solid lightgrey; border-radius:6px;">
+                                                    <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
                                                 </button>
                                             </form>
 
@@ -119,23 +114,23 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
             ?>
                     <div class="item col-md-4 col-lg-3 my-4">
                         <div class="card position-relative">
-                            <a href="single-product.html"><img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
+                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                            <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h3>
+                                    <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
                                 </a>
 
-                                <div class="card-text">
-                                    <h3 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h3>
+                                <div class="card-text d-flex flex-column align-items-center">
+                                    <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h4>
 
-                                    <div class="d-flex gap-3 mt-3">
+                                    <div class="d-flex gap-3 mt-2">
                                         <div class="d-flex gap-3 mt-3">
-                                            <form action="item_details.php" method="POST" style="display:inline;">
+                                            <form action="item_details.php?product_id=<?= $product_item['product_id'] ?>" method="POST" style="display:inline;">
                                                 <input type="hidden" name="img" value="<?= htmlspecialchars($product_item['product_img']) ?>">
                                                 <input type="hidden" name="name" value="<?= htmlspecialchars($product_item['product_name']) ?>">
                                                 <input type="hidden" name="description" value="<?= htmlspecialchars($product_item['product_description']) ?>">
                                                 <input type="hidden" name="price" value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
-                                                <button type="submit" class="btn-cart px-4 pt-3 pb-3">
+                                                <button type="submit" class="btn-cart px-2 pt-3 pb-3" style="background:none; border:1px solid lightgrey; border-radius:6px;">
                                                     <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
                                                 </button>
                                             </form>
@@ -183,23 +178,23 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
             ?>
                     <div class="item col-md-4 col-lg-3 my-4">
                         <div class="card position-relative">
-                            <a href="single-product.html"><img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
+                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                            <div class="card-body d-flex flex-column align-items-center ">
                                 <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h3>
+                                    <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
                                 </a>
 
-                                <div class="card-text">
-                                    <h3 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h3>
+                                <div class="card-text d-flex flex-column align-items-center">
+                                    <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h4>
 
-                                    <div class="d-flex gap-3 mt-3">
+                                    <div class="d-flex gap-3 mt-2">
                                         <div class="d-flex gap-3 mt-3">
-                                        <form action="item_details.php" method="POST" style="display:inline;">
+                                            <form action="item_details.php?product_id=<?= $product_item['product_id'] ?>" method="POST" style="display:inline;">
                                                 <input type="hidden" name="img" value="<?= htmlspecialchars($product_item['product_img']) ?>">
                                                 <input type="hidden" name="name" value="<?= htmlspecialchars($product_item['product_name']) ?>">
                                                 <input type="hidden" name="description" value="<?= htmlspecialchars($product_item['product_description']) ?>">
                                                 <input type="hidden" name="price" value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
-                                                <button type="submit" class="btn-cart px-4 pt-3 pb-3">
+                                                <button type="submit" class="btn-cart px-2 pt-3 pb-3" style="background:none; border:1px solid lightgrey; border-radius:6px;">
                                                     <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
                                                 </button>
                                             </form>
@@ -229,40 +224,6 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
 </section>
 
 <script>
-    // function showProductDetails(img, name, description, price, productId) {
-    //     Swal.fire({
-    //         html: `
-    //             <div style="display: flex; flex-direction: column; align-items: center;">
-    //                 <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 15px;">Add to Cart</h2>
-    //                 <div style="display: flex; flex-direction: row; gap: 15px; align-items: flex-start;">
-    //                     <div style="display:flex; flex-direction:column;">
-    //                     <img src="${img}" alt="${name}" style="width: 200px; border-radius: 8px;">
-    //                     <h3 style="font-size: 20px; font-weight: semi-bold; color: #333; margin-top: 10px;">${name}</h3>
-    //                     </div>
-    //                     <div style="display: flex; flex-direction: column; justify-content: center;align-items: center;">
-
-    //                         <p style="font-size: 16px; color: #666; margin-bottom: 15px;">${description}</p>
-    //                         <h4 style="font-size: 18px; color: #dfb074; margin-bottom: 20px;">${price}</h4>
-    //                         <div style="display: flex; align-items: center; margin-bottom: 20px;">
-    //                             <label style="font-size: 16px; margin-right: 10px;">Quantity:</label>
-    //                             <div class="d-inline-flex quantity-selector text-center border border-secondary rounded" style="width: fit-content;">
-    //                                 <button class="btn btn-outline-secondary" onclick="updateQuantity(-1)">-</button>
-    //                                 <input type="text" id="quantity" value="1" readonly style="width:50px; text-align:center; border: none;">
-    //                                 <button class="btn btn-outline-secondary" onclick="updateQuantity(1)">+</button>
-    //                             </div>
-    //                         </div>
-    //                         <button id="addToCartButton" onclick="addToCart(${productId})" class="btn btn-primary">Add to Cart</button>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         `,
-    //         showCloseButton: true,
-    //         showConfirmButton: false,
-    //         width: '55%', // Adjust width as needed
-    //         padding: '10px' // Adds spacing to ensure comfortable layout
-    //     });
-    // }
-
     function updateQuantity(change) {
         const quantityInput = document.getElementById('quantity');
         let currentQuantity = parseInt(quantityInput.value);

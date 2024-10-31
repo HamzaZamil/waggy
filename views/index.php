@@ -77,22 +77,141 @@
     <div class="container my-3 py-5">
         <div class="row my-5">
             <div class="col text-center">
-                <a href="#categories" class="categories-item">
+                <a href="./shop2.php?categ-id=1" class="categories-item">
                     <iconify-icon class="category-icon" icon="ph:bowl-food"></iconify-icon>
                     <h5>Foodies</h5>
                 </a>
             </div>
             <div class="col text-center">
-                <a href="#categories" class="categories-item">
+                <a href="./shop2.php?categ-id=3" class="categories-item">
                     <iconify-icon class="category-icon" icon="ph:dog"></iconify-icon>
                     <h5>Dog Shop</h5>
                 </a>
             </div>
             <div class="col text-center">
-                <a href="#categories" class="categories-item">
+                <a href="./shop2.php?categ-id=2" class="categories-item">
                     <iconify-icon class="category-icon" icon="ph:cat"></iconify-icon>
                     <h5>Cat Shop</h5>
                 </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Best Selling Section -->
+<section id="bestselling" class="my-5 overflow-hidden" style="background:#f9f3ec;">
+    <div class="container py-5 mb-5">
+
+        <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
+            <h2 class="display-3 fw-normal">Best selling products</h2>
+            <div>
+                <a href="./shop2.php?categ-id=1" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                    shop now
+                    <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                        <use xlink:href="#arrow-right"></use>
+                    </svg></a>
+            </div>
+        </div>
+
+        <div class=" swiper bestselling-swiper">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <div class="card position-relative" style="background:#f9f9fa;">
+                        <a href="single-product.html"><img src="../inserted_img/fresh_kisses_treats.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <a href="single-product.html">
+                                <h3 class="card-title pt-4 m-0">Fresh Kisses</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <h3 class="secondary-font text-primary">20.54JOD</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card position-relative" style="background:#f9f9fa;">
+                        <a href="single-product.html"><img src="../inserted_img/sweater.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <a href="single-product.html">
+                                <h3 class="card-title pt-4 m-0">Sweater</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <h3 class="secondary-font text-primary">7.08JOD </h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card position-relative" style="background:#f9f9fa;">
+                        <a href="single-product.html"><img src="../inserted_img/9lives.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <a href="single-product.html">
+                                <h3 class="card-title pt-4 m-0">9Lives Seafood</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                <h3 class="secondary-font text-primary">10.89JOD</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card position-relative" style="background:#f9f9fa;">
+                        <a href="single-product.html"><img src="../inserted_img/chew_toy.png" class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <a href="single-product.html">
+                                <h3 class="card-title pt-4 m-0">Chew Toy</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                <h3 class="secondary-font text-primary">14.17JOD</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+
+                    <div class="card position-relative" style="background:#f9f9fa;">
+                        <a href="single-product.html"><img src="../inserted_img/hoodie.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <a href="single-product.html">
+                                <h3 class="card-title pt-4 m-0">Hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                <h3 class="secondary-font text-primary">7.08JOD</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card position-relative" style="background:#f9f9fa;">
+                        <a href="single-product.html"><img src="../inserted_img/3pcs.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <a href="single-product.html">
+                                <h3 class="card-title pt-4 m-0">3Pcs Outfit</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                <h3 class="secondary-font text-primary">9.92JOD</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -173,164 +292,6 @@
 
 </section>
 
-<!-- Best Selling Section -->
-<section id="bestselling" class="my-5 overflow-hidden">
-    <div class="container py-5 mb-5">
-
-        <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-            <h2 class="display-3 fw-normal">Best selling products</h2>
-        </div>
-
-        <div class=" swiper bestselling-swiper">
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="../inserted_img/fresh_kisses_treats.jpg" class="img-fluid rounded-4" alt="image" ></a>
-                        <div class="card-body p-0">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Fresh Kisses</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    5.0</span>
-
-                                <h3 class="secondary-font text-primary">20.54JOD</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="../inserted_img/sweater.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Sweater</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    5.0</span>
-
-                                <h3 class="secondary-font text-primary">7.08JOD </h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="../inserted_img/9lives.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">9Lives Seafood</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    5.0</span>
-
-                                <h3 class="secondary-font text-primary">10.89JOD</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="../inserted_img/chew_toy.png" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Chew Toy</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    5.0</span>
-
-                                <h3 class="secondary-font text-primary">14.17JOD</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="../inserted_img/hoodie.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Hoodie</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    5.0</span>
-
-                                <h3 class="secondary-font text-primary">7.08JOD</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="../inserted_img/3pcs.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">3Pcs Outfit</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    5.0</span>
-
-                                <h3 class="secondary-font text-primary">9.92JOD</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-        <!-- / category-carousel -->
-
-
-    </div>
-</section>
 
 <!-- Register Section -->
 <section id="register" style="background: url('../images/background-img.png') no-repeat;">

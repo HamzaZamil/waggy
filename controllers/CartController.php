@@ -1,5 +1,6 @@
 <?php
-session_start(); // Start the session
+// session_start(); // Start the session
+include './UserController.php';
 
 if (!class_exists('Cart')) {
     include '../model/cart.class.php';
@@ -44,20 +45,3 @@ class CartController
     //     exit();
     // }
 }
-
-// Handling requests
-// $controller = new CartController();
-
-// if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action'])) {
-//     $action = $_GET['action'];
-//     $userId = $_SESSION['user_id'];
-//     $productId = $_GET['product_id'];
-
-//     $quantity = $_GET['quantity'] ?? 1; // Default quantity is 1
-
-//     if ($action === 'add') {
-//         $controller->addToCart($userId, $productId, $quantity);
-//     } elseif ($action === 'update') {
-//         $controller->updateCartQuantity($userId, $productId, $quantity);
-//     }
-// }

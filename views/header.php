@@ -1,3 +1,12 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Check if the user is logged in
+    $isLoggedIn = isset($_SESSION['user_id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,34 +18,48 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/vendor.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- cart style sheet -->
-    <link rel="stylesheet" href="../css/cart_style.css">
+    
+    <link rel="stylesheet" type="text/css" href="../css/profileStyle.css">
+
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
+
+    <!-- Cart Style -->
+     <link rel="stylesheet" href="../css/cart_style.css">
+
 
     <style>
+        .heart-icon {
+            cursor: pointer;
+            font-size: 1.5em;
+            color: red;
+        }
+        .heart-icon.filled {
+            color: red;
+        }
+        .heart-icon.outline {
+            color: gray;
+        }
         .alert-position {
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 9999;
             display: none;
-        }
-
-        .heart-icon {
-            cursor: pointer;
-            font-size: 1.5em;
-            color: red;
-        }
-
-        .heart-icon.filled {
-            color: red;
-        }
-
-        .heart-icon.outline {
-            color: gray;
         }
 
         .rounded-sweetalert {
@@ -50,31 +73,19 @@
         }
 
         /* Card styling */
-        .card {
+        .card1 {
             border: none;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
 
-        .card h5 {
+        .card1 h5 {
             font-weight: bold;
         }
 
-        .card img {
+        .card1 img {
             width: 100%;
             height: auto;
-        }
-
-        /* Sale badge */
-        .card .sale-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: black;
-            color: white;
-            padding: 4px 8px;
-            font-size: 0.8rem;
-            border-radius: 4px;
         }
 
         /* Footer button */
@@ -100,23 +111,6 @@
         </div>
     </div> -->
 
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="Search">
-        <div class="offcanvas-header justify-content-center">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="order-md-last">
-                <h4 class="text-primary text-uppercase mb-3">Search</h4>
-                <div class="search-bar border rounded-2 border-dark-subtle">
-                    <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-                        <input type="text" class="form-control border-0 bg-transparent" placeholder="Search Here" />
-                        <iconify-icon icon="tabler:search" class="fs-4 me-3"></iconify-icon>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- NAVBAR -->
     <header>
         <div class="container py-2">
@@ -136,7 +130,8 @@
                     </div>
                 </div>
 
-                <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+                <div
+                    class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
                     <div class="support-box text-end d-none d-xl-block">
                         <span class="fs-6 secondary-font text-muted">Email</span>
                         <h5 class="mb-0">waggy@gmail.com</h5>
@@ -153,11 +148,30 @@
             <nav class="main-menu d-flex navbar navbar-expand-lg">
                 <div class="d-flex d-lg-none align-items-end mt-3">
                     <ul class="d-flex justify-content-end list-unstyled m-0">
-                        <!-- Updated href for login/register -->
+                        <li>
+                            <?php if ($isLoggedIn): ?>
+                        <li class="dropdown">
+
+                            <a href="#" class="mx-3" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="userProfile.php">Profile</a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <a href="../controllers/LogoutController.php" class="dropdown-item">Logout</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <?php else: ?>
                         <li>
                             <a href="login_register.php" class="mx-3">
-                                <iconify-icon onify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                             </a>
+                        </li>
+                        <?php endif; ?>
                         </li>
                         <li>
                             <a href="wishlist.php" class="mx-3">
@@ -165,26 +179,17 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                                <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                                <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">03</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
-                                <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header justify-content-center">
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
@@ -197,8 +202,10 @@
                     <div class="offcanvas-body justify-content-between">
                         <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                             <li class="nav-item">
-                                <a href="index.php" class="nav-link <?php echo $currentPage == 'index.php' ? 'active' : ''; ?>">Home</a>
+                                <a href="index.php"
+                                    class="nav-link <?php echo $currentPage == 'index.php' ? 'active' : ''; ?>">Home</a>
                             </li>
+                            
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
                                     aria-expanded="false">Shop</a>
@@ -212,22 +219,38 @@
                                 <a href="about_us.php" class="nav-link <?php echo $currentPage == 'about_us.php' ? 'active' : ''; ?>">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a href="contact_us.php" class="nav-link <?php echo $currentPage == 'contact_us.php' ? 'active' : ''; ?>">Contact Us</a>
+                                <a href="contact_us.php"
+                                    class="nav-link <?php echo $currentPage == 'contact_us.php' ? 'active' : ''; ?>">Contact
+                                    Us</a>
                             </li>
                         </ul>
 
                         <div class="d-none d-lg-flex align-items-end">
                             <ul class="d-flex justify-content-end list-unstyled m-0">
                                 <li>
+                                    <?php if ($isLoggedIn): ?>
+                                    <!-- Check if the user is logged in -->
+                                    <a href="#" class="mx-3" role="button" id="dropdownMenuLink"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" href="userProfile.php">Profile</a></li>
+                                        <li><a href="../controllers/LogoutController.php"
+                                                class="dropdown-item">Logout</a></li>
+                                    </ul>
+                                    <?php else: ?>
                                     <a href="login_register.php" class="mx-3">
                                         <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                                     </a>
+                                    <?php endif; ?>
                                 </li>
                                 <li>
                                     <a href="wishlist.php" class="mx-3">
                                         <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                                     </a>
                                 </li>
+                                
                                 <li>
                                     <div class="icon-cart">
                                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="filled" viewBox="0 0 18 20">
@@ -239,7 +262,6 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </nav>
         </div>
