@@ -11,11 +11,25 @@ class User {
     }
 
     // Function to get all users
-    public function getAllUsers() {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE is_deleted = 0"; // Fetch only non-deleted users
+    public function getAllUsers($limit = 10, $offset = 0) {
+        $query = "
+            SELECT * 
+            FROM users 
+            WHERE is_deleted = 0
+            LIMIT :limit OFFSET :offset"; // Limit and offset for pagination
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getTotalUsers() {
+        $query = "SELECT COUNT(*) as total FROM users WHERE is_deleted = 0";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        return $stmt;
+        return $stmt->fetchColumn(); // Fetch a single column value
     }
 
     // Function to soft delete a user
@@ -38,14 +52,14 @@ class User {
 
     public function createUser($data) {
         $query = "INSERT INTO " . $this->table_name . " (user_first_name, user_last_name, user_email, user_password, user_gender, user_birth_of_date, user_phone_number, user_address_line_one, user_state, user_role) VALUES (:first_name, :last_name, :email, :password, :gender, :birth_date, :phone, :address, :state, :role)";
-        $hashed_password = password_hash($data['password'], PASSWORD_DEFAULT); // Hashing password
+
         $stmt = $this->conn->prepare($query);
 
         // Bind parameters
         $stmt->bindParam(':first_name', $data['first_name']);
         $stmt->bindParam(':last_name', $data['last_name']);
         $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':password', $hashed_password);   
+        $stmt->bindParam(':password', password_hash($data['password'], PASSWORD_DEFAULT)); // Hashing password
         $stmt->bindParam(':gender', $data['gender']);
         $stmt->bindParam(':birth_date', $data['birth_date']);
         $stmt->bindParam(':phone', $data['phone']);
@@ -88,6 +102,31 @@ class User {
     
         return $stmt->execute(); // Execute and return true/false
     }
+
+    public function login($email, $password) {
+        // Prepare the SQL statement
+        $query = "SELECT * FROM users WHERE user_email = :email";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+    
+        // Check if user exists
+        if ($stmt->rowCount() > 0) {
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            // Verify the password
+            if (password_verify($password, $user['user_password'])) {
+                return $user; // Return user data if login is successful
+            } else {
+                echo "Password does not match.";
+            }
+        } else {
+            echo "User not found.";
+        }
+        return false; // Return false if login fails
+    }
+    
+    
     
 }
 ?>
