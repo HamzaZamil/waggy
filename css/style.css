@@ -101,6 +101,7 @@ CSS STRUCTURE:
     --header-height: 100px;
     --header-height-min: 80px;
   }
+
 }
 
 /* Theme Colors */
@@ -155,6 +156,13 @@ body {
   --bs-warning-rgb: 255, 249, 235;
   --bs-info-rgb: 230, 243, 250;
 }
+.error-message {
+  font-size: 0.9em; 
+  margin-top: 0.25rem; 
+  color: black; 
+ 
+}
+
 
 .btn-primary {
   padding: 1.2rem 3rem;
@@ -250,6 +258,7 @@ body {
   letter-spacing: 0.01625rem;
 }
 
+
 h1,
 h2,
 h3,
@@ -314,7 +323,7 @@ a {
 .preloader {
   border-radius: 50%;
   width: 2em;
-  height: 2em;
+  height: 1.5em;
   animation: animation 1.2s infinite ease-in-out;
 }
 
@@ -384,6 +393,7 @@ a.categories-item:hover iconify-icon.category-icon {
 }
 
 
+
 /* banner style */
 .swiper-pagination-bullet {
   border: 1px solid var(--bs-body-color);
@@ -426,7 +436,7 @@ a.btn-wishlist {
 
 
 /* pet foodies style  */
-button.filter-button , button.filter-button2 {
+button.filter-button {
   letter-spacing: 0.02125rem;
   border: none;
   border-bottom: 2px solid #D9D9D8;
@@ -437,9 +447,7 @@ button.filter-button , button.filter-button2 {
 }
 
 button.filter-button.active,
-button.filter-button:hover,
-button.filter-button2.active,
-button.filter-button2:hover {
+button.filter-button:hover {
   border-bottom: 2px solid #DEAD6F;
 }
 

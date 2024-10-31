@@ -6,21 +6,6 @@ require_once 'model/Category.php';
 
 $productModel = new Product();
 $products = $productModel->getAllProducts();
-$limit = 5;
-$totalProducts = $productModel->getTotalProducts(); 
-$totalPages = ceil($totalProducts / $limit);  
-
-
-$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-if ($currentPage < 1) {
-    $currentPage = 1;
-}
-
-
-$offset = ($currentPage - 1) * $limit;
-
-
-$products = $productModel->getAllProducts($limit, $offset);
 
 ?>
 
@@ -31,6 +16,7 @@ $products = $productModel->getAllProducts($limit, $offset);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
@@ -89,7 +75,7 @@ $products = $productModel->getAllProducts($limit, $offset);
             </div>
             <div class="pt-5 pb-3">
                 <h2>Product Table</h2>
-                <table class="responsive-table">
+                <table class="responsive-table" id="myTable">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -214,26 +200,7 @@ $products = $productModel->getAllProducts($limit, $offset);
                         <?php endforeach; ?>
                     </tbody>
 
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <!-- Previous Button -->
-                            <li class="page-item <?= ($currentPage == 1) ? 'disabled' : '' ?>">
-                                <a class="page-link" href="?page=<?= $currentPage - 1 ?>" tabindex="-1">Previous</a>
-                            </li>
-
-                            <!-- Page Number Links -->
-                            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                            <li class="page-item <?= ($i == $currentPage) ? 'active' : '' ?>">
-                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                            </li>
-                            <?php endfor; ?>
-
-                            <!-- Next Button -->
-                            <li class="page-item <?= ($currentPage == $totalPages) ? 'disabled' : '' ?>">
-                                <a class="page-link" href="?page=<?= $currentPage + 1 ?>">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                  
 
 
 
@@ -386,6 +353,16 @@ endif;
             });
         }
         </script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+             <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="js/modal.js"></script>
+            <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+            <script>
+            let table = new DataTable('#myTable', {
+    // options
+});
+</script>
 
 
 </body>

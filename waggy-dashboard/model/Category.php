@@ -12,9 +12,10 @@ class Category {
     }
 
     public function getAllCategories() {
+
         $query = "SELECT * FROM categories WHERE category_state = 1";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute();
+        $stmt->execute();   
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -53,7 +54,5 @@ class Category {
     $stmt->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
     return $stmt->execute();
 }
-    
 }
-
 ?>
