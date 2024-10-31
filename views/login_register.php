@@ -45,6 +45,11 @@
                                 Login
                             </button>
                         </form>
+
+                        <!-- Reset Password Link -->
+                        <div class="mt-1 text-center">
+                            <a href="reset_password.php" class="text-decoration-none" style="color: green;"> Forgot your password? </a>
+                        </div>
                     </div>
 
                     <!-- Register Form -->
