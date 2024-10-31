@@ -2,6 +2,7 @@
 session_start();
 include "includes/header.php";
 require_once 'model/User.php'; 
+$loggedInUserRole = $_SESSION['user_role'];
 $user = new User();
 
 // Pagination variables
@@ -92,25 +93,25 @@ $totalPages = ceil($totalUsers / $limit);
                 <h2>Users Table</h2>
                 <!-- Pagination Section -->
                 <nav aria-label="Page navigation">
-    <ul class="pagination">
-        <!-- Previous Button -->
-        <li class="page-item <?= ($page == 1) ? 'disabled' : '' ?>">
-            <a class="page-link" href="?page=<?= $page - 1 ?>" tabindex="-1">Previous</a>
-        </li>
+                    <ul class="pagination">
+                        <!-- Previous Button -->
+                        <li class="page-item <?= ($page == 1) ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=<?= $page - 1 ?>" tabindex="-1">Previous</a>
+                        </li>
 
-        <!-- Page Number Links -->
-        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-        <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
-            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-        </li>
-        <?php endfor; ?>
+                        <!-- Page Number Links -->
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                        </li>
+                        <?php endfor; ?>
 
-        <!-- Next Button -->
-        <li class="page-item <?= ($page == $totalPages) ? 'disabled' : '' ?>">
-            <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>
-        </li>
-    </ul>
-</nav>
+                        <!-- Next Button -->
+                        <li class="page-item <?= ($page == $totalPages) ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>
+                        </li>
+                    </ul>
+                </nav>
                 <table class="responsive-table">
                     <thead>
                         <tr>
@@ -172,18 +173,22 @@ $totalPages = ceil($totalUsers / $limit);
                 <h3>Edit User</h3>
                 <form id="editForm" method="POST" action="process_user.php">
                     <input type="hidden" id="editUserId" name="editUserId">
+
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <input type="text" id="firstName" name="editFirstName">
                     </div>
+
                     <div class="form-group">
                         <label for="lastName">Last Name:</label>
                         <input type="text" id="lastName" name="editLastName">
                     </div>
+
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="editEmail">
                     </div>
+
                     <div class="form-group">
                         <label for="gender">Gender:</label>
                         <select id="gender" name="editGender">
@@ -191,18 +196,22 @@ $totalPages = ceil($totalUsers / $limit);
                             <option value="female">Female</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="birthDate">Birth Date:</label>
                         <input type="date" id="birthDate" name="editBirthDate">
                     </div>
+
                     <div class="form-group">
                         <label for="phone">Phone Number:</label>
                         <input type="text" id="phone" name="editPhone">
                     </div>
+
                     <div class="form-group">
                         <label for="address">Address:</label>
                         <input type="text" id="address" name="editAddress">
                     </div>
+
                     <div class="form-group">
                         <label for="editState">State:</label>
                         <select id="editState" name="editState" required>
@@ -210,20 +219,26 @@ $totalPages = ceil($totalUsers / $limit);
                             <option value="Deactivate">Deactivate</option>
                         </select>
                     </div>
+
+                  
                     <div class="form-group">
                         <label for="role">Role:</label>
                         <select id="role" name="editRole">
-                            <option value="superadmin">Superadmin</option>
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
+                            <option value="SuperAdmin">Superadmin</option>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
                         </select>
                     </div>
+                    
+
                     <button class="save-btn" type="submit"
-                        style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
-                        User</button>
+                        style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">
+                        Save User
+                    </button>
                 </form>
             </div>
         </div>
+
 
 
         <!-- Add User Modal -->
@@ -377,6 +392,9 @@ endif;
         const phone = row.cells[6].innerText;
         const address = row.cells[7].innerText;
         const state = row.cells[8].innerText;
+        const role = row.cells[9].innerText;
+
+
 
 
         document.getElementById("firstName").value = firstName;
@@ -386,8 +404,14 @@ endif;
         document.getElementById("phone").value = phone;
         document.getElementById("address").value = address;
         document.getElementById('editState').value = state;
+
         // Set user ID
         document.getElementById("editUserId").value = userId;
+
+        const roleSelect = document.getElementById("role");
+        Array.from(roleSelect.options).forEach(option => {
+            option.selected = (option.value.toLowerCase() === role.toLowerCase());
+        });
 
         document.getElementById("editModal").style.display = "flex";
     }

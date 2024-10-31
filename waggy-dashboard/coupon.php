@@ -6,10 +6,10 @@ require_once 'model/Coupon.php';
 $couponModel = new Coupon();
 $coupons = $couponModel->getAllCoupons();
 $couponData = null;
-if (isset($_GET['edit_id'])) {
-    $editId = $_GET['edit_id'];
-    $couponData = $couponModel->getCouponById($editId); // Make sure to create this method
-}
+// if (isset($_GET['edit_id'])) {
+//     $editId = $_GET['edit_id'];
+//     $couponData = $couponModel->getCouponById($editId); // Make sure to create this method
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -246,7 +246,6 @@ endif;
         document.getElementById('editDiscount').value = discount;
         document.getElementById('editExpiryDate').value = expiryDate;
         document.getElementById('editStatus').value = status;
-
         document.getElementById('editModal').style.display = 'flex';
     }
     </script>
