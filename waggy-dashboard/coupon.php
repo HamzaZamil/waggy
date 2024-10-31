@@ -5,6 +5,11 @@ require_once 'model/Coupon.php';
 
 $couponModel = new Coupon();
 $coupons = $couponModel->getAllCoupons();
+$couponData = null;
+if (isset($_GET['edit_id'])) {
+    $editId = $_GET['edit_id'];
+    $couponData = $couponModel->getCouponById($editId); // Make sure to create this method
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +21,17 @@ $coupons = $couponModel->getAllCoupons();
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+    .valid-status {
+        color: green;
+        font-weight: bold;
+    }
+
+    .invalid-status {
+        color: red;
+        font-weight: bold;
+    }
+    </style>
 </head>
 
 <body>
@@ -36,7 +52,7 @@ $coupons = $couponModel->getAllCoupons();
                         </svg></span>
                 </button>
             </div>
-            <div class="pt-5 pb-3 table_pro_item" style="margin-right:300px">
+            <div class="pt-5 pb-3" style="margin-right:300px">
                 <h2>Coupon Table</h2>
                 <table class="responsive-table" id="myTable">
                     <thead>
@@ -56,7 +72,10 @@ $coupons = $couponModel->getAllCoupons();
                             <td><?= htmlspecialchars($coupon['coupon_name']); ?></td>
                             <td><?= htmlspecialchars($coupon['coupon_discount']); ?></td>
                             <td><?= htmlspecialchars($coupon['coupon_expiry_date']); ?></td>
-                            <td><?= htmlspecialchars($coupon['coupon_status']); ?></td>
+                            <td
+                                class="<?= $coupon['coupon_status'] === 'Valid' ? 'valid-status' : 'invalid-status'; ?>">
+                                <?= htmlspecialchars($coupon['coupon_status']); ?>
+                            </td>
                             <td data-label="Actions">
                                 <div class="action-buttons">
                                     <button class="edit-btn" onclick="openEditModal(this)">Edit</button>
@@ -91,7 +110,7 @@ $coupons = $couponModel->getAllCoupons();
                 <input type="hidden" id="editCouponId" name="coupon_id" required>
                 <div class="form-group">
                     <label for="coupon_name">Coupon Name:</label>
-                    <input type="text" id="editCouponName" name="coupon_name" >  <!-- Changed here -->
+                    <input type="text" id="editCouponName" name="coupon_name"> <!-- Changed here -->
                 </div>
                 <div class="form-group">
                     <label for="editDiscount">Coupon Discount:</label>
@@ -99,7 +118,8 @@ $coupons = $couponModel->getAllCoupons();
                 </div>
                 <div class="form-group">
                     <label for="editExpiryDate">Deadline:</label>
-                    <input type="date" id="editExpiryDate" name="coupon_expiry_date" > <br><br>
+                    <input type="date" id="editExpiryDate" name="coupon_expiry_date" min="<?= date('Y-m-d'); ?>">
+                    <br><br>
                 </div>
                 <div class="form-group">
                     <label for="editStatus">Validity:</label>
@@ -126,19 +146,21 @@ $coupons = $couponModel->getAllCoupons();
                 <input type="hidden" name="action" value="add_coupon">
                 <div class="form-group">
                     <label for="coupon_name">Coupon Name:</label>
-                    <input type="text" id="coupon_name" name="coupon_name" > <!-- Changed here -->
+                    <input type="text" id="coupon_name" name="coupon_name"> <!-- Changed here -->
                 </div>
                 <div class="form-group">
                     <label for="coupon_discount">Coupon Discount:</label>
-                    <input type="text" id="coupon_discount" name="coupon_discount" > <!-- Changed here -->
+                    <input type="text" id="coupon_discount" name="coupon_discount"> <!-- Changed here -->
                 </div>
                 <div class="form-group">
                     <label for="coupon_expiry_date">Deadline:</label>
-                    <input type="date" id="coupon_expiry_date" name="coupon_expiry_date" > <!-- Changed here -->
+                    <!-- Add Modal -->
+                    <input type="date" id="coupon_expiry_date" name="coupon_expiry_date" min="<?= date('Y-m-d'); ?>">
+                    <!-- Changed here -->
                 </div>
                 <div class="form-group">
                     <label for="coupon_status">Validity:</label>
-                    <select id="coupon_status" name="coupon_status" >
+                    <select id="coupon_status" name="coupon_status">
                         <!-- Changed here -->
                         <option value="Valid">Valid</option>
                         <option value="Invalid">Invalid</option>
@@ -151,7 +173,7 @@ $coupons = $couponModel->getAllCoupons();
 
         </div>
     </div>
-   
+
 
 
 
@@ -202,12 +224,13 @@ endif;
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/modal.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/modal.js"></script>
     <script>
     function confirmDelete(button) {
         const form = button.closest('form'); // Get the form associated with the delete button
@@ -241,11 +264,12 @@ endif;
         document.getElementById('editDiscount').value = discount;
         document.getElementById('editExpiryDate').value = expiryDate;
         document.getElementById('editStatus').value = status;
+
         document.getElementById('editModal').style.display = 'flex';
     }
     </script>
-       <!-- Bootstrap core JavaScript-->
-       <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
       
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
