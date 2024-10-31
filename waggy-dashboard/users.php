@@ -402,8 +402,7 @@ endif;
             <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
             <script>
             let table = new DataTable('#myTable', {
-    // options
-});
+    // optionsi
 </script>
 </body>
 
