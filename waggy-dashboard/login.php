@@ -19,7 +19,7 @@ if (isset($_SESSION['error_message'])) {
     <title>Sign in</title>
     <style>
         body {
-            background-image: url("../images/waggy_img.png");
+            background-image: url("img/waggy_img.png");
             font-family: 'Ubuntu', sans-serif;
             height: 100vh;
             margin: 0;

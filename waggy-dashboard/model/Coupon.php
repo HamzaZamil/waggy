@@ -15,6 +15,7 @@ class Coupon {
 
 
     public function getAllCoupons() {
+        $this->updateExpiredCoupons();
         $query = "SELECT * FROM coupons WHERE is_deleted = 0";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -22,9 +23,9 @@ class Coupon {
     }
 
 
+
     public function addCoupon($name, $discount, $expiry_date, $status) {
         $query = "INSERT INTO coupons (coupon_name, coupon_discount, coupon_expiry_date, coupon_status) VALUES (:name, :discount, :expiry_date, :status)";
-
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':discount', $discount);
@@ -34,10 +35,8 @@ class Coupon {
     }
 
 
-
     public function updateCoupon($id, $name, $discount, $expiry_date, $status) {
         $query = "UPDATE coupons SET coupon_name = :name, coupon_discount = :discount, coupon_expiry_date = :expiry_date, coupon_status = :status WHERE coupon_id = :id";
-
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindParam(':id', $id);
@@ -57,6 +56,10 @@ class Coupon {
     return $stmt->execute();
 }
 
-// update this copy to github
+public function updateExpiredCoupons() {
+    $stmt = $this->conn->prepare("UPDATE coupons SET coupon_status = 'Invalid' WHERE coupon_expiry_date < CURDATE() AND 'Valid' = 0");
+    $stmt->execute();
+    return $stmt->rowCount();
+}
 }
 ?>
