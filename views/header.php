@@ -1,4 +1,5 @@
 <?php
+
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -148,31 +149,8 @@
             <nav class="main-menu d-flex navbar navbar-expand-lg">
                 <div class="d-flex d-lg-none align-items-end mt-3">
                     <ul class="d-flex justify-content-end list-unstyled m-0">
-                        <li>
-                            <?php if ($isLoggedIn): ?>
-                        <li class="dropdown">
 
-                            <a href="#" class="mx-3" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="userProfile.php">Profile</a>
 
-                                    <div class="dropdown-divider"></div>
-                                    <a href="../controllers/LogoutController.php" class="dropdown-item">Logout</a>
-                                </div>
-                            </ul>
-                        </li>
-                        <?php else: ?>
-                        <li>
-                            <a href="login_register.php" class="mx-3">
-                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                            </a>
-                        </li>
-                        <?php endif; ?>
-                        </li>
                         <li>
                             <a href="wishlist.php" class="mx-3">
                                 <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
@@ -216,7 +194,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="about_us.php" class="nav-link <?php echo $currentPage == 'about_us.php' ? 'active' : ''; ?>">About Us</a>
+                                <a href="about-us.php" class="nav-link <?php echo $currentPage == 'about-us.php' ? 'active' : ''; ?>">About Us</a>
                             </li>
                             <li class="nav-item">
                                 <a href="contact_us.php"
@@ -224,27 +202,30 @@
                                     Us</a>
                             </li>
                         </ul>
+                        <ul class="d-flex justify-content-end list-unstyled m-0">
+                            <div class="d-none d-lg-flex align-items-end">
+                                <?php if ($isLoggedIn): ?>
+                                <li class="dropdown">
 
-                        <div class="d-none d-lg-flex align-items-end">
-                            <ul class="d-flex justify-content-end list-unstyled m-0">
-                                <li>
-                                    <?php if ($isLoggedIn): ?>
-                                    <!-- Check if the user is logged in -->
                                     <a href="#" class="mx-3" role="button" id="dropdownMenuLink"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="userProfile.php">Profile</a></li>
-                                        <li><a href="../controllers/LogoutController.php"
-                                                class="dropdown-item">Logout</a></li>
+                                        <a class="dropdown-item" href="userProfile.php">Profile</a>
+                                        <a href="../controllers/LogoutController.php" class="dropdown-item">Logout</a>
                                     </ul>
-                                    <?php else: ?>
+                                </li>
+                                <?php else: ?>
+                                <li>
                                     <a href="login_register.php" class="mx-3">
                                         <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                                     </a>
-                                    <?php endif; ?>
                                 </li>
+                                <?php endif; ?>
+                                </li>
+
+
                                 <li>
                                     <a href="wishlist.php" class="mx-3">
                                         <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
@@ -259,12 +240,14 @@
                                         <span id="iconCartQuantity">0</span>
                                     </div>
                                 </li>
-                            </ul>
-                        </div>
+
+                            </div>
+                        </ul>
+
                     </div>
                 </div>
-            </nav>
         </div>
+       
     </header>
 
     <div class="overlay"></div>
