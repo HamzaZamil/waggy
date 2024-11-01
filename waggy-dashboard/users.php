@@ -352,7 +352,7 @@ endif;
 
         const roleSelect = document.getElementById('role');
     const roleValue = row.cells[9].innerText; // Assuming this cell contains the role
-
+        
         // Show the modal
         document.getElementById('editModal').style.display = 'flex';
     }
