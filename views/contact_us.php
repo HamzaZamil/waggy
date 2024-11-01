@@ -96,14 +96,11 @@ try {
     border-radius: 0.5rem; 
     font-weight: bold; 
     padding: 12px; 
-    transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
-    background-color:#faf4ed
+    background-color: #1a1a1a;
+    color: #ced4da;
 }
     
-    .btn-dark:hover {
-    background-color: #1a1a1a; 
-    color: #fff;
-    }
+    
 
 </style>
 <body>

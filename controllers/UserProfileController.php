@@ -1,6 +1,7 @@
 <?php
 require_once '../model/UserProfileModel.php';
 
+ 
 class UserProfileController extends UserProfileModel {
 
     public function showProfile($userId) {
@@ -45,19 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
         }
     }
 }
-    class OrderController {
+    class OrderController extends OrderModel {
         private $orderModel;
 
-        public function __construct($orderModel) {
-            $this->orderModel = $orderModel;
-        }
+        
 
-        public function showUserOrders($user_id) {
+        public function showUserOrders() {
             // Fetch orders for the user
-            $orders = $this->orderModel->getUserOrders($user_id);
+            $user_id= $_SESSION['user_id'];
 
-            // Pass orders to the view
-            include 'views/user_orders.php'; // Include the view where you display the orders
+            return $this->orderModel->getUserOrders($user_id);
+
+        
         }
     }
 

@@ -14,11 +14,9 @@ if (!isset($_SESSION['user_id'])) {
 $userId = $_SESSION['user_id'];
 $profileController = new UserProfileController();
 $user = $profileController->showProfile($userId);
+$orderController = new OrderController();
+$orders = $orderController->showUserOrders();
 ?>
-
-
-
-
 
 <div class="container py-5">
     <div class="row">

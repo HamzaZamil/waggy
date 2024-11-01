@@ -33,11 +33,12 @@ class UserProfileModel extends DBConnection {
     }
     
 }
-    class OrderModel {
+    class OrderModel extends DBConnection {
         private $pdo;
 
-        public function __construct($pdo) {
-            $this->pdo = $pdo;
+        public function __construct() {
+            $this->pdo = $this->connect(); 
+            
         }
 
         public function getUserOrders($user_id) {
