@@ -53,7 +53,6 @@ class Cart
 
             return true;
         } catch (PDOException $e) {
-            // Handle error (log it, etc.)
             return false;
         }
     }
@@ -87,6 +86,22 @@ class Cart
             return [];
         }
     }
+
+    public function getCartItem($userId, $productId) {
+        try {
+            $sql = "SELECT * FROM cart_items WHERE user_id = :user_id AND product_id = :product_id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(['user_id'=> $userId, 'product_id'=> $productId]);
+            $cartItem = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // Return the cart item details if found, otherwise return null
+            return $cartItem ? $cartItem : null;
+        } catch (PDOException $e) {
+            echo "Error fetching cart item: " . $e->getMessage();
+            return null;
+        }
+    }
+    
 
     public function updateQuantity($userId, $productId, $quantity)
     {

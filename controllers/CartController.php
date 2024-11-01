@@ -1,5 +1,7 @@
 <?php
-include './UserController.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!class_exists('Cart')) {
     include '../model/cart.class.php';
@@ -36,24 +38,32 @@ class CartController
     public function getCartItems()
     {
         if (!isset($_SESSION['user_id'])) {
-            echo json_encode([]); // Return empty array if not logged in
-            return;
+            return [];
         }
 
         $userId = $_SESSION['user_id'];
-        // $items = $this->cart->getCartItems($userId);
-        // echo json_encode($items); // Return cart items as JSON
-        echo json_encode(['success' => true, 'items' => $items = $this->cart->getCartItems($userId)]);
+        return $this->cart->getCartItems($userId);
+    }
+
+    
+    public function getCartItemsCount() {
+        try {
+            
+            $cartItems = $this->getCartItems();
+            if (!empty($cartItems)) {
+                return count($cartItems);
+            } else {
+                return 0;
+            }
+
+        } catch (PDOException $e) {
+            return 0;
+        }
     }
 
     // Handle AJAX requests for quantity update
     public function updateCartQuantity()
     {
-        if (!isset($_SESSION['user_id'])) {
-            echo json_encode(['success' => false, 'message' => 'User not logged in']);
-            return;
-        }
-
         $userId = $_SESSION['user_id'];
         $data = json_decode(file_get_contents("php://input"), true); // Get the JSON input
 
@@ -69,25 +79,19 @@ class CartController
 
     public function clearCart()
     {
-        if (!isset($_SESSION['user_id'])) {
-            return [];
-        }
-
         $userId = $_SESSION['user_id'];
-        $items = $this->cart->getCartItems($userId);
-        error_log(print_r($items, true)); // Log the items for debugging
-        return $items;
+        $items = $this->cart->clearCart($userId);
     }
 }
 
-// Create an instance of CartController
-$cartController = new CartController();
+// // Create an instance of CartController
+// $cartController = new CartController();
 
-// Routing logic (simple example)
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getCartItems') {
-    $cartController->getCartItems();
-}
+// // Routing logic (simple example)
+// if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getCartItems') {
+//     $cartController->getCartItems();
+// }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'updateCartQuantity') {
-    $cartController->updateCartQuantity();
-}
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'updateCartQuantity') {
+//     $cartController->updateCartQuantity();
+// }
