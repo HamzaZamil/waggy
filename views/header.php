@@ -216,7 +216,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="about_us.php" class="nav-link <?php echo $currentPage == 'about_us.php' ? 'active' : ''; ?>">About Us</a>
+                                <a href="about-us.php" class="nav-link <?php echo $currentPage == 'about-us.php' ? 'active' : ''; ?>">About Us</a>
                             </li>
                             <li class="nav-item">
                                 <a href="contact_us.php"

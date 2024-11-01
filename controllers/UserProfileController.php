@@ -1,6 +1,7 @@
 <?php
 require_once '../model/UserProfileModel.php';
 
+ 
 class UserProfileController extends UserProfileModel {
 
     public function showProfile($userId) {
@@ -15,7 +16,6 @@ class UserProfileController extends UserProfileModel {
         return $this->updatePassword($userId, $newPassword);
     }
 }
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
     session_start();
@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
             'user_address_line_one' => $_POST['user_address_line_one'],
         ];
 
-
         $success = $controller->updateProfile($data);
         header("Location: ../views/userProfile.php");
         
@@ -47,4 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
         }
     }
 }
+    class OrderController extends OrderModel {
+        private $orderModel;
+
+        
+
+        public function showUserOrders() {
+            // Fetch orders for the user
+            $user_id= $_SESSION['user_id'];
+
+            return $this->orderModel->getUserOrders($user_id);
+
+        
+        }
+    }
+
+?>
 
