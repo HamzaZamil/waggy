@@ -109,8 +109,9 @@ if (isset($_SESSION['user_id'])) {
                             <div class="mb-3">
                                 <label for="gender" class="form-label">Your Gender</label>
                                 <select class="form-control" name="gender" id="gender" required>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
+                                <option value="" disabled selected> Please Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                                 </select>
                             </div>
                             <div class="mb-3">

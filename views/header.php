@@ -11,7 +11,7 @@
 <html lang="en">
 
 <head>
-    <title>Waggy - Free eCommerce Pet Shop HTML Website Template</title>
+    <title>Waggy</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/vendor.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-
+    
+    <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" type="text/css" href="../css/profileStyle.css">
 
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -34,13 +36,80 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
 
+    <!-- Cart Style -->
+     <link rel="stylesheet" href="../css/cart_style.css">
+
+
+    <style>
+        .heart-icon {
+            cursor: pointer;
+            font-size: 1.5em;
+            color: red;
+        }
+        .heart-icon.filled {
+            color: red;
+        }
+        .heart-icon.outline {
+            color: gray;
+        }
+        .alert-position {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: none;
+        }
+
+        .rounded-sweetalert {
+            border-radius: 20px !important;
+        }
+
+        /* Container styling */
+        .section {
+            padding-top: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        /* Card styling */
+        .card1 {
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .card1 h5 {
+            font-weight: bold;
+        }
+
+        .card1 img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Footer button */
+        .card-footer button {
+            background-color: #dfb074;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .card-footer button:hover {
+            background-color: #c6a56b;
+        }
+    </style>
 </head>
 
 <body>
-
+    <!-- <div class="preloader-wrapper">
+        <div class="preloader">
+        </div>
+    </div> -->
 
     <!-- NAVBAR -->
     <header>
@@ -110,21 +179,7 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                                aria-controls="offcanvasCart">
-                                <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                                <span
-                                    class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">03</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-                                aria-controls="offcanvasSearch">
-                                <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
 
@@ -150,9 +205,18 @@
                                 <a href="index.php"
                                     class="nav-link <?php echo $currentPage == 'index.php' ? 'active' : ''; ?>">Home</a>
                             </li>
+                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
+                                    aria-expanded="false">Shop</a>
+                                <ul class="dropdown-menu" aria-labelledby="pages">
+                                    <li><a href="shop2.php?categ-id=1" class="dropdown-item">All</a></li>
+                                    <li><a href="shop2.php?categ-id=2" class="dropdown-item">Cats</a></li>
+                                    <li><a href="shop2.php?categ-id=3" class="dropdown-item">Dogs</a></li>
+                                </ul>
+                            </li>
                             <li class="nav-item">
-                                <a href="shop.php"
-                                    class="nav-link <?php echo $currentPage == 'shop.php' ? 'active' : ''; ?>">Shop</a>
+                                <a href="about-us.php" class="nav-link <?php echo $currentPage == 'about-us.php' ? 'active' : ''; ?>">About Us</a>
                             </li>
                             <li class="nav-item">
                                 <a href="contact_us.php"
@@ -186,25 +250,14 @@
                                         <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                                     </a>
                                 </li>
+                                
                                 <li>
-                                    <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                                        aria-controls="offcanvasCart">
-                                        <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                                        <span
-                                            class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">03</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <form method="get">
-                                        <div class="search_box pull-right">
-                                            <input name="find" type="text" placeholder="search">
-                                            <a href=" #" class="mx-3" data-bs-toggle="offcanvas"
-                                                data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
-                                            <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
-                                            </a>
-                                        </div>
-                                    </form>
-
+                                    <div class="icon-cart">
+                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="filled" viewBox="0 0 18 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+                                        </svg>
+                                        <span id="iconCartQuantity">0</span>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -214,10 +267,14 @@
         </div>
     </header>
 
+    <div class="overlay"></div>
+    <div class="cartTab">
+        <h1>Shopping Cart</h1>
+        <div class="listCart">
 
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-</body>
-
-</html>
+        </div>
+        <div class="btns">
+            <button class="close">CLOSE</button>
+            <button class="checkOut"><a href="#">Check Out</a></button>
+        </div>
+    </div>

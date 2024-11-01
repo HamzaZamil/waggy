@@ -58,10 +58,10 @@ try {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <style>
-    /* Custom styles for the contact form */
+    
+/* Custom styles for the contact form */
 #contact {
     background: linear-gradient(to right, #faf4ed);
-   
 }
 
 #contact h2 {
@@ -78,9 +78,26 @@ try {
     border-color: #0056b3; /* Darker blue on hover */
 }
 
+/* Adjust input field styles */
 .form-control {
     border-radius: 0.5rem; /* Rounded corners for inputs */
+    border: 1px solid #ced4da; /* Default border color */
+    transition: border-color 0.3s ease; /* Smooth border color transition */
 }
+
+.form-control:focus {
+    border-color: #faf4ed; /* Change border color on focus */
+    box-shadow: 0 0 5px #faf4ed; /* Add shadow on focus */
+}
+
+/* Enhance the submit button */
+.btn-dark {
+    border-radius: 0.5rem; /* Rounded corners */
+    font-weight: bold; /* Make text bold */
+    padding: 12px; /* Add padding for better button size */
+    transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+}
+
 
 
 </style>
@@ -111,7 +128,7 @@ try {
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-dark btn-lg text-uppercase fs-6 rounded-1 w-100">
+                    <button type="submit" class="btn btn-dark btn-lg text-uppercase fs-6 rounded-5 w-100">
                         Send Message
                     </button>
                 </form>
@@ -185,10 +202,6 @@ try {
              console.log("hssg");
         });
         
-
-
-
-
 
                     showToast(result.message, 'success');
                     this.reset(); // Clear the form on success
