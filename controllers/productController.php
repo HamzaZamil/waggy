@@ -8,4 +8,5 @@ class ProductController extends Product
         $category = $this->getCategories();
         $product = $this->getProducts();
     }
+
 }
