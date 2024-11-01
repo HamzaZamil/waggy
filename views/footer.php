@@ -1,6 +1,8 @@
  <!-- Footer -->
- <footer id="footer" style="background: url('../images/background-img.png') no-repeat; margin-bottom: -100px;">
-     <div class="container py-5 my-5">
+  
+
+ <footer id="footer" style="margin-top:0;background: url('../images/background-img.png') no-repeat; margin-bottom: -100px;">
+     <div class="container my-5 py-5">
          <div class="row">
 
              <div class="col-md-4">
@@ -35,6 +37,12 @@
                          </li>
                          <li class="menu-item">
                              <a href="./contact_us.php" class="nav-link">Conatct Us</a>
+                         </li>
+                         <li class="menu-item">
+                             <a href="./about-us.php" class="nav-link">About Us</a>
+                         </li>
+                         <li class="menu-item">
+                             <a href="./faq.php" class="nav-link">FAQ</a>
                          </li>
                      </ul>
                  </div>
@@ -77,8 +85,12 @@
  <script src="../js/plugins.js"></script>
  <script src="../js/script.js"></script>
  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+ <!-- Script for cart -->
+  <script src="../js/cart.js"></script>
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
- </body>
+</body>
 
  </html>

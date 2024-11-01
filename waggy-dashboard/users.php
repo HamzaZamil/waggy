@@ -3,18 +3,10 @@ session_start();
 include "includes/header.php";
 require_once 'model/User.php'; 
 $user = new User();
+$users = $user->getAllUsers();
+$isSuperAdmin = $_SESSION['user_role'] === 'Superadmin';
 
-// Pagination variables
-$limit = 5; // Number of users per page
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
-$offset = ($page - 1) * $limit; // Offset for SQL query
 
-// Get users
-$users = $user->getAllUsers($limit, $offset);
-
-// Get total users for pagination
-$totalUsers = $user->getTotalUsers();
-$totalPages = ceil($totalUsers / $limit);
 ?>
 
 
@@ -26,43 +18,20 @@ $totalPages = ceil($totalUsers / $limit);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>user</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-    .pagination {
-        display: flex;
-        list-style: none;
-        padding: 0;
+    html {
+        overflow: scroll !important;
+    
     }
-
-    .pagination .page-item {
-        margin: 0 5px;
-    }
-
-    .pagination .page-link {
-        color: #000;
-        background-color: #fff;
-        padding: 10px 15px;
-        text-decoration: none;
-        border: 1px solid #000;
-        border-radius: 5px;
-    }
-
-    .pagination .page-item.active .page-link {
-        color: #fff;
-        background-color: #000;
-    }
-
-    .pagination .page-item.disabled .page-link {
-        color: #000;
-        background-color: #fff;
-    }
-
-    .pagination .page-link:hover {
-        background-color: #000;
-        color: #fff;
+    .table_pro_item
+    {
+        overflow-x: auto;
     }
     </style>
+   
 </head>
 
 <body>
@@ -87,31 +56,12 @@ $totalPages = ceil($totalUsers / $limit);
                     </span>
                 </button>
             </div>
-
+            <div class="table_pro_item">
             <div class="pt-5 pb-3">
                 <h2>Users Table</h2>
                 <!-- Pagination Section -->
-                <nav aria-label="Page navigation">
-    <ul class="pagination">
-        <!-- Previous Button -->
-        <li class="page-item <?= ($page == 1) ? 'disabled' : '' ?>">
-            <a class="page-link" href="?page=<?= $page - 1 ?>" tabindex="-1">Previous</a>
-        </li>
-
-        <!-- Page Number Links -->
-        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-        <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
-            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-        </li>
-        <?php endfor; ?>
-
-        <!-- Next Button -->
-        <li class="page-item <?= ($page == $totalPages) ? 'disabled' : '' ?>">
-            <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>
-        </li>
-    </ul>
-</nav>
-                <table class="responsive-table">
+               
+                <table class="responsive-table " id="myTable">
                     <thead>
                         <tr>
                             <th>User ID</th>
@@ -168,10 +118,11 @@ $totalPages = ceil($totalUsers / $limit);
         <div class="modal" id="editModal"
             style="display: none; justify-content: center; align-items: center; height: 100vh;">
             <div class="modal-content" style="width: 50%; text-align: center;">
-                <button class="close-btn" style="background:#db4f4f;" onclick="closeEditModal()">X</button>
+                <button class="close-btn delete-btn" style="background:#db4f4f;" onclick="closeEditModal()">X</button>
                 <h3>Edit User</h3>
                 <form id="editForm" method="POST" action="process_user.php">
                     <input type="hidden" id="editUserId" name="editUserId">
+                    <input type="hidden" id="role" name="role">
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <input type="text" id="firstName" name="editFirstName">
@@ -193,7 +144,7 @@ $totalPages = ceil($totalUsers / $limit);
                     </div>
                     <div class="form-group">
                         <label for="birthDate">Birth Date:</label>
-                        <input type="date" id="birthDate" name="editBirthDate">
+                        <input type="date" id="birthDate" name="editBirthDate" max="<?= date('Y-m-d'); ?>">
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number:</label>
@@ -210,27 +161,31 @@ $totalPages = ceil($totalUsers / $limit);
                             <option value="Deactivate">Deactivate</option>
                         </select>
                     </div>
+
+                    <?php if ($isSuperAdmin): // Check if logged-in user is Super Admin ?>
                     <div class="form-group">
                         <label for="role">Role:</label>
                         <select id="role" name="editRole">
-                            <option value="superadmin">Superadmin</option>
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
+                            <option value="Admin">Admin</option>
+
+                            <option value="User">User</option>
                         </select>
                     </div>
-                    <button class="save-btn" type="submit"
-                        style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
-                        User</button>
+                    <?php endif; ?>
+
+                    <button type="submit" class="edit-btn"
+                        style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save</button>
                 </form>
             </div>
         </div>
+
 
 
         <!-- Add User Modal -->
         <div class="modal" id="addModal"
             style="display: none; justify-content: center; align-items: center; height: 100vh;">
             <div class="modal-content" style="width: 50%; text-align: center;">
-                <button class="close-btn" style="background:#db4f4f;" onclick="closeAddModal()">X</button>
+                <button class="close-btn delete-btn" style="background:#db4f4f;" onclick="closeAddModal()">X</button>
                 <h3 style="text-align: center;">Add New User</h3>
                 <form id="addForm" method="POST" action="process_user.php">
                     <div class="form-group">
@@ -246,6 +201,10 @@ $totalPages = ceil($totalUsers / $limit);
                         <input type="email" id="newEmail" name="newEmail" required>
                     </div>
                     <div class="form-group">
+                        <label for="newPassword">Password:</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+                    </div>
+                    <div class="form-group">
                         <label for="newGender">Gender:</label>
                         <select id="newGender" name="newGender" required>
                             <option value="Male">Male</option>
@@ -254,7 +213,7 @@ $totalPages = ceil($totalUsers / $limit);
                     </div>
                     <div class="form-group">
                         <label for="newBirthDate">Birth Date:</label>
-                        <input type="date" id="newBirthDate" name="newBirthDate" required>
+                        <input type="date" id="newBirthDate" name="newBirthDate" max="<?= date('Y-m-d'); ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="newPhone">Phone Number:</label>
@@ -271,20 +230,23 @@ $totalPages = ceil($totalUsers / $limit);
                             <option value="Deactivate">Deactivate</option>
                         </select>
                     </div>
+                    <?php if ($isSuperAdmin):?>
                     <div class="form-group">
-                        <label for="newRole">Role:</label>
-                        <select id="newRole" name="newRole" required>
-                            <option value="SuperAdmin">Superadmin</option>
+                        <label for="role">Role:</label>
+                        <select id="role" name="editRole">
                             <option value="Admin">Admin</option>
+                            <option value="SuperAdmin">SuperAdmin</option>
                             <option value="User">User</option>
                         </select>
                     </div>
-                    <button class="save-btn" type="submit"
+                    <?php endif; ?>
+                    <button class="save-btn edit-btn" type="submit"
                         style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
-                        User</button>
+                    </button>
                 </form>
             </div>
         </div>
+
 
 
 
@@ -318,7 +280,7 @@ $totalPages = ceil($totalUsers / $limit);
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -339,7 +301,11 @@ if (isset($_SESSION['sweetalert'])): ?>
     unset($_SESSION['sweetalert']);
 endif;
 ?>
-
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/modal.js"></script>
     <script>
     function confirmDelete(button) {
         const form = button.closest('form'); // Get the form associated with the delete button
@@ -369,34 +335,53 @@ endif;
     }
 
     function openEditModal(button, userId) {
-        const row = button.closest('tr');
-        const firstName = row.cells[1].innerText;
-        const lastName = row.cells[2].innerText;
-        const email = row.cells[3].innerText;
-        const birthDate = row.cells[5].innerText;
-        const phone = row.cells[6].innerText;
-        const address = row.cells[7].innerText;
-        const state = row.cells[8].innerText;
+        // Get user data from the button's parent row
+        var row = button.closest('tr');
+        document.getElementById('editUserId').value = userId;
+        document.getElementById('firstName').value = row.cells[1].innerText;
+        document.getElementById('lastName').value = row.cells[2].innerText;
+        document.getElementById('email').value = row.cells[3].innerText;
+        document.getElementById('gender').value = row.cells[4].innerText.toLowerCase();
+        document.getElementById('birthDate').value = row.cells[5].innerText;
+        document.getElementById('phone').value = row.cells[6].innerText;
+        document.getElementById('address').value = row.cells[7].innerText;
+        document.getElementById('editState').value = row.cells[8].innerText;
 
+        // Set the role (even if it's hidden)
+        document.getElementById('role').value = row.cells[9]
+        .innerText; // Assuming the role is in the 10th cell (index 9)
 
-        document.getElementById("firstName").value = firstName;
-        document.getElementById("lastName").value = lastName;
-        document.getElementById("email").value = email;
-        document.getElementById("birthDate").value = birthDate;
-        document.getElementById("phone").value = phone;
-        document.getElementById("address").value = address;
-        document.getElementById('editState').value = state;
-        // Set user ID
-        document.getElementById("editUserId").value = userId;
-
-        document.getElementById("editModal").style.display = "flex";
+        // Show the modal
+        document.getElementById('editModal').style.display = 'flex';
     }
+
+
+
 
 
     function closeEditModal() {
         document.getElementById("editModal").style.display = "none";
     }
     </script>
+      <!-- Bootstrap core JavaScript-->
+      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+      
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+       <!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script>
+    let table = new DataTable('#myTable', {
+// options
+});
+</script>
+
 </body>
 
 </html>
