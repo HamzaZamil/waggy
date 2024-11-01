@@ -29,7 +29,7 @@ class order
     $query = "SELECT p.product_name as product_name ,oi.quantity as product_quantity ,p.product_price as price,(p.product_price * oi.quantity) as total
     FROM order_items oi
     JOIN products p on oi.product_id= p.product_id
-    where oi.order_id =:order_id";
+    where oi.orders_id =:order_id";
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
     $stmt->execute();
