@@ -23,6 +23,10 @@ $allOrders=$orders->getAllOrders();
 	padding: 40px 0;
 	font-family: 'Open Sans', sans-serif;
 }
+label{
+        margin-left:10px;
+        margin-right:10px;
+    }
 .main-heading {
 	font-size: 19px;
 	margin-bottom: 20px;
@@ -197,7 +201,7 @@ $allOrders=$orders->getAllOrders();
                                 <td data-label='order discount'>{$order['order_discount']} %</td>
                                 <td data-label='order status'>{$order['order_status']}</td>
                                 <td>
-                                    <button class='edit-btn' onclick='openOrderModal(
+                                    <button class='edit-btn' style = 'style=background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;' onclick='openOrderModal(
                                         \"{$order['order_id']}\",
                                         \"{$order['user_name']}\",
                                         \"{$order['order_date']}\",
@@ -205,6 +209,7 @@ $allOrders=$orders->getAllOrders();
                                         \"{$order['order_status']}\",
                                         \"{$order['order_discount']}\"
                                     )'>View order</button>
+                                    
                                 </td>
                             </tr>";
                     }

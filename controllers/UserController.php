@@ -3,8 +3,7 @@
 session_start();
 require_once '../model/UserModel.php';
 
-class UserController extends UserModel { 
-
+class UserController extends UserModel {
 
     public function handleRequest() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,14 +15,11 @@ class UserController extends UserModel {
         }
     }
 
-
-
     private function login() {
-        session_start(); // Start session at the beginning of the login method
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
         $userId = $this->loginUser($email, $password);
-    
+
         if ($userId) {
             $_SESSION['user_id'] = $userId;
             header("Location: ../views/userProfile.php");
@@ -34,7 +30,6 @@ class UserController extends UserModel {
             exit();
         }
     }
-    
 
     private function register() {
         $firstName = trim($_POST['fname']);
@@ -49,20 +44,21 @@ class UserController extends UserModel {
 
         // Validate 
         if ($password !== $confPassword) {
-            $_SESSION['register_error'] = 'Passwords do not match.';
+            $_SESSION['registration_error'] = 'Passwords do not match.';
             header("Location: ../views/login_register.php");
             exit();
         }
 
+        // Call the model method to insert the user
         if ($this->registerUser($firstName, $lastName, $email, $password, $gender, $DOB, $mobile, $address)) { 
             // Registration successful
-            header("Location: ../views/login_register.php"); 
-            exit();
+            $_SESSION['registration_success'] = 'You have registered successfully!';
         } else {
-            $_SESSION['register_error'] = 'Registration failed. Please try again.';
-            header("Location: ../views/login_register.php"); 
-            exit();
+            // Registration failed
+            $_SESSION['registration_error'] = 'Registration failed. Please try again.';
         }
+        header("Location: ../views/login_register.php"); 
+        exit();
     }
 }
 
