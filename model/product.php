@@ -11,7 +11,7 @@ class Product extends DBConnection {
 
     public function getCategories() {
         $query = "SELECT * FROM categories"; 
-        $stmt = $this->db->query($query);
+        $stmt  = $this->db->query($query);
         return $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
     }
 
