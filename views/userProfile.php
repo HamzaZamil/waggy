@@ -81,15 +81,16 @@ $user = $profileController->showProfile($userId);
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo htmlspecialchars($order['item_name']); ?></h5>
-                                    <p class="card-text">Order Date:
-                                        <?php echo htmlspecialchars($order['order_date']); ?></p>
-                                    <p class="card-text">Coupon Count:
-                                        <?php echo htmlspecialchars($order['coupon_id']); ?></p>
-                                    <p class="card-text">Order Total:
-                                        <?php echo htmlspecialchars($order['order_total']); ?></p>
-                                    <p class="card-text">Status: <?php echo htmlspecialchars($order['order_status']); ?>
-                                    </p>
+                                <h3>Order ID: <?= htmlspecialchars($order['order_id']) ?></h3>
+                                    <p>Order Date: <?= htmlspecialchars($order['order_date']) ?></p>
+                                    <p>Order Total: $<?= htmlspecialchars($order['order_total']) ?></p>
+                                    <p>Order Status: <?= htmlspecialchars($order['order_status']) ?></p>
+                                    <p>Product Name: <?= htmlspecialchars($order['product_name']) ?></p>
+                                    <p>Description: <?= htmlspecialchars($order['product_description']) ?></p>
+                                    <p>Price: $<?= htmlspecialchars($order['product_price']) ?></p>
+                                    <p>Quantity: <?= htmlspecialchars($order['quantity']) ?></p>
+                                    <hr>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -149,6 +150,8 @@ $user = $profileController->showProfile($userId);
         </div>
     </div>
 </div>
+   
+
 
 
 

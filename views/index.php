@@ -471,5 +471,5 @@
         </div>
     </div>
 </section>
-<?php include './our_coustomers.php'; ?>
+
 <?php include './footer.php'; ?>

@@ -16,7 +16,6 @@ class UserProfileController extends UserProfileModel {
     }
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
     session_start();
     $userId = $_SESSION['user_id'];
@@ -32,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
             'user_address_line_one' => $_POST['user_address_line_one'],
         ];
 
-
         $success = $controller->updateProfile($data);
         header("Location: ../views/userProfile.php");
         
@@ -47,4 +45,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
         }
     }
 }
+    class OrderController {
+        private $orderModel;
+
+        public function __construct($orderModel) {
+            $this->orderModel = $orderModel;
+        }
+
+        public function showUserOrders($user_id) {
+            // Fetch orders for the user
+            $orders = $this->orderModel->getUserOrders($user_id);
+
+            // Pass orders to the view
+            include 'views/user_orders.php'; // Include the view where you display the orders
+        }
+    }
+
+?>
 
