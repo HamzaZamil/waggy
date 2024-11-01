@@ -7,7 +7,18 @@ body {
 .padding {
     padding: 3rem !important
 }
+.form-control.success input {
+    border-color: #A4CC00;
+}
 
+.form-control.error input {
+    border-color: #CC0000;
+}
+
+.form-control.error span {
+    color: #CC0000;
+    font-size: 12px;
+}
 .user-card-full {
     overflow: hidden;
 }
@@ -15,7 +26,7 @@ body {
 .card {
     border-radius: 5px;
     -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
-    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08); 
     border: none;
     margin-bottom: 30px;
 }
@@ -138,26 +149,43 @@ h6 {
 }
 
 .modal-dialog {
-    max-width: 600px;
-    /* Increase width */
+    max-width: 600px; /* Increase width */
 }
 
 .modal-content {
-    padding: 5px;
+    padding: 5px; /* Minimal padding around content */
 }
 
-/* Smaller input and button sizes */
-.modal-body .form-control,
-.modal-body .btn {
-    height: 40px;
-    /* Reduce height of inputs and button */
-    font-size: 0.9rem;
-    /* Smaller font size */
-    padding: 5px;
-    /* Compact padding */
+.modal-body input.form-control {
+    font-size: 0.875rem; /* Smaller font size for input text */
+    padding: 0.25rem; /* Smaller padding inside input fields */
+    height: 1.2rem; /* Smaller input height */
 }
 
-.modal-body .btn {
-    font-size: 0.9rem;
-    padding: 10px ;
+.modal-footer button {
+    font-size: 0.875rem; /* Smaller font size for buttons */
+}
+
+.modal-body .mb-2 {
+    margin-bottom: 0.5rem; /* Reduce margin between input fields */
+}
+
+.modal-header, .modal-footer {
+    padding-top: 0.5rem; /* Adjust padding for header and footer */
+    padding-bottom: 0.5rem;
+    margin-bottom: 0; /* Remove additional bottom margin */
+}
+.modal-footer .btn {
+    font-size: 0.875rem; /* Smaller font size */
+    padding: 0.25rem 0.75rem; /* Uniform padding for height */
+    height: 2rem; /* Set a fixed height */
+    width: 100px; /* Set a fixed width */
+}
+
+.modal-footer .btn-outline-secondary,
+.modal-footer .btn-outline-primary {
+    min-width: 100px; /* Ensures buttons don’t shrink */
+    max-width: 100px; /* Ensures uniform width */
+    height: 2rem; /* Uniform height */
+    padding: 0.25rem 0.5rem; /* Adjust padding to control button size */
 }
