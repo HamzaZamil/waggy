@@ -1,7 +1,14 @@
 <?php
 session_start();
-include("includes/header.php")
+include("includes/header.php");
+require_once 'model/User.php';
+
+
+$user = new User();
+$activeUserCount = $user->countActiveUsers();
+
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -22,11 +29,11 @@ include("includes/header.php")
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Number of customers</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo htmlspecialchars($activeUserCount, ENT_QUOTES, 'UTF-8'); ?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fa-solid fa-users text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>

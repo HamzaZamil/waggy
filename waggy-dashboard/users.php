@@ -30,6 +30,10 @@ $isSuperAdmin = $_SESSION['user_role'] === 'Superadmin';
     {
         overflow-x: auto;
     }
+    label{
+        margin-left:10px;
+        margin-right:10px;
+    }
     </style>
    
 </head>
@@ -230,16 +234,15 @@ $isSuperAdmin = $_SESSION['user_role'] === 'Superadmin';
                             <option value="Deactivate">Deactivate</option>
                         </select>
                     </div>
-                    <?php if ($isSuperAdmin):?>
+                    
                     <div class="form-group">
                         <label for="role">Role:</label>
-                        <select id="role" name="editRole">
+                        <select id="role" name="newRole">
                             <option value="Admin">Admin</option>
-                            <option value="SuperAdmin">SuperAdmin</option>
                             <option value="User">User</option>
                         </select>
                     </div>
-                    <?php endif; ?>
+                    
                     <button class="save-btn edit-btn" type="submit"
                         style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
                     </button>
@@ -347,10 +350,9 @@ endif;
         document.getElementById('address').value = row.cells[7].innerText;
         document.getElementById('editState').value = row.cells[8].innerText;
 
-        // Set the role (even if it's hidden)
-        document.getElementById('role').value = row.cells[9]
-        .innerText; // Assuming the role is in the 10th cell (index 9)
-
+        const roleSelect = document.getElementById('role');
+    const roleValue = row.cells[9].innerText; // Assuming this cell contains the role
+        
         // Show the modal
         document.getElementById('editModal').style.display = 'flex';
     }

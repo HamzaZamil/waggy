@@ -105,23 +105,24 @@ class User {
     }
 
     public function login($email, $password) {
-        // Assuming you have a method to fetch user data based on email
-        $userData = $this->getUserByEmail($email); // Replace with actual method
+        
+        $userData = $this->getUserByEmail($email); 
     
         if ($userData) {
-            // Check if the password is correct
+            
             if (password_verify($password, $userData['user_password'])) {
-                // Check if the user role is Admin or Super Admin
-                if ($userData['user_role'] === 'Admin' || $userData['user_role'] === 'Superadmin') {
-                    return "success login"; // Successful login
+                
+                if (!($userData['user_role'] === 'Admin' || $userData['user_role'] === 'Superadmin')) {
+                    return "Unauthorized access: You do not have permission to log in.";
                 } else {
-                    return "Unauthorized access: You do not have permission to log in."; // Not an Admin or Super Admin
+                    
+                    return "success login"; 
                 }
             } else {
-                return "Invalid password."; // Incorrect password
+                return "Invalid password."; 
             }
         } else {
-            return "User not found."; // No user with that email
+            return "User not found."; 
         }
     }
     
@@ -139,6 +140,20 @@ class User {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function countActiveUsers() {
+        $query = "
+            SELECT COUNT(*) 
+            FROM users 
+            WHERE user_state = 'Active' 
+            AND is_deleted = 0 
+            AND user_role = 'User'
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+    
     
     
     

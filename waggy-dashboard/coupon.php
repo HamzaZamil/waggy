@@ -31,6 +31,10 @@ if (isset($_GET['edit_id'])) {
         color: red;
         font-weight: bold;
     }
+    label{
+        margin-left:10px;
+        margin-right:10px;
+    }
     </style>
 </head>
 

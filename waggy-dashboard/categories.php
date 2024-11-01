@@ -23,6 +23,10 @@ $categories = $categoryModel->getAllCategories();
         display: flex;
         gap: 10px;
     }
+    label{
+        margin-left:10px;
+        margin-right:10px;
+    }
     </style>
 </head>
 
