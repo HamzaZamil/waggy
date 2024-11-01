@@ -88,13 +88,22 @@ class Cart
         }
     }
 
-    // public function updateQuantity($userId, $productId, $quantity)
-    // {
-    //     $sql = "UPDATE cart_items SET quantity = :quantity WHERE user_id = :user_id AND product_id = :product_id";
-    //     $stmt = $this->db->prepare($sql);
-    //     $stmt->bindParam(':user_id', $userId);
-    //     $stmt->bindParam(':product_id', $productId);
-    //     $stmt->bindParam(':quantity', $quantity);
-    //     return $stmt->execute();
-    // }
+    public function updateQuantity($userId, $productId, $quantity)
+    {
+        $sql = "UPDATE order_items SET quantity = :quantity WHERE user_id = :user_id AND product_id = :product_id AND in_cart = 1";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([':user_id' => $userId, ':product_id' => $productId, ':quantity' =>       $quantity]);
+    }
+
+    public function clearCart($userId)
+    {
+        try {
+            $clearQuery = "UPDATE order_items SET in_cart = 0 WHERE user_id = :user_id AND in_cart = 1";
+            $clearStmt = $this->db->prepare($clearQuery);
+            $clearStmt->execute(['user_id' => $userId]);
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }

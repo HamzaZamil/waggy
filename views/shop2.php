@@ -13,6 +13,8 @@ $wishlistItems = [];
 $productController = new ProductController();
 $productController->shop($categories, $products);
 
+$wishlistController = new WishlistController();
+$wishlistItems = $wishlistController->getWishlistItemsForDisplay();
 
 $dog_toys_tools_id = 1;
 $dog_food_id = 2;
