@@ -1,4 +1,8 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!class_exists('Wishlist')) {
     include_once '../model/wishlist.class.php';
 }
