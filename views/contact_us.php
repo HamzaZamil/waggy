@@ -58,12 +58,11 @@ try {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <style>
-    
-/* Custom styles for the contact form */
+  
+
 #contact {
     background: linear-gradient(to right, #faf4ed);
 }
-
 #contact h2 {
     color: #343a40;
     margin-bottom: 30px;
@@ -72,13 +71,15 @@ try {
 #contactForm {
     border: 2px solid #007bff; /* Light blue border */
     transition: border-color 0.3s ease;
+    background: url('../images/background-img.png') no-repeat;
+
 }
 
 #contactForm:hover {
     border-color: #0056b3; /* Darker blue on hover */
 }
 
-/* Adjust input field styles */
+
 .form-control {
     border-radius: 0.5rem; /* Rounded corners for inputs */
     border: 1px solid #ced4da; /* Default border color */
@@ -92,13 +93,17 @@ try {
 
 /* Enhance the submit button */
 .btn-dark {
-    border-radius: 0.5rem; /* Rounded corners */
-    font-weight: bold; /* Make text bold */
-    padding: 12px; /* Add padding for better button size */
+    border-radius: 0.5rem; 
+    font-weight: bold; 
+    padding: 12px; 
     transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+    background-color:#faf4ed
 }
-
-
+    
+    .btn-dark:hover {
+    background-color: #1a1a1a; 
+    color: #fff;
+    }
 
 </style>
 <body>
@@ -128,7 +133,7 @@ try {
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-dark btn-lg text-uppercase fs-6 rounded-5 w-100">
+                    <button type="submit" class="btn-dark btn-lg text-uppercase fs-6 rounded-1 w-100">
                         Send Message
                     </button>
                 </form>

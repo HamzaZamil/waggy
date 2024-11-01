@@ -39,7 +39,7 @@
                              <a href="./contact_us.php" class="nav-link">Conatct Us</a>
                          </li>
                          <li class="menu-item">
-                             <a href="./about_us.php" class="nav-link">About Us</a>
+                             <a href="./about-us.php" class="nav-link">About Us</a>
                          </li>
                          <li class="menu-item">
                              <a href="./faq.php" class="nav-link">FAQ</a>
