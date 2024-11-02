@@ -47,7 +47,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                     <div class="item col-md-4 col-lg-3 my-4">
                         <div class="card position-relative">
 
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                        <img src="../inserted_img/<?=$product_item['product_img']?>" class="img-fluid rounded-4" alt="image">
 
 
                             <div class="card-body d-flex flex-column align-items-center">
@@ -116,7 +116,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
             ?>
                     <div class="item col-md-4 col-lg-3 my-4">
                         <div class="card position-relative">
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                        <img src="../inserted_img/<?=$product_item['product_img']?>" class="img-fluid rounded-4" alt="image">
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
@@ -180,7 +180,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
             ?>
                     <div class="item col-md-4 col-lg-3 my-4">
                         <div class="card position-relative">
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                            <img src="../inserted_img/<?=$product_item['product_img']?>" class="img-fluid rounded-4" alt="image">
                             <div class="card-body d-flex flex-column align-items-center ">
                                 <a href="single-product.html">
                                     <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>

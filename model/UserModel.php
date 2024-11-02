@@ -18,14 +18,23 @@ class UserModel extends DBConnection {
     public function loginUser($email, $password) {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE user_email = ?");
         $stmt->execute([$email]);
-
+    
         if ($stmt->rowCount() === 1) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            // check password
+    
+            
             if (password_verify($password, $user['user_password'])) {
-                return $user['user_id'];
+    
+                
+                session_start();
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['user_role'] = $user['user_role'];
+                $_SESSION['user_email'] = $user['user_email'];
+    
+                return true; 
             }
         }
-        return false;
+        return false; 
     }
+    
 }
