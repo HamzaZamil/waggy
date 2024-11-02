@@ -36,7 +36,7 @@ class UserController extends UserModel {
             exit();
         } else {
             $_SESSION['login_error'] = 'Invalid email or password.';
-            header("Location: ../views/login_register.php");
+            header("Location: ../views/login.php");
             exit();
         }
     }
@@ -52,22 +52,53 @@ class UserController extends UserModel {
         $mobile = trim($_POST['mobile']);
         $address = trim($_POST['address']);
 
-        // Validate 
+        // Password match validation
         if ($password !== $confPassword) {
-            $_SESSION['register_error'] = 'Passwords do not match.';
-            header("Location: ../views/login_register.php");
+            $_SESSION['registration_error'] = 'Passwords do not match.';
+            header("Location: ../views/register.php");
             exit();
         }
 
+        // Email existence validation
+        if ($this->emailExists($email)) {
+            $_SESSION['registration_error'] = 'Email already exists. Please choose a different email.';
+            header("Location: ../views/register.php?register=1"); 
+            exit();
+        }
 
+        // Age validation
+        $dobDate = new DateTime($DOB);
+        $today = new DateTime();
+        
+        // Check if the selected date is today or in the future
+        if ($dobDate > $today) {
+            $_SESSION['registration_error'] = 'Date of birth cannot be today or in the future.';
+            header("Location: ../views/register.php");
+            exit();
+        }
+
+        // Calculate age
+        $age = $today->diff($dobDate)->y;
+
+        // Validate age
+        if ($age < 16) {
+            $_SESSION['registration_error'] = 'You must be at least 16 years old to register.';
+            header("Location: ../views/register.php");
+            exit();
+        }
+
+        // Registration logic
         if ($this->registerUser($firstName, $lastName, $email, $password, $gender, $DOB, $mobile, $address)) { 
-            // Registration successful
-            header("Location: ../views/login_register.php"); 
+            $_SESSION['registration_success'] = 'You have registered successfully!';
+            header("Location: ../views/login.php");
             exit();
         } else {
-            $_SESSION['register_error'] = 'Registration failed. Please try again.';
-            exit();
+            // Registration failed
+            $_SESSION['registration_error'] = 'Registration failed. Please try again.';
+            header("Location: ../views/register.php");
+            exit();   
         }
+        
     }
 }
 

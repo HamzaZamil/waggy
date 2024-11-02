@@ -391,10 +391,15 @@ $isLoggedIn = isset($_SESSION['user_id']);
                             </ul>
                         </li>
                         <?php else: ?>
-                        <li>
-                            <a href="login_register.php" class="mx-2">
+                            <li class="dropdown">
+                            <a href="#" class="mx-2" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                             </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="register.php">Register</a>
+                                <a class="dropdown-item" href="login.php">Login</a>
+                            </ul>
                         </li>
                         <?php endif; ?>
 

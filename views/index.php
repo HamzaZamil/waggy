@@ -476,7 +476,7 @@ var swiper = new Swiper('.main-swiper', {
                 </h2>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="./login_register.php"
+                    <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="register.php"
                             style="color: white;">Register it now</a></button>
                 </div>
             </div>
