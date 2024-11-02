@@ -22,12 +22,26 @@ class Cart
             $orderStmt->execute(['user_id' => $userId]);
             $order = $orderStmt->fetch(PDO::FETCH_ASSOC);
 
-            // If no order exists, create a new one
+            // If no order exists, create a new one with user address
             if (!$order) {
-                $insertOrderQuery = "INSERT INTO orders (user_id, order_status) VALUES (:user_id, 'in_cart')";
-                $insertOrderStmt = $this->db->prepare($insertOrderQuery);
-                $insertOrderStmt->execute(['user_id' => $userId]);
-                $orderId = $this->db->lastInsertId();
+                // Retrieve the user's address
+                $userAddressQuery = "SELECT user_address_line_one FROM users WHERE user_id = :user_id";
+                $userAddressStmt = $this->db->prepare($userAddressQuery);
+                $userAddressStmt->execute(['user_id' => $userId]);
+                $userAddress = $userAddressStmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($userAddress) {
+                    // Insert a new order, including user_address_line_one
+                    $insertOrderQuery = "INSERT INTO orders (user_id, user_address_line_one, order_status) VALUES (:user_id, :user_address_line_one, 'in_cart')";
+                    $insertOrderStmt = $this->db->prepare($insertOrderQuery);
+                    $insertOrderStmt->execute([
+                        'user_id' => $userId,
+                        'user_address_line_one' => $userAddress['user_address_line_one']
+                    ]);
+                    $orderId = $this->db->lastInsertId();
+                } else {
+                    throw new Exception("User address not found.");
+                }
             } else {
                 $orderId = $order['order_id'];
             }
@@ -53,10 +67,13 @@ class Cart
 
             return true;
         } catch (PDOException $e) {
+            error_log("Database error: " . $e->getMessage());
+            return false;
+        } catch (Exception $e) {
+            error_log("Error: " . $e->getMessage());
             return false;
         }
     }
-
 
     // Delete item from cart
     public function deleteFromCart($userId, $productId)
@@ -92,6 +109,20 @@ class Cart
         $sql = "UPDATE order_items SET quantity = :quantity WHERE user_id = :user_id AND product_id = :product_id AND in_cart = 1";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([':user_id' => $userId, ':product_id' => $productId, ':quantity' =>       $quantity]);
+    }
+
+    public function updateTotal($userId, $total)
+    {
+        $sql = "UPDATE orders SET order_total = :total WHERE user_id = :user_id AND order_status = 'in_cart'";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([':total' => $total, ':user_id' => $userId]);
+    }
+
+    public function updateCoupon($user_id, $coupon_id)
+    {
+        $sql = "UPDATE orders SET coupon_id = :coupon_id WHERE user_id = :user_id AND order_status = 'in_cart'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':coupon_id' => $coupon_id, ':user_id' => $user_id]);
     }
 
     public function availableCoupons($userId)
@@ -146,30 +177,21 @@ class Cart
         }
     }
 
-    public function saveTotalInDatabase($user_id, $total)
-    {
-        $updateQuery = "UPDATE orders SET order_total = :total WHERE user_id = :user_id AND order_status = 'in_cart'";
-        $updateStmt = $this->db->prepare($updateQuery);
-        if (!$updateStmt->execute(['total' => $total, 'user_id' => $user_id])) {
-            return false;
-        }
-        return true;
-    }
-
-    public function placeOrder($user_id, $order_total, $coupon_id)
+    public function placeOrder($user_id)
     {
         $updateQuery = "UPDATE orders SET 
                             order_date = CURDATE(), 
-                            order_total = :order_total, 
-                            coupon_id = :coupon_id, 
                             order_status = 'Pending' 
                         WHERE 
                             user_id = :user_id 
                             AND order_status = 'in_cart'";
 
         $updateStmt = $this->db->prepare($updateQuery);
-        if ($updateStmt->execute(['order_total' => $order_total, 'coupon_id' => $coupon_id, 'user_id' => $user_id])) {
-            return true;
+        if ($updateStmt->execute(['user_id' => $user_id])) {
+            $deleteCart = $this->clearCart($user_id);
+            if ($deleteCart) {
+                return true;
+            }
         } else {
             return false;
         }
