@@ -4,36 +4,36 @@
 <section id="banner">
     <div class="swiper main-swiper">
         <div class="swiper-wrapper">
+
+            <!-- Slide 1 -->
             <div class="swiper-slide py-3"
-                style="background-image: url('../images/fats.jpg'); background-size: cover; background-position: center; height: 100vh;">
-                <div class="row banner-content align-items-center">
-                    <div class="content-wrapper col-md-7 p-5 mb-5">
-                        <h2 class="banner-title display-1 fw-normal fs-1">The Essentials to Keep Tails Wagging and Pets
-                            Purring</h2>
+                style="height: 100vh; background-image: url('../images/tryHERO6.jpg'); background-size: cover; background-position: 20% center; position: relative;">
+                <div class="row banner-content"
+                    style="position: absolute; top: 0; left: 0; padding: 20px; width: 100%;">
+                    <div class="content-wrapper col-md-4 p-3 mb-5 text-start">
+                    <br>
+                    
+                        <h2 class="banner-title display-1 fw-normal fs-2">The Essentials to Keep Tails Wagging<span>and
+                                Pets Purring</span></h2>
+                               
+                              
                         <div class="secondary-font text-uppercase mb-4" style="color: #C65D23;">The Best for Your Bestie
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="swiper-slide py-3">
-                <div class="row banner-content align-items-center" style="background: #F9F3EC; height: 100%;">
-                    <!-- Image Wrapper -->
-                    <div class="img-wrapper col-md-5 d-flex justify-content-start align-items-center"
-                        style="padding: 20px;">
-                        <img src="../images/9Lives-Daily-Essentials-Dry-Cat-Food-28LB-1536x1536.png"
-                            style="height: 300px; margin-right: 10px;" class="img-fluid">
-                        <img src="../images/9Lives-PlusCare-Dry-Cat-Food-12LB-1536x1536.png" style="height: 300px;"
-                            class="img-fluid">
-                    </div>
 
-                    <!-- Content Wrapper -->
-                    <div class="content-wrapper col-md-7 p-5 mb-5">
+            <!-- Slide 2 -->
+            <div class="swiper-slide py-3">
+                <div class="row banner-content align-items-center">
+                    <div class="img-wrapper col-12 col-md-5">
+                        <img src="../images/catAD.png" class="img-fluid" style="object-fit: cover;">
+                    </div>
+                    <div class="content-wrapper col-12 col-md-7 p-5 mb-5">
                         <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
                         <h2 class="banner-title display-1 fw-normal">Best destination for <span
                                 class="text-primary">your pets</span></h2>
-                        <p>Your text goes here. Describe the products, promotions, or any other relevant information you
-                            wish to highlight.</p>
                         <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                             shop now
                             <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
@@ -43,6 +43,7 @@
                     </div>
                 </div>
             </div>
+
 
             <div class="swiper-slide py-3">
                 <div class="row banner-content align-items-center">
@@ -67,16 +68,104 @@
         <div class="swiper-pagination mb-5"></div>
     </div>
 </section>
+<style>
+#banner {
+    width: 100%;
+    overflow: hidden;
+}
 
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .swiper-slide {
+        height: 80vh;
+        /* Slightly shorter for medium screens */
+    }
+}
+
+.swiper-slide {
+
+    background-size: cover;
+    background-position: 20% center;
+    height: 100vh;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.img-wrapper img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.content-wrapper {
+    padding-left: 0px;
+
+}
+
+
+@media (max-width: 768px) {
+    .swiper-slide {
+        height: 60vh;
+        background-position: 15% center;
+
+    }
+
+    .img-wrapper img {
+        height: auto;
+        max-height: 50vh;
+    }
+
+    /* .content-wrapper {
+        padding-left: 15px;
+    } */
+
+    /* @media (max-width: 768px) {}
+
+    .banner-title {
+        font-size: 2rem;
+
+    }
+
+    .content-wrapper {
+        padding: 20px;
+
+    } */
+}
+
+@media (max-width: 576px) {
+    .swiper-slide {
+        height: 50vh;
+        background-position: 10% center;
+    }
+
+    .banner-title {
+        font-size: 1.5rem;
+
+    }
+
+    .content-wrapper {
+        padding: 10px;
+    }
+}
+</style>
 <!-- Swiper JS Initialization -->
 <script>
 var swiper = new Swiper('.main-swiper', {
-    loop: true, // Enable looping
+    loop: true,
     autoplay: {
-        delay: 3000, // 3 seconds
-        disableOnInteraction: false, // Allow autoplay to continue after user interaction
+        delay: 5000,
+        disableOnInteraction: false,
     },
-    speed: 800, // Duration of transition (in milliseconds)
+    speed: 800,
     pagination: {
         el: '.swiper-pagination',
         clickable: true,
@@ -121,151 +210,130 @@ var swiper = new Swiper('.main-swiper', {
 </section>
 
 <!-- Best Selling Section -->
-<section id="bestselling" class="my-5 overflow-hidden" style="background:#f9f3ec;">
-    <div class="container py-5 mb-5">
-
-        <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-            <h2 class="display-3 fw-normal">Best selling products</h2>
+<section id="bestselling" class="my-5" style="background:#f9f3ec; padding: 80px 0; height: 700px; ">
+    <div class="container ">
+        <div class="section-header d-md-flex justify-content-between align-items-center mb-1">
+            <h2 class="display-5 fw-normal">New Items</h2>
             <div>
                 <a href="./shop2.php?categ-id=1" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                     shop now
                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                         <use xlink:href="#arrow-right"></use>
-                    </svg></a>
+                    </svg>
+                </a>
             </div>
         </div>
 
-        <div class=" swiper bestselling-swiper">
-            <div class="swiper-wrapper">
+        <div class="row justify-content-center">
+            <div class="swiper bestselling-swiper mb-4"> 
+                <div class="swiper-wrapper">
 
-                <div class="swiper-slide">
-                    <div class="card position-relative" style="background:#f9f9fa;">
-                        <a href="single-product.html"><img src="../inserted_img/fresh_kisses_treats.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Fresh Kisses</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <h3 class="secondary-font text-primary">20.54JOD</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card position-relative" style="background:#f9f9fa;">
-                        <a href="single-product.html"><img src="../inserted_img/sweater.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Sweater</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <h3 class="secondary-font text-primary">7.08JOD </h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card position-relative" style="background:#f9f9fa;">
-                        <a href="single-product.html"><img src="../inserted_img/9lives.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">9Lives Seafood</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                <h3 class="secondary-font text-primary">10.89JOD</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card position-relative" style="background:#f9f9fa;">
-                        <a href="single-product.html"><img src="../inserted_img/chew_toy.png" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Chew Toy</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                <h3 class="secondary-font text-primary">14.17JOD</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-
-                    <div class="card position-relative" style="background:#f9f9fa;">
-                        <a href="single-product.html"><img src="../inserted_img/hoodie.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Hoodie</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                <h3 class="secondary-font text-primary">7.08JOD</h3>
+                    <div class="swiper-slide">
+                        <div class="card" style="background:#f9f9fa;">
+                            <a href="single-product.html"><img src="../inserted_img/fresh_kisses_treats.jpg"
+                                    class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">Fresh Kisses</h3>
+                                </a>
+                                <div class="card-text">
+                                    <h3 class="secondary-font text-primary">20.54JOD</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card position-relative" style="background:#f9f9fa;">
-                        <a href="single-product.html"><img src="../inserted_img/3pcs.jpg" class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">3Pcs Outfit</h3>
-                            </a>
 
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                <h3 class="secondary-font text-primary">9.92JOD</h3>
+                    <div class="swiper-slide">
+                        <div class="card " style="background:#f9f9fa;">
+                            <a href="single-product.html"><img src="../inserted_img/sweater.jpg"
+                                    class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">Sweater</h3>
+                                </a>
+                                <div class="card-text">
+                                    <h3 class="secondary-font text-primary">7.08JOD</h3>
+                                </div>
                             </div>
-
                         </div>
                     </div>
+
+                    <div class="swiper-slide">
+                        <div class="card " style="background:#f9f9fa;">
+                            <a href="single-product.html"><img src="../inserted_img/9lives.jpg"
+                                    class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">9Lives Seafood</h3>
+                                </a>
+                                <div class="card-text">
+                                    <h3 class="secondary-font text-primary">10.89JOD</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card " style="background:#f9f9fa;">
+                            <a href="single-product.html"><img src="../inserted_img/chew_toy.png"
+                                    class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">Chew Toy</h3>
+                                </a>
+                                <div class="card-text">
+                                    <h3 class="secondary-font text-primary">14.17JOD</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card " style="background:#f9f9fa;">
+                            <a href="single-product.html"><img src="../inserted_img/hoodie.jpg"
+                                    class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">Hoodie</h3>
+                                </a>
+                                <div class="card-text">
+                                    <h3 class="secondary-font text-primary">7.08JOD</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card position-relative" style="background:#f9f9fa;">
+                            <a href="single-product.html"><img src="../inserted_img/3pcs.jpg"
+                                    class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">3Pcs Outfit</h3>
+                                </a>
+                                <div class="card-text">
+                                    <h3 class="secondary-font text-primary">9.92JOD</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-
             </div>
         </div>
     </div>
 </section>
 
-<!-- Sale Section -->
-<section id="banner-2" class="my-3" style="background: #F9F3EC;">
-    <div class="container">
-        <div class="row flex-row-reverse banner-content align-items-center">
-            <div class="img-wrapper col-12 col-md-6">
-                <img src="../images/banner-img2.png" class="img-fluid">
-            </div>
-            <div class="content-wrapper col-12 offset-md-1 col-md-5 p-5">
-                <div class="secondary-font text-primary text-uppercase mb-3 fs-4">Upto 40% off</div>
-                <h2 class="banner-title display-1 fw-normal">Clearance sale !!!
-                </h2>
-                <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                    shop now
-                    <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                        <use xlink:href="#arrow-right"></use>
-                    </svg></a>
-            </div>
 
-        </div>
-    </div>
-</section>
+
+
+
 
 <!-- Testimonials Section -->
 
 <section id="testimonial" class="my-5 py-5">
     <div class="container">
-    <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
+        <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
             <h2 class="display-3 fw-normal">Celebrating 100+ Happy Customers and Counting!</h2>
         </div>
         <div class="row align-items-stretch">
@@ -285,7 +353,9 @@ var swiper = new Swiper('.main-swiper', {
                             <div class="testimonial-box d-flex justify-content-center align-items-center h-100 p-4">
                                 <div class="testimonial-content w-75">
                                     <!-- <h5>First Testimonial</h5> -->
-                                    <p>"I absolutely love shopping at Waggy! They have an amazing wide selection of pet food that my dogs can’t get enough of. The staff is always friendly and ready to help me find the perfect outfit for my pup. Highly recommend!" 
+                                    <p>"I absolutely love shopping at Waggy! They have an amazing wide selection of pet
+                                        food that my dogs can’t get enough of. The staff is always friendly and ready to
+                                        help me find the perfect outfit for my pup. Highly recommend!"
                                     </p>
                                     <p> Nouha Yaseen</p>
                                 </div>
@@ -295,8 +365,11 @@ var swiper = new Swiper('.main-swiper', {
                             <div class="testimonial-box d-flex justify-content-center align-items-center h-100 p-4">
                                 <div class="testimonial-content w-75">
                                     <!-- <h5>Second Testimonial</h5> -->
-                                    <p>"I can’t say enough good things about Waggy! Their selection of pet apparel is fantastic, and I love that they carry eco-friendly products. My cat loves her new bed, and I feel good about supporting a store that cares about pet health and the environment."</p>
-                                        <p> Rami Zeyad</p>
+                                    <p>"I can’t say enough good things about Waggy! Their selection of pet apparel is
+                                        fantastic, and I love that they carry eco-friendly products. My cat loves her
+                                        new bed, and I feel good about supporting a store that cares about pet health
+                                        and the environment."</p>
+                                    <p> Rami Zeyad</p>
                                 </div>
                             </div>
                         </div>
@@ -304,7 +377,10 @@ var swiper = new Swiper('.main-swiper', {
                             <div class="testimonial-box d-flex justify-content-center align-items-center h-100 p-4">
                                 <div class="testimonial-content w-75">
                                     <!-- <h5>Third Testimonial</h5> -->
-                                    <p>"I recently bought a set of dog grooming tools from Waggy, and they work wonderfully! The quality is excellent, and I love that I could find everything I needed in one place. The pet food selection is also impressive, with many options for different diets."</p>
+                                    <p>"I recently bought a set of dog grooming tools from Waggy, and they work
+                                        wonderfully! The quality is excellent, and I love that I could find everything I
+                                        needed in one place. The pet food selection is also impressive, with many
+                                        options for different diets."</p>
                                     <p> Rahaf Bader</p>
                                 </div>
                             </div>
@@ -334,57 +410,57 @@ var swiper = new Swiper('.main-swiper', {
 </section>
 
 <style>
-    .testimonial-box {
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        width: 100%;
-    }
+.testimonial-box {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
 
 
-    .testimonial-content {
-        text-align: center;
-    }
+.testimonial-content {
+    text-align: center;
+}
 
-    /* Match the height of the left and right sections */
-    #testimonial .row {
-        height: 100%;
-        min-height: 500px;
-        /* Minimum height for large screens */
-    }
+/* Match the height of the left and right sections */
+#testimonial .row {
+    height: 100%;
+    min-height: 500px;
+    /* Minimum height for large screens */
+}
 
-    /* Carousel and Testimonial Box Styling */
-    .carousel,
-    .carousel-inner,
-    .carousel-item,
-    .testimonial-box {
-        height: 100%;
-    }
+/* Carousel and Testimonial Box Styling */
+.carousel,
+.carousel-inner,
+.carousel-item,
+.testimonial-box {
+    height: 100%;
+}
 
-    /* Right Section Image Styling */
+/* Right Section Image Styling */
+.testimonial-image {
+    background-image: url('../images/happydog.jpg');
+    /* Replace with actual image path */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+/* Carousel arrows in black */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+/* Hide image on smaller screens */
+@media (max-width: 992px) {
     .testimonial-image {
-        background-image: url('../images/happydog.jpg');
-        /* Replace with actual image path */
-        background-size: cover;
-        background-position: center;
-        height: 100%;
+        display: none;
     }
-
-    /* Carousel arrows in black */
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: black;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-    }
-
-    /* Hide image on smaller screens */
-    @media (max-width: 992px) {
-        .testimonial-image {
-            display: none;
-        }
-    }
+}
 </style>
 
 
@@ -400,7 +476,7 @@ var swiper = new Swiper('.main-swiper', {
                 </h2>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="./login_register.php"
+                    <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="register.php"
                             style="color: white;">Register it now</a></button>
                 </div>
             </div>
@@ -408,57 +484,107 @@ var swiper = new Swiper('.main-swiper', {
     </div>
 </section>
 
+
+<!-- Companies Logo Section -->
+<section id="banner-2" class="my-3" style="height: auto;">
+    <div class="container">
+        <h2 class="display-3 fw-normal text-center">Favorite Brands Among Our Customers</h2>
+        <div class="row my-5 align-items-center justify-content-center">
+            <!-- Logo 1 -->
+            <div class="col-6 col-md-2 text-center mb-4">
+                <!-- Adjusted column widths -->
+                <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
+                    <img src="../images/9lives.png" alt="9 Lives" style="max-width: 100%; height: auto;">
+                    <h5 class="mt-2">9 Lives</h5>
+                </div>
+            </div>
+            <!-- Logo 2 -->
+            <div class="col-6 col-md-2 text-center mb-4">
+                <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
+                    <img src="../images/imac.jpg" alt="IMAC" style="max-width: 100%; height: auto;">
+                    <h5 class="mt-2">IMAC</h5>
+                </div>
+            </div>
+            <!-- Logo 3 -->
+            <div class="col-6 col-md-2 text-center mb-4">
+                <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
+                    <img src="../images/INABA.jpg" alt="INABA" style="max-width: 100%; height: auto;">
+                    <h5 class="mt-2">INABA</h5>
+                </div>
+            </div>
+            <!-- Logo 4 -->
+            <div class="col-6 col-md-2 text-center mb-4">
+                <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
+                    <img src="../images/proplan.png" alt="Purina" style="max-width: 100%; height: auto;">
+                    <h5 class="mt-2">Purina</h5>
+                </div>
+            </div>
+            <!-- Logo 5 -->
+            <div class="col-6 col-md-2 text-center mb-4">
+                <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
+                    <img src="../images/Royal-Canin-Logo.png" alt="Royal Canin" style="max-width: 100%; height: auto;">
+                    <h5 class="mt-2">Royal Canin</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <!-- Services Section -->
 <section id="service">
     <div class="container py-5 my-5">
         <div class="row g-md-5 pt-4">
-            <div class="col-md-3 my-3">
-                <div class="card">
+            <h2 class="display-3 fw-normal text-center">Our Services</h2>
+            <div class="col-6 col-md-3 my-3">
+                <div class="card border-0 text-center d-flex align-items-center justify-content-center"
+                    style="min-height: 300px; padding: 10px;">
                     <div>
                         <iconify-icon class="service-icon text-primary" icon="la:shopping-cart"></iconify-icon>
                     </div>
-                    <h3 class="card-title py-2 m-0">Free Delivery</h3>
+                    <h3 class="card-title py-2 m-0">Cash on Delivery</h3>
                     <div class="card-text">
-                        <p class="blog-paragraph fs-6">Every time you order, the delivery is on us!</p>
+                        <p class="blog-paragraph fs-6">Pay when you receive your order. Convenient and hassle-free!</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 my-3">
-                <div class="card">
+            <div class="col-6 col-md-3 my-3">
+                <div class="card border-0 text-center d-flex align-items-center justify-content-center"
+                    style="min-height: 300px; padding: 10px;">
                     <div>
                         <iconify-icon class="service-icon text-primary" icon="la:user-check"></iconify-icon>
                     </div>
-                    <h3 class="card-title py-2 m-0">100% secure payment</h3>
+                    <h3 class="card-title py-2 m-0">24/7 Customer Support</h3>
                     <div class="card-text">
-                        <p class="blog-paragraph fs-6">All your transactions are protected, ensuring your personal and
-                            payment details are safe</p>
+                        <p class="blog-paragraph fs-6">Our team is available around the clock to assist you.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 my-3">
-                <div class="card">
+            <div class="col-6 col-md-3 my-3">
+                <div class="card border-0 text-center d-flex align-items-center justify-content-center"
+                    style="min-height: 300px; padding: 10px;">
                     <div>
                         <iconify-icon class="service-icon text-primary" icon="la:tag"></iconify-icon>
                     </div>
-                    <h3 class="card-title py-2 m-0">Daily Offer</h3>
+                    <h3 class="card-title py-2 m-0">Same-Day Shipping</h3>
                     <div class="card-text">
-                        <p class="blog-paragraph fs-6">Exclusive deals and discounts on select products every day</p>
+                        <p class="blog-paragraph fs-6">Place your order by 12 PM and get it delivered the same day!</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 my-3">
-                <div class="card">
+            <div class="col-6 col-md-3 my-3">
+                <div class="card border-0 text-center d-flex align-items-center justify-content-center"
+                    style="min-height: 300px; padding: 10px;">
                     <div>
                         <iconify-icon class="service-icon text-primary" icon="la:award"></iconify-icon>
                     </div>
-                    <h3 class="card-title py-2 m-0">Quality guarantee</h3>
+                    <h3 class="card-title py-2 m-0">Quality Guarantee</h3>
                     <div class="card-text">
-                        <p class="blog-paragraph fs-6">Every product we offer is crafted or sourced to meet the highest
-                            standards of durability, performance, and excellence</p>
+                        <p class="blog-paragraph fs-6">Our products meet the highest standards of durability and
+                            excellence.</p>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>

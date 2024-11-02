@@ -4,8 +4,7 @@ ob_start();
 include './header.php';
 include '../controllers/productController.php';
 include '../controllers/wishlistController.php';
-
-$categId = $_GET['categ-id']; //if it's 1->All 2-> Cats 3->Dogs
+$categId = $_GET['categ-id']; 
 $categories = [];
 $products = [];
 $wishlistItems = [];
@@ -25,8 +24,8 @@ $dogs_clothing_id = 6;
 $pet_clothing_ids = [$cats_clothing_id, $dogs_clothing_id]; // Group clothing category IDs
 $pet_food_ids = [$cat_food_id, $dog_food_id];
 $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
-
 ?>
+
 
 <!-- Clothing Section -->
 <section id="clothing" class="my-5">
@@ -224,38 +223,5 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
         </div>
     </div>
 </section>
-
-<script>
-    function updateQuantity(change) {
-        const quantityInput = document.getElementById('quantity');
-        let currentQuantity = parseInt(quantityInput.value);
-        currentQuantity += change;
-        if (currentQuantity < 1) currentQuantity = 1; // Minimum quantity is 1
-        quantityInput.value = currentQuantity;
-    }
-
-    function addToCart(productId) {
-        const quantity = document.getElementById('quantity').value;
-        $.ajax({
-            type: 'POST',
-            url: '../controllers/cartController.php',
-            data: {
-                action: 'add',
-                product_id: productId,
-                quantity: quantity
-            },
-            success: function(response) {
-                const result = JSON.parse(response);
-                if (result.success) {
-                    Swal.fire("Success", result.success, "success");
-                } else {
-                    Swal.fire("Error", result.error, "error");
-                }
-            }
-        });
-    }
-</script>
-
-
 
 <?php include './footer.php' ?>

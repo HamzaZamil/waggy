@@ -6,6 +6,8 @@ require_once '../model/UserModel.php';
 class UserController extends UserModel {
 
     public function handleRequest() {
+        $this->checkUserSession();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['login'])) {
                 $this->login();
@@ -15,6 +17,14 @@ class UserController extends UserModel {
         }
     }
 
+    private function checkUserSession() {
+        if (isset($_SESSION['user_id'])) {
+            header("Location: ../views/userProfile.php");
+            exit();
+        }
+    }
+
+    
     private function login() {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
