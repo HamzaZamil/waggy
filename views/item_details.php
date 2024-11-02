@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 confirmButtonText: 'Ok'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'login_register.php'; // Redirect to login
+                    window.location.href = 'login.php'; // Redirect to login
                 }
             });
         <?php else: ?>
