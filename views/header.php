@@ -218,9 +218,14 @@
                                 </li>
                                 <?php else: ?>
                                 <li>
-                                    <a href="login_register.php" class="mx-3">
+                                <a href="#" class="mx-3" role="button" id="dropdownMenuLink"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
                                         <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                                     </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="register.php">Register</a>
+                                        <a href="login.php" class="dropdown-item">Log-in</a>
+                                    </ul>
                                 </li>
                                 <?php endif; ?>
                                 </li>
