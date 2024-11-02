@@ -1,9 +1,55 @@
 <?php
-include './UserController.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!class_exists('Cart')) {
     include '../model/cart.class.php';
 }
+
+
+if (isset($_GET['action'])) {
+    $controller = new CartController();
+
+    switch ($_GET['action']) {
+        case 'updateQuantityIncrease':
+            $data = json_decode(file_get_contents("php://input"), true);
+            $controller->updateQuantity($data['productId'], $data['quantity']);
+            break;
+
+        case 'updateQuantity':
+            $data = json_decode(file_get_contents("php://input"), true);
+            $controller->updateQuantity($data['productId'], $data['quantity']);
+            break;
+
+        case 'deleteItem':
+            $data = json_decode(file_get_contents("php://input"), true);
+            $controller->deleteItem($data['productId']);
+            break;
+
+            // case 'updateAddress':
+            //     $data = json_decode(file_get_contents("php://input"), true);
+            //     $controller->updateAddress($data['address']); // Method to update the address
+            //     break;
+
+        case 'getTotalCartValue':
+            $controller->totalCart(); // Method to get total cart value
+            break;
+
+        // case 'calculateTotalAfterCoupon':
+        //     $data = json_decode(file_get_contents("php://input"), true);
+        //     $controller->calculateTotalAfterCoupon($data['coupon']); // Method to calculate total with coupon
+        //     break;
+
+        case 'saveTotal':
+            $data = json_decode(file_get_contents("php://input"), true);
+            $controller->saveTotal($data['total']); // Method to save the total
+            break;
+    }
+    exit;
+}
+
+
 
 class CartController
 {
@@ -36,18 +82,34 @@ class CartController
     public function getCartItems()
     {
         if (!isset($_SESSION['user_id'])) {
-            echo json_encode([]); // Return empty array if not logged in
-            return;
+            return [];
         }
 
         $userId = $_SESSION['user_id'];
-        // $items = $this->cart->getCartItems($userId);
-        // echo json_encode($items); // Return cart items as JSON
-        echo json_encode(['success' => true, 'items' => $items = $this->cart->getCartItems($userId)]);
+        return $this->cart->getCartItems($userId);
+    }
+
+
+    public function getCartItemsCount()
+    {
+        try {
+            $count = 0;
+            $cartItems = $this->getCartItems();
+            if (!empty($cartItems)) {
+                foreach ($cartItems as $cartItem) {
+                    $count += $cartItem['quantity'];
+                }
+                return $count;
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            return 0;
+        }
     }
 
     // Handle AJAX requests for quantity update
-    public function updateCartQuantity()
+    public function updateQuantity($productId, $quantity)
     {
         if (!isset($_SESSION['user_id'])) {
             echo json_encode(['success' => false, 'message' => 'User not logged in']);
@@ -55,39 +117,101 @@ class CartController
         }
 
         $userId = $_SESSION['user_id'];
-        $data = json_decode(file_get_contents("php://input"), true); // Get the JSON input
-
-        $productId = $data['productId']; // This comes from the AJAX request
-        $quantity = $data['quantity']; // This comes from the AJAX request
-
         if ($this->cart->updateQuantity($userId, $productId, $quantity)) {
-            echo json_encode(['success' => true]);
+            echo json_encode(['success' => true, 'newQuantity' => $quantity]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Failed to update quantity']);
         }
     }
 
-    public function clearCart()
+    // Delete item from cart via AJAX
+    public function deleteItem($productId)
+    {
+        if (!isset($_SESSION['user_id'])) {
+            echo json_encode(['success' => false, 'message' => 'User not logged in']);
+            return;
+        }
+
+        $userId = $_SESSION['user_id'];
+        if ($this->cart->deleteFromCart($userId, $productId)) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to delete item']);
+        }
+    }
+
+    // public function totalCart()
+    // {
+    //     $cart = $this->getCartItems();
+    //     $total = 0;
+    //     foreach ($cart as $item) {
+    //         $total += $item['quantity'] * $item['product_price'];
+    //     }
+    //     return $total;
+    // }
+    public function totalCart()
+    {
+        $cart = $this->getCartItems();
+        $total = 0;
+        foreach ($cart as $item) {
+            $total += $item['quantity'] * $item['product_price'];
+        }
+
+        // Echo the total as JSON response
+        echo json_encode(['total' => $total]);
+    }
+
+
+    public function getAddress()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            return "No Address";
+        }
+        $userId = $_SESSION['user_id'];
+        $address = $this->cart->getUserAddress($userId);
+        if ($address !== null) {
+            return $address;
+        } else {
+            return 'No Address';
+        }
+    }
+
+    // public function updateAddress($address)
+    // {
+    //     $user_id = $_SESSION['user_id'];
+    //     $success = $this->cart->updateAddressInDatabase($user_id, $address);
+    //     echo json_encode(['success' => $success]);
+    // }
+
+
+    public function getCoupons()
     {
         if (!isset($_SESSION['user_id'])) {
             return [];
         }
-
         $userId = $_SESSION['user_id'];
-        $items = $this->cart->getCartItems($userId);
-        error_log(print_r($items, true)); // Log the items for debugging
-        return $items;
+        return $this->cart->availableCoupons($userId);
     }
-}
 
-// Create an instance of CartController
-$cartController = new CartController();
+    // public function calculateTotalAfterCoupon($coupon)
+    // {
+    //     $total = $this->totalCart();
 
-// Routing logic (simple example)
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getCartItems') {
-    $cartController->getCartItems();
-}
+    //     if ($coupon) {
+    //         $discount = $total * ($coupon / 100);
+    //         $total -= $discount;
+    //     }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'updateCartQuantity') {
-    $cartController->updateCartQuantity();
+    //     // total + shipping fee
+    //     $total += 10;
+    //     echo json_encode(['success' => true, 'newTotal' => $total]);
+    // }
+    
+
+    public function saveTotal($total)
+    {
+        $user_id = $_SESSION['user_id'];
+        $success = $this->cart->saveTotalInDatabase($user_id, $total);
+        echo json_encode(['success' => $success]);
+    }
 }
