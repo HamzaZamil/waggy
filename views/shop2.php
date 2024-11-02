@@ -225,37 +225,4 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
     </div>
 </section>
 
-<script>
-    function updateQuantity(change) {
-        const quantityInput = document.getElementById('quantity');
-        let currentQuantity = parseInt(quantityInput.value);
-        currentQuantity += change;
-        if (currentQuantity < 1) currentQuantity = 1; // Minimum quantity is 1
-        quantityInput.value = currentQuantity;
-    }
-
-    function addToCart(productId) {
-        const quantity = document.getElementById('quantity').value;
-        $.ajax({
-            type: 'POST',
-            url: '../controllers/cartController.php',
-            data: {
-                action: 'add',
-                product_id: productId,
-                quantity: quantity
-            },
-            success: function(response) {
-                const result = JSON.parse(response);
-                if (result.success) {
-                    Swal.fire("Success", result.success, "success");
-                } else {
-                    Swal.fire("Error", result.error, "error");
-                }
-            }
-        });
-    }
-</script>
-
-
-
 <?php include './footer.php' ?>

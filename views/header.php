@@ -3,9 +3,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Check if the user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
@@ -170,7 +170,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
         #cart_page .border-top,
         #cart_page .title .border-bottom {
             border-top: var(--bs-border-width) var(--bs-border-style) #000 !important;
-            border-bottom: var(--bs-border-width) var(--bs-border-style) #000!important;
+            border-bottom: var(--bs-border-width) var(--bs-border-style) #000 !important;
         }
 
         #cart_page .row {
@@ -329,36 +329,12 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <nav class="main-menu d-flex navbar navbar-expand-lg">
                 <div class="d-flex d-lg-none align-items-end mt-3">
                     <ul class="d-flex justify-content-end list-unstyled m-0">
-                        <li>
-                            <?php if ($isLoggedIn): ?>
-                        <li class="dropdown">
 
-                            <a href="#" class="mx-3" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="userProfile.php">Profile</a>
-
-                                    <div class="dropdown-divider"></div>
-                                    <a href="../controllers/LogoutController.php" class="dropdown-item">Logout</a>
-                                </div>
-                            </ul>
-                        </li>
-                    <?php else: ?>
                         <li>
-                            <a href="login_register.php" class="mx-3">
-                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                            <a href="wishlist.php" class="mx-3">
+                                <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                             </a>
                         </li>
-                    <?php endif; ?>
-                    </li>
-                    <li>
-                        <a href="wishlist.php" class="mx-3">
-                            <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                        </a>
-                    </li>
 
 
                         <li>
@@ -415,44 +391,27 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
                         <div class="d-none d-lg-flex align-items-end">
                             <ul class="d-flex justify-content-end list-unstyled m-0">
-                                <li>
-                                    <?php if ($isLoggedIn): ?>
-                                        <!-- Check if the user is logged in -->
-                                        <a href="#" class="mx-3" role="button" id="dropdownMenuLink"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li><a class="dropdown-item" href="userProfile.php">Profile</a></li>
-                                            <li><a href="../controllers/LogoutController.php"
-                                                    class="dropdown-item">Logout</a></li>
-                                        </ul>
-                                    <?php else: ?>
-                                        <a href="login_register.php" class="mx-3">
-                                            <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                        </a>
-                                    <?php endif; ?>
-                        <ul class="d-flex justify-content-end list-unstyled m-0">
-                            <div class="d-none d-lg-flex align-items-end">
-                                <?php if ($isLoggedIn): ?>
-                                <li class="dropdown">
+                                    <ul class="d-flex justify-content-end list-unstyled m-0">
+                                        <div class="d-none d-lg-flex align-items-end">
+                                            <?php if ($isLoggedIn): ?>
+                                                <li class="dropdown">
 
-                                    <a href="#" class="mx-3" role="button" id="dropdownMenuLink"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="userProfile.php">Profile</a>
-                                        <a href="../controllers/LogoutController.php" class="dropdown-item">Logout</a>
-                                    </ul>
-                                </li>
-                                <?php else: ?>
-                                <li>
-                                    <a href="login_register.php" class="mx-3">
-                                        <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                    </a>
-                                </li>
-                                <?php endif; ?>
+                                                    <a href="#" class="mx-3" role="button" id="dropdownMenuLink"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                                    </a>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="userProfile.php">Profile</a>
+                                                        <a href="../controllers/LogoutController.php" class="dropdown-item">Logout</a>
+                                                    </ul>
+                                                </li>
+                                            <?php else: ?>
+                                                <li>
+                                                    <a href="login_register.php" class="mx-3">
+                                                        <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                                    </a>
+                                                </li>
+                                            <?php endif; ?>
                                 </li>
 
 
@@ -464,20 +423,20 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
                                 <li>
                                     <a href="./cart.php" class="icon-cart">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="filled" viewBox="0 0 18 20">
+                                        <svg style="margin-top:-15px;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="filled" viewBox="0 0 18 20">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
                                         </svg>
-                                        <span id="iconCartQuantity">0</span>
+                                        <!-- <span id="iconCartQuantity">0</span> -->
                                     </a>
                                 </li>
 
-                            </div>
+                        </div>
                         </ul>
 
                     </div>
                 </div>
         </div>
-       
+
     </header>
 
     <!-- <div class="overlay"></div>

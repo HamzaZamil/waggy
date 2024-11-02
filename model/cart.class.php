@@ -87,28 +87,94 @@ class Cart
         }
     }
 
-    public function getCartItem($userId, $productId) {
-        try {
-            $sql = "SELECT * FROM cart_items WHERE user_id = :user_id AND product_id = :product_id";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute(['user_id'=> $userId, 'product_id'=> $productId]);
-            $cartItem = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            // Return the cart item details if found, otherwise return null
-            return $cartItem ? $cartItem : null;
-        } catch (PDOException $e) {
-            echo "Error fetching cart item: " . $e->getMessage();
-            return null;
-        }
-    }
-    
-
     public function updateQuantity($userId, $productId, $quantity)
     {
         $sql = "UPDATE order_items SET quantity = :quantity WHERE user_id = :user_id AND product_id = :product_id AND in_cart = 1";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([':user_id' => $userId, ':product_id' => $productId, ':quantity' =>       $quantity]);
     }
+
+    public function availableCoupons($userId)
+    {
+        try {
+            // Fetch all valid coupons
+            $couponQuery = "SELECT * FROM coupons WHERE coupon_expiry_date > CURDATE() AND coupon_status = 'Valid'";
+            $couponStmt = $this->db->prepare($couponQuery);
+            $couponStmt->execute();
+            $coupons = $couponStmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Check if the user has ordered before
+            $orderQuery = "SELECT order_id FROM orders WHERE user_id = :user_id AND (order_status = 'Cancelled' OR order_status = 'Pending' OR order_status = 'Delivered')";
+            $orderStmt = $this->db->prepare($orderQuery);
+            $orderStmt->execute(["user_id" => $userId]);
+
+            // If the user has previous orders, filter out the "FIRSTPURCH20" coupon
+            if ($orderStmt->rowCount() > 0) {
+                $coupons = array_filter($coupons, function ($coupon) {
+                    return $coupon['coupon_name'] !== "FIRSTPURCH20";
+                });
+
+                // Re-index the array
+                $coupons = array_values($coupons);
+            }
+            return $coupons;
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
+
+    public function getUserAddress($userId)
+    {
+        try {
+            $addressStmt = $this->db->prepare("SELECT user_address_line_one FROM orders WHERE user_id = :user_id");
+            $addressStmt->execute(["user_id" => $userId]);
+            $address = $addressStmt->fetch(PDO::FETCH_ASSOC);
+            return $address["user_address_line_one"];
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
+
+    public function updateAddressInDatabase($user_id, $address)
+    {
+        $updateQuery = "UPDATE users SET user_address_line_one = :user_address WHERE user_id = :user_id";
+        $updateStmt = $this->db->prepare($updateQuery);
+        if ($updateStmt->execute(["user_id" => $user_id, "user_address" => $address])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function saveTotalInDatabase($user_id, $total)
+    {
+        $updateQuery = "UPDATE orders SET order_total = :total WHERE user_id = :user_id AND order_status = 'in_cart'";
+        $updateStmt = $this->db->prepare($updateQuery);
+        if (!$updateStmt->execute(['total' => $total, 'user_id' => $user_id])) {
+            return false;
+        }
+        return true;
+    }
+
+    public function placeOrder($user_id, $order_total, $coupon_id)
+    {
+        $updateQuery = "UPDATE orders SET 
+                            order_date = CURDATE(), 
+                            order_total = :order_total, 
+                            coupon_id = :coupon_id, 
+                            order_status = 'Pending' 
+                        WHERE 
+                            user_id = :user_id 
+                            AND order_status = 'in_cart'";
+
+        $updateStmt = $this->db->prepare($updateQuery);
+        if ($updateStmt->execute(['order_total' => $order_total, 'coupon_id' => $coupon_id, 'user_id' => $user_id])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public function clearCart($userId)
     {
