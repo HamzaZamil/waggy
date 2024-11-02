@@ -28,21 +28,21 @@ class User {
 
 
     // Function to soft delete a user
-    public function softDeleteUser($user_id) {
-        $query = "UPDATE " . $this->table_name . " SET is_deleted = 1 WHERE user_id = :user_id";
+  
+    public function softDeleteUser($userId) {
+        $query = "UPDATE users SET is_deleted = 1 WHERE user_id = :userId";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':userId', $userId);
         return $stmt->execute();
     }
-
     // Other existing methods...
 
     public function emailExists($email) {
-        $sql = "SELECT COUNT(*) FROM users WHERE user_email = :email";
-        $stmt = $this->conn->prepare($sql);
+        $query = "SELECT COUNT(*) FROM users WHERE user_email = :email AND is_deleted = 0";
+        $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        return $stmt->fetchColumn() > 0; // Return true if email exists
+        return $stmt->fetchColumn() > 0; // Returns true if user exists
     }
 
     public function createUser($data) {

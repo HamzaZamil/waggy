@@ -21,7 +21,7 @@ class UserModel extends DBConnection {
 
         if ($stmt->rowCount() === 1) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            // check password
+            
             if (password_verify($password, $user['user_password'])) {
                 return $user['user_id'];
             }
