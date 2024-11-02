@@ -20,38 +20,9 @@ $products = $productModel->getAllProducts();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-    .pagination {
-        display: flex;
-        list-style: none;
-        padding: 0;
-    }
-
-    .pagination .page-item {
-        margin: 0 5px;
-    }
-
-    .pagination .page-link {
-        color: #000;
-        background-color: #fff;
-        padding: 10px 15px;
-        text-decoration: none;
-        border: 1px solid #000;
-        border-radius: 5px;
-    }
-
-    .pagination .page-item.active .page-link {
-        color: #fff;
-        background-color: #000;
-    }
-
-    .pagination .page-item.disabled .page-link {
-        color: #000;
-        background-color: #fff;
-    }
-
-    .pagination .page-link:hover {
-        background-color: #000;
-        color: #fff;
+      label{
+        margin-left:10px;
+        margin-right:10px;
     }
     </style>
 </head>

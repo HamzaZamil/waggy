@@ -46,7 +46,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                     <div class="item col-md-4 col-lg-3 my-4">
                         <div class="card position-relative">
 
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                        <img src="../inserted_img/<?=$product_item['product_img']?>" class="img-fluid rounded-4" alt="image">
 
 
                             <div class="card-body d-flex flex-column align-items-center">
@@ -115,7 +115,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
             ?>
                     <div class="item col-md-4 col-lg-3 my-4">
                         <div class="card position-relative">
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                        <img src="../inserted_img/<?=$product_item['product_img']?>" class="img-fluid rounded-4" alt="image">
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
@@ -132,7 +132,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                                                 <input type="hidden" name="description" value="<?= htmlspecialchars($product_item['product_description']) ?>">
                                                 <input type="hidden" name="price" value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
                                                 <button type="submit" class="btn-cart px-2 pt-3 pb-3" style="background:none; border:1px solid lightgrey; border-radius:6px;">
-                                                    <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
+                                                    <h5 class="text-uppercase m-0 fs-6"></h5>
                                                 </button>
                                             </form>
 
@@ -179,7 +179,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
             ?>
                     <div class="item col-md-4 col-lg-3 my-4">
                         <div class="card position-relative">
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                            <img src="../inserted_img/<?=$product_item['product_img']?>" class="img-fluid rounded-4" alt="image">
                             <div class="card-body d-flex flex-column align-items-center ">
                                 <a href="single-product.html">
                                     <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
@@ -223,38 +223,5 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
         </div>
     </div>
 </section>
-
-<script>
-    function updateQuantity(change) {
-        const quantityInput = document.getElementById('quantity');
-        let currentQuantity = parseInt(quantityInput.value);
-        currentQuantity += change;
-        if (currentQuantity < 1) currentQuantity = 1; // Minimum quantity is 1
-        quantityInput.value = currentQuantity;
-    }
-
-    function addToCart(productId) {
-        const quantity = document.getElementById('quantity').value;
-        $.ajax({
-            type: 'POST',
-            url: '../controllers/cartController.php',
-            data: {
-                action: 'add',
-                product_id: productId,
-                quantity: quantity
-            },
-            success: function(response) {
-                const result = JSON.parse(response);
-                if (result.success) {
-                    Swal.fire("Success", result.success, "success");
-                } else {
-                    Swal.fire("Error", result.error, "error");
-                }
-            }
-        });
-    }
-</script>
-
-
 
 <?php include './footer.php' ?>

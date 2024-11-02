@@ -30,6 +30,10 @@ $isSuperAdmin = $_SESSION['user_role'] === 'Superadmin';
     {
         overflow-x: auto;
     }
+    label{
+        margin-left:10px;
+        margin-right:10px;
+    }
     </style>
    
 </head>
@@ -123,6 +127,7 @@ $isSuperAdmin = $_SESSION['user_role'] === 'Superadmin';
                 <form id="editForm" method="POST" action="process_user.php">
                     <input type="hidden" id="editUserId" name="editUserId">
                     <input type="hidden" id="role" name="role">
+
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <input type="text" id="firstName" name="editFirstName">
@@ -167,7 +172,6 @@ $isSuperAdmin = $_SESSION['user_role'] === 'Superadmin';
                         <label for="role">Role:</label>
                         <select id="role" name="editRole">
                             <option value="Admin">Admin</option>
-
                             <option value="User">User</option>
                         </select>
                     </div>
@@ -230,16 +234,15 @@ $isSuperAdmin = $_SESSION['user_role'] === 'Superadmin';
                             <option value="Deactivate">Deactivate</option>
                         </select>
                     </div>
-                    <?php if ($isSuperAdmin):?>
+                    
                     <div class="form-group">
                         <label for="role">Role:</label>
-                        <select id="role" name="editRole">
+                        <select id="role" name="newRole">
                             <option value="Admin">Admin</option>
-                            <option value="SuperAdmin">SuperAdmin</option>
                             <option value="User">User</option>
                         </select>
                     </div>
-                    <?php endif; ?>
+                    
                     <button class="save-btn edit-btn" type="submit"
                         style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
                     </button>
@@ -308,7 +311,7 @@ endif;
     <script src="js/modal.js"></script>
     <script>
     function confirmDelete(button) {
-        const form = button.closest('form'); // Get the form associated with the delete button
+        const form = button.closest('form'); 
         const userId = form.querySelector('input[name="deleteUserId"]').value;
 
         Swal.fire({
@@ -321,7 +324,7 @@ endif;
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                form.submit(); // Submit the form to delete the coupon
+                form.submit(); 
             }
         });
     }
@@ -335,25 +338,27 @@ endif;
     }
 
     function openEditModal(button, userId) {
-        // Get user data from the button's parent row
-        var row = button.closest('tr');
-        document.getElementById('editUserId').value = userId;
-        document.getElementById('firstName').value = row.cells[1].innerText;
-        document.getElementById('lastName').value = row.cells[2].innerText;
-        document.getElementById('email').value = row.cells[3].innerText;
-        document.getElementById('gender').value = row.cells[4].innerText.toLowerCase();
-        document.getElementById('birthDate').value = row.cells[5].innerText;
-        document.getElementById('phone').value = row.cells[6].innerText;
-        document.getElementById('address').value = row.cells[7].innerText;
-        document.getElementById('editState').value = row.cells[8].innerText;
+    
+    const row = button.closest('tr'); 
+   
 
-        // Set the role (even if it's hidden)
-        document.getElementById('role').value = row.cells[9]
-        .innerText; // Assuming the role is in the 10th cell (index 9)
+    document.getElementById('editUserId').value = userId;
+    document.getElementById('firstName').value = row.cells[1].innerText; 
+    document.getElementById('lastName').value = row.cells[2].innerText; 
+    document.getElementById('email').value = row.cells[3].innerText; 
+    document.getElementById('gender').value = row.cells[4].innerText.toLowerCase();
+    document.getElementById('birthDate').value = row.cells[5].innerText; 
+    document.getElementById('phone').value = row.cells[6].innerText; 
+    document.getElementById('address').value = row.cells[7].innerText; 
+    document.getElementById('editState').value = row.cells[8].innerText; 
 
-        // Show the modal
-        document.getElementById('editModal').style.display = 'flex';
-    }
+    
+    document.getElementById('role').value = row.cells[9].innerText; 
+
+    
+    document.getElementById('editModal').style.display = 'flex';
+}
+
 
 
 
