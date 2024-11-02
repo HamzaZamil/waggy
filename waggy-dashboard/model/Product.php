@@ -77,9 +77,9 @@ class Product {
     }
 
     public function softDeleteProduct($productId) {
-        $query = "UPDATE products SET deleted_at = NOW() WHERE product_id = :product_id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':product_id', $productId, PDO::PARAM_INT);
+        $sql = "DELETE FROM products WHERE product_id = :product_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':product_id', $productId);
         return $stmt->execute();
     }
 
