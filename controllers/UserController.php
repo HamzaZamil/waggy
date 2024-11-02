@@ -44,7 +44,7 @@ class UserController extends UserModel {
 
         // Validate 
         if ($password !== $confPassword) {
-            $_SESSION['registration_error'] = 'Passwords do not match.';
+            $_SESSION['register_error'] = 'Passwords do not match.';
             header("Location: ../views/login_register.php");
             exit();
         }
@@ -52,13 +52,12 @@ class UserController extends UserModel {
         // Call the model method to insert the user
         if ($this->registerUser($firstName, $lastName, $email, $password, $gender, $DOB, $mobile, $address)) { 
             // Registration successful
-            $_SESSION['registration_success'] = 'You have registered successfully!';
+            header("Location: ../views/login_register.php"); 
+            exit();
         } else {
-            // Registration failed
-            $_SESSION['registration_error'] = 'Registration failed. Please try again.';
+            $_SESSION['register_error'] = 'Registration failed. Please try again.';
+            exit();
         }
-        header("Location: ../views/login_register.php"); 
-        exit();
     }
 }
 
