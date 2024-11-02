@@ -133,7 +133,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
         if ($result) {
             $_SESSION['sweetalert'] = [
                 "type" => "success",
-                "message" => "Product added successfully!"
+                "message" => "Product updated successfully!"
             ];
         } else {
             $_SESSION['sweetalert'] = [
@@ -158,7 +158,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
         if ($result) {
             $_SESSION['sweetalert'] = [
                 "type" => "success",
-                "message" => "Product added successfully!"
+                "message" => "Product deleted successfully!"
             ];
         } else {
             $_SESSION['sweetalert'] = [

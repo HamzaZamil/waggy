@@ -156,7 +156,6 @@ background:#eee;
                 <th>Message Number</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Message</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -170,7 +169,6 @@ background:#eee;
                                 <td data-label='order user_name'>{$order['user_name']}</td>
                                 <td data-label='order first Name'>{$order['order_date']}</td>
                          
-                                <td data-label='order status'>{$order['order_status']}</td>
                                 <td>
                                     <button class='edit-btn' style = 'style=background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;' onclick='openOrderModal(
                                         \"{$order['order_id']}\",
