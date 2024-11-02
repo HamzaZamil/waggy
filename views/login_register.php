@@ -13,10 +13,11 @@ if (isset($_SESSION['user_id'])) {
 ?>
 
 <!-- Add SweetAlert CSS and JS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-<section id="auth" class="my-5">
+
+    <section id="auth" class="my-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -138,7 +139,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                             <div class="mb-3">
                                 <label for="register-address" class="form-label">Your Address</label>
-                                <input type="text" class="form-control" id="register-address" name="address" required>
+                                <input type="text" class="form-control" placeholder="Your Address"  id="register-address" name="address" required>
                                 <span id="errorAddress" class="error"></span>
                             </div>
 
@@ -152,16 +153,13 @@ if (isset($_SESSION['user_id'])) {
     /* Testimonial theme styling */
     .testimonial-card {
         background-color: #f8f9fa;
-        /* Replace with testimonial background color */
         max-width: 900px;
-        /* Increased width for the form */
         margin: auto;
     }
 
     /* Form adjustments */
     .error {
         color: #CC0000;
-        /* Match the color with the first and last name label */
         font-size: 12px;
     }
 

@@ -1,4 +1,3 @@
-
 document.getElementById("registerBtn").addEventListener("click", function (event) {
     validateRegisterForm();
     if (!isFormValid()) {

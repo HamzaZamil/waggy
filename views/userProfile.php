@@ -13,7 +13,7 @@ $userId = $_SESSION['user_id'];
 $profileController = new UserProfileController();
 $user = $profileController->showProfile($userId);
 $orderController = new OrderController();
-$orders = $orderController->showUserOrders();
+$orders = $orderController->showUserOrders($userId);
 
 ?>
 
@@ -45,11 +45,13 @@ $orders = $orderController->showUserOrders();
                         <form method="POST" action="../controllers/UserProfileController.php?action=changePassword"
                             onsubmit="return validatePasswordForm()">
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control form-control-sm" name="new_password" placeholder=" New Password:" required>
+                                <input type="password" class="form-control form-control-sm" name="new_password"
+                                    placeholder=" New Password:" required>
                                 <span id="newPasswordError" style="display: none; color: #FF0000;"></span>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control form-control-sm" name="confirm_password" placeholder=" Confirm Password:"required>
+                                <input type="password" class="form-control form-control-sm" name="confirm_password"
+                                    placeholder=" Confirm Password:" required>
                                 <span id="confirmPasswordError" style="display: none; color: #FF0000;"></span>
                             </div>
                             <button type="submit" class="btn btn-outline-primary mt-1 p-2">Save New Password</button>
@@ -71,12 +73,13 @@ $orders = $orderController->showUserOrders();
                     <div class="card mb-3">
                         <div class="row g-0">
                             <div class="col-md-3">
-                                <img src="<?php echo htmlspecialchars($order['item_image']); ?>"
-                                    class="img-fluid rounded-start" alt="Item Image">
+                                <img src="../images/<?php echo !empty($order['item_image']) ? htmlspecialchars($order['item_image']) : 'box_image.jpg'; ?>"
+                                    class="img-fluid rounded-start" alt="Item Image" style="height:100px; padding_top:10px">
+                                   
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">
-                                <h3>Order ID: <?= htmlspecialchars($order['order_id']) ?></h3>
+                                    <!-- <h3>Order ID: <?= htmlspecialchars($order['order_id']) ?></h3> -->
                                     <p>Order Date: <?= htmlspecialchars($order['order_date']) ?></p>
                                     <p>Order Total: $<?= htmlspecialchars($order['order_total']) ?></p>
                                     <p>Order Status: <?= htmlspecialchars($order['order_status']) ?></p>
@@ -85,7 +88,7 @@ $orders = $orderController->showUserOrders();
                                     <p>Price: $<?= htmlspecialchars($order['product_price']) ?></p>
                                     <p>Quantity: <?= htmlspecialchars($order['quantity']) ?></p>
                                     <hr>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -103,7 +106,7 @@ $orders = $orderController->showUserOrders();
 
 
 <!-- Edit Profile Modal -->
-<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true" >
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="background-color: #fafafa">
             <form method="POST" action="../controllers/UserProfileController.php?action=updateProfile"
@@ -111,7 +114,7 @@ $orders = $orderController->showUserOrders();
                 <div class="modal-header">
                     <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    
+
                 </div>
                 <div class="modal-body p-2">
                     <div class="mb-2">
@@ -121,7 +124,7 @@ $orders = $orderController->showUserOrders();
                             required>
                     </div>
                     <div class="mb-2">
-                     
+
                         <label for="user_last_name" class="form-label">Last Name:</label>
                         <input type="text" class="form-control form-control-sm" id="user_last_name"
                             name="user_last_name" value="<?php echo htmlspecialchars($user['user_last_name']); ?>"
@@ -150,17 +153,17 @@ $orders = $orderController->showUserOrders();
                     </div>
                 </div>
                 <div class="modal-footer gap-2 d-md-flex ">
-                 
+
                     <button type="submit" class="btn btn-outline-primary  w-100 h-25">Save Changes</button>
                     <button type="button" class="btn btn-outline-secondary  w-100 h-25"
-                    data-bs-dismiss="modal">Cancel</button>
+                        data-bs-dismiss="modal">Cancel</button>
                 </div>
 
             </form>
         </div>
     </div>
 </div>
-   
+
 
 
 
