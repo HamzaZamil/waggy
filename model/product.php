@@ -40,4 +40,6 @@ class Product extends DBConnection {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['category_id'] : null;
     }
+
+    
 }

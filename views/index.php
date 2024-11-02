@@ -11,8 +11,12 @@
                 <div class="row banner-content"
                     style="position: absolute; top: 0; left: 0; padding: 20px; width: 100%;">
                     <div class="content-wrapper col-md-4 p-3 mb-5 text-start">
-                        <h2 class="banner-title display-1 fw-normal fs-1">The Essentials to Keep Tails Wagging<span>and
+                    <br>
+                    
+                        <h2 class="banner-title display-1 fw-normal fs-2">The Essentials to Keep Tails Wagging<span>and
                                 Pets Purring</span></h2>
+                               
+                              
                         <div class="secondary-font text-uppercase mb-4" style="color: #C65D23;">The Best for Your Bestie
                         </div>
                     </div>
@@ -206,11 +210,10 @@ var swiper = new Swiper('.main-swiper', {
 </section>
 
 <!-- Best Selling Section -->
-<section id="bestselling" class="my-5 overflow-hidden" style="background:#f9f3ec; padding: 40px 0; height: 600px;">
-    <div class="container py-3">
-
-        <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-            <h2 class="display-5 fw-normal">Special Edition </h2>
+<section id="bestselling" class="my-5" style="background:#f9f3ec; padding: 80px 0; height: 700px; ">
+    <div class="container ">
+        <div class="section-header d-md-flex justify-content-between align-items-center mb-1">
+            <h2 class="display-5 fw-normal">New Items</h2>
             <div>
                 <a href="./shop2.php?categ-id=1" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                     shop now
@@ -222,18 +225,17 @@ var swiper = new Swiper('.main-swiper', {
         </div>
 
         <div class="row justify-content-center">
-            <div class="swiper bestselling-swiper">
+            <div class="swiper bestselling-swiper mb-4"> 
                 <div class="swiper-wrapper">
 
                     <div class="swiper-slide">
-                        <div class="card position-relative" style="background:#f9f9fa;">
+                        <div class="card" style="background:#f9f9fa;">
                             <a href="single-product.html"><img src="../inserted_img/fresh_kisses_treats.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">Fresh Kisses</h3>
                                 </a>
-
                                 <div class="card-text">
                                     <h3 class="secondary-font text-primary">20.54JOD</h3>
                                 </div>
@@ -242,30 +244,28 @@ var swiper = new Swiper('.main-swiper', {
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="card position-relative" style="background:#f9f9fa;">
+                        <div class="card " style="background:#f9f9fa;">
                             <a href="single-product.html"><img src="../inserted_img/sweater.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">Sweater</h3>
                                 </a>
-
                                 <div class="card-text">
-                                    <h3 class="secondary-font text-primary">7.08JOD </h3>
+                                    <h3 class="secondary-font text-primary">7.08JOD</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="card position-relative" style="background:#f9f9fa;">
+                        <div class="card " style="background:#f9f9fa;">
                             <a href="single-product.html"><img src="../inserted_img/9lives.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">9Lives Seafood</h3>
                                 </a>
-
                                 <div class="card-text">
                                     <h3 class="secondary-font text-primary">10.89JOD</h3>
                                 </div>
@@ -274,14 +274,13 @@ var swiper = new Swiper('.main-swiper', {
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="card position-relative" style="background:#f9f9fa;">
+                        <div class="card " style="background:#f9f9fa;">
                             <a href="single-product.html"><img src="../inserted_img/chew_toy.png"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">Chew Toy</h3>
                                 </a>
-
                                 <div class="card-text">
                                     <h3 class="secondary-font text-primary">14.17JOD</h3>
                                 </div>
@@ -290,14 +289,13 @@ var swiper = new Swiper('.main-swiper', {
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="card position-relative" style="background:#f9f9fa;">
+                        <div class="card " style="background:#f9f9fa;">
                             <a href="single-product.html"><img src="../inserted_img/hoodie.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">Hoodie</h3>
                                 </a>
-
                                 <div class="card-text">
                                     <h3 class="secondary-font text-primary">7.08JOD</h3>
                                 </div>
@@ -313,7 +311,6 @@ var swiper = new Swiper('.main-swiper', {
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">3Pcs Outfit</h3>
                                 </a>
-
                                 <div class="card-text">
                                     <h3 class="secondary-font text-primary">9.92JOD</h3>
                                 </div>
@@ -326,6 +323,8 @@ var swiper = new Swiper('.main-swiper', {
         </div>
     </div>
 </section>
+
+
 
 
 
