@@ -50,11 +50,11 @@ if (!$userDetails) {
    }
 
    .title {
-       font-family: 'Dancing Script', cursive;
-       padding-top: 15px;
-       position: absolute;
-       left: 45%;
-   }
+    font-family: 'Dancing Script', cursive;
+    padding-top: 15px;
+    position: absolute;
+    left: 20%; 
+}
 
    .navbar-top ul {
        float: right;
@@ -148,11 +148,11 @@ if (!$userDetails) {
        width: 65%;
    }
    .main {
-       margin-top: 2%;
-       margin-left: 29%;
+       margin-top: 3%;
+       margin-left: 1%;
        font-size: 28px;
        padding: 0 10px;
-       width: 58%;
+       width: 48%;
    }
 
    .main h2 {
@@ -233,40 +233,39 @@ if (!$userDetails) {
         </div>
     </div>
     <div class="main">
-        <h2>IDENTITY</h2>
         <div class="card">
             <div class="card-body">
                 <table>
                     <tbody>
                         <tr>
-                            <td>Name</td>
-                            <td>:</td>
+                            <td>Name :</td>
+                            <!-- <td>:</td> -->
                             <td><?= htmlspecialchars($userDetails['user_first_name']) . ' ' . htmlspecialchars($userDetails['user_last_name']) ?>
                             </td>
                         </tr>
                         <tr>
-                            <td>Email</td>
-                            <td>:</td>
+                            <td>Email :</td>
+                            <!-- <td>:</td> -->
                             <td><?= htmlspecialchars($userDetails['user_email']) ?></td>
                         </tr>
                         <tr>
-                            <td>Address</td>
-                            <td>:</td>
+                            <td>Address :</td>
+                            <!-- <td>:</td> -->
                             <td><?= htmlspecialchars($userDetails['user_address_line_one']) ?></td>
                         </tr>
                         <tr>
-                            <td>Phone</td>
-                            <td>:</td>
+                            <td>Phone :</td>
+                            <!-- <td>:</td> -->
                             <td><?= htmlspecialchars($userDetails['user_phone_number']) ?></td>
                         </tr>
                         <tr>
-                            <td>Role</td>
-                            <td>:</td>
+                            <td>Role :</td>
+                            <!-- <td>:</td> -->
                             <td><?= htmlspecialchars($userDetails['user_role']) ?></td>
                         </tr>
                         <tr>
-                            <td>Birth Date</td>
-                            <td>:</td>
+                            <td>Birth Date :</td>
+                            <!-- <td>:</td> -->
                             <td><?= htmlspecialchars($userDetails['user_birth_of_date']) ?></td>
                         </tr>
                     </tbody>
