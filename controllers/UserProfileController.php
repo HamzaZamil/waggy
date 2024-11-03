@@ -46,20 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
         }
     }
 }
-    class OrderController extends OrderModel {
-        private $orderModel;
+class OrderController extends OrderModel {
 
-        
-
-        public function showUserOrders() {
-            // Fetch orders for the user
-            $user_id= $_SESSION['user_id'];
-
-            return $this->orderModel->getUserOrders($user_id);
-
-        
-        }
+    public function showUserOrders($userId) {
+        return $this->getUserOrders($userId);
     }
+}
 
 ?>
 

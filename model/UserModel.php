@@ -9,6 +9,12 @@ class UserModel extends DBConnection {
         $this->db = $this->connect();
     }
 
+    public function emailExists($email) {
+        $stmt = $this->db->prepare("SELECT user_id FROM users WHERE user_email = ?");
+        $stmt->execute([$email]);
+        return $stmt->rowCount() > 0; // Returns true if the email exists
+    }
+
     public function registerUser($firstName, $lastName, $email, $password, $gender, $DOB, $mobile, $address) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $this->db->prepare("INSERT INTO users (user_first_name, user_last_name, user_email, user_password, user_gender, user_birth_of_date, user_phone_number, user_address_line_one, user_state, user_role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Active', 'User')");

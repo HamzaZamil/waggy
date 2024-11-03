@@ -4,8 +4,7 @@ ob_start();
 include './header.php';
 include '../controllers/productController.php';
 include '../controllers/wishlistController.php';
-
-$categId = $_GET['categ-id']; //if it's 1->All 2-> Cats 3->Dogs
+$categId = $_GET['categ-id']; 
 $categories = [];
 $products = [];
 $wishlistItems = [];
@@ -25,8 +24,8 @@ $dogs_clothing_id = 6;
 $pet_clothing_ids = [$cats_clothing_id, $dogs_clothing_id]; // Group clothing category IDs
 $pet_food_ids = [$cat_food_id, $dog_food_id];
 $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
-
 ?>
+
 
 <!-- Clothing Section -->
 <section id="clothing" class="my-5">
