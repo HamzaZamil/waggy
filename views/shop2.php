@@ -133,7 +133,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                                                 <input type="hidden" name="description" value="<?= htmlspecialchars($product_item['product_description']) ?>">
                                                 <input type="hidden" name="price" value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
                                                 <button type="submit" class="btn-cart px-2 pt-3 pb-3" style="background:none; border:1px solid lightgrey; border-radius:6px;">
-                                                    <h5 class="text-uppercase m-0 fs-6"></h5>
+                                                    <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
                                                 </button>
                                             </form>
 

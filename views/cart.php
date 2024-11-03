@@ -76,31 +76,41 @@ $address = $cartController->getAddress();
                     <div class="col text-left">ITEMS: <?= $cartItemsNo ?></div>
                     <div class="totalCart col text-right"> <?= $cartController->totalCart(); ?> JOD</div>
                 </div>
-                <form style="margin-bottom:-10px;">
+                <form method="POST" action="../controllers/couponController.php" style="margin-bottom:-10px;">
                     <p>Shipping Address </p>
-                    <input id="address" class="form-control" placeholder="<?= $address ?>" style="margin-top:-20px;" readonly>
-                    <p>Coupons Available</p>
-                    <select class="form-control mb-3" style="margin-top:-20px;">
+                    <input id="address" class="form-control" placeholder="<?= $address ?>" style="margin-top:-20px;">
+
+                    <!-- Coupon Dropdown and Add Coupon Button -->
+                    <p>Available Coupons</p>
+                    <select name="couponSelect" class="form-control mb-3" style="margin-top:-20px;">
                         <?php
                         if (!empty($coupons)) :
                             foreach ($coupons as $coupon) :
                         ?>
-                                <option class="text-muted" value="<?= $coupon['coupon_discount'] ?>"><?= $coupon['coupon_name'] ?></option>
-                            <?php
-                            endforeach;
-                        else :
-                            ?>
+                                <option class="text-muted" value="<?= $coupon['coupon_id'] ?>"><?= $coupon['coupon_name'] ?></option>
+                            <?php endforeach; ?>
+                        <?php else : ?>
                             <option class="text-muted">No coupons Available</option>
                         <?php endif; ?>
                     </select>
+                    <input type="submit" name="submit_button" value="Add Coupon" style="width:100px;margin-top:-10px;" class="btn btn-primary btn-sm ">
                     <div class="row">
-                        <div class="col text-left">Shipping fee :</div>
-                        <div class="col text-right"> 10 JOD</div>
+                        <div class="col text-left">Delivery fee :</div>
+                        <div class="col text-right"> 5 JOD</div>
                     </div>
                 </form>
                 <div class="row border-top pt-3 mt-3">
                     <div class="col">TOTAL PRICE</div>
-                    <div class="totalCartAfterCoupon col text-right">JOD</div>
+                    <div class="totalCartAfterCoupon col text-right">
+                        <?php
+                        if (isset($_GET['total'])) {
+                            echo $_GET['total'];
+                        } else {
+                            echo $cartController->totalCart() + 5;
+                        }
+                        ?>
+                        JOD
+                    </div>
                 </div>
                 <button class="btn btn-primary btn-block mt-3 fs-6">Place Order</button>
             </div>
@@ -272,12 +282,11 @@ $address = $cartController->getAddress();
                 .catch(error => console.error("Error:", error));
         }
 
+        //--------- Cehckout Section AJAX ------------
         document.getElementById("address").addEventListener("change", function() {
             const newAddress = this.value;
             updateShippingAddress(newAddress);
         });
-
-        //--------- Cehckout Section AJAX ------------
 
         function updateShippingAddress(address) {
             fetch("../controllers/cartController.php?action=updateAddress", {
@@ -297,57 +306,52 @@ $address = $cartController->getAddress();
                 })
                 .catch(error => console.error("Error:", error));
         }
+    });
 
-        document.querySelector("select").addEventListener("change", function() {
-            const selectedCoupon = this.value;
-            calculateTotal(selectedCoupon);
+    //-------- Handle Place Order Button ----------
+    document.querySelector(".btn.btn-primary.btn-block.mt-3.fs-6").addEventListener("click", function() {
+    <?php if (!isset($_SESSION['user_id'])): ?>
+        // Show login alert if the user is not logged in
+        Swal.fire({
+            icon: 'warning',
+            title: 'You must log in',
+            confirmButtonText: 'Ok'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'login.php'; // Redirect to login
+            }
         });
-
-        function calculateTotal(coupon) {
-            fetch("../controllers/cartController.php?action=calculateTotalAfterCoupon", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        coupon: coupon
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Update the total price displayed
-                        const totalElement = document.querySelector(".summary .totalCartAfterCoupon");
-                        totalElement.textContent = `${data.newTotal} JOD`;
-
-                        // Also save total to database (optional)
-                        saveTotalToDatabase(data.newTotal);
-                    } else {
-                        alert("Failed to calculate total");
-                    }
-                })
-                .catch(error => console.error("Error:", error));
-        }
-
-        function saveTotalToDatabase(total) {
-            fetch("../controllers/cartController.php?action=saveTotal", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        total: total
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (!data.success) {
-                        alert("Failed to save total");
-                    }
-                })
-                .catch(error => console.error("Error:", error));
-        }
-
+    <?php else: ?>
+        // User is logged in, proceed with placing the order
+        fetch('../controllers/placeProduct.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Order Placed Successfully!',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'index.php'; // Redirect to homepage
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to place the order',
+                        timer: 5000,
+                        showConfirmButton: false
+                    });
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    <?php endif; ?>
     });
 </script>
 

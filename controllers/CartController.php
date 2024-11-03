@@ -27,23 +27,13 @@ if (isset($_GET['action'])) {
             $controller->deleteItem($data['productId']);
             break;
 
-            // case 'updateAddress':
-            //     $data = json_decode(file_get_contents("php://input"), true);
-            //     $controller->updateAddress($data['address']); // Method to update the address
-            //     break;
-
-        case 'getTotalCartValue':
-            $controller->totalCart(); // Method to get total cart value
+        case 'updateAddress':
+            $data = json_decode(file_get_contents("php://input"), true);
+            $controller->updateAddress($data['address']); // Method to update the address
             break;
 
-        // case 'calculateTotalAfterCoupon':
-        //     $data = json_decode(file_get_contents("php://input"), true);
-        //     $controller->calculateTotalAfterCoupon($data['coupon']); // Method to calculate total with coupon
-        //     break;
-
-        case 'saveTotal':
-            $data = json_decode(file_get_contents("php://input"), true);
-            $controller->saveTotal($data['total']); // Method to save the total
+        case 'getTotalCartValue':
+            $controller->totalCart(true); // Method to get total cart value
             break;
     }
     exit;
@@ -70,10 +60,8 @@ class CartController
         $userId = $_SESSION['user_id'];
 
         if ($this->cart->addToCart($userId, $productId, $quantity)) {
-            $_SESSION['added_item'] = true;
             return ['success' => true];
         } else {
-            $_SESSION['added_item'] = false;
             return ['success' => false, 'message' => 'Failed to add item to cart'];
         }
     }
@@ -140,27 +128,26 @@ class CartController
         }
     }
 
-    // public function totalCart()
-    // {
-    //     $cart = $this->getCartItems();
-    //     $total = 0;
-    //     foreach ($cart as $item) {
-    //         $total += $item['quantity'] * $item['product_price'];
-    //     }
-    //     return $total;
-    // }
-    public function totalCart()
+    public function totalCart($outputJson = false)
     {
+        $user_id = $_SESSION['user_id'];
         $cart = $this->getCartItems();
         $total = 0;
+
         foreach ($cart as $item) {
             $total += $item['quantity'] * $item['product_price'];
         }
 
-        // Echo the total as JSON response
-        echo json_encode(['total' => $total]);
-    }
+        $total = number_format($total, 2);
 
+        if ($outputJson) {
+            // If this is an AJAX request, output JSON
+            echo json_encode(['total' => $total]);
+        } else {
+            // Otherwise, return the total value for direct PHP usage
+            return $total;
+        }
+    }
 
     public function getAddress()
     {
@@ -176,12 +163,12 @@ class CartController
         }
     }
 
-    // public function updateAddress($address)
-    // {
-    //     $user_id = $_SESSION['user_id'];
-    //     $success = $this->cart->updateAddressInDatabase($user_id, $address);
-    //     echo json_encode(['success' => $success]);
-    // }
+    public function updateAddress($address)
+    {
+        $user_id = $_SESSION['user_id'];
+        $success = $this->cart->updateAddressInDatabase($user_id, $address);
+        echo json_encode(['success' => $success]);
+    }
 
 
     public function getCoupons()
@@ -193,25 +180,46 @@ class CartController
         return $this->cart->availableCoupons($userId);
     }
 
-    // public function calculateTotalAfterCoupon($coupon)
-    // {
-    //     $total = $this->totalCart();
+    private function getDiscount($coupon_id) {
+        $coupons = $this->getCoupons();
+        foreach ($coupons as $coupon) {
+            if ($coupon['coupon_id'] == $coupon_id) {
+                return $coupon['coupon_discount'];
+            }
+        }
+        return 0;
+    }
 
-    //     if ($coupon) {
-    //         $discount = $total * ($coupon / 100);
-    //         $total -= $discount;
-    //     }
-
-    //     // total + shipping fee
-    //     $total += 10;
-    //     echo json_encode(['success' => true, 'newTotal' => $total]);
-    // }
-    
-
-    public function saveTotal($total)
+    public function calculateTotalAfterCoupon($coupon)
     {
         $user_id = $_SESSION['user_id'];
-        $success = $this->cart->saveTotalInDatabase($user_id, $total);
-        echo json_encode(['success' => $success]);
+        $couponDiscount = $this->getDiscount($coupon);
+
+        // Get cart items and calculate total
+        $cart = $this->getCartItems();
+        $total = 0;
+
+        foreach ($cart as $item) {
+            $total += $item['quantity'] * $item['product_price'];
+        }
+
+        
+        // Apply discount if a coupon is provided
+        if ($coupon) {
+            $this->cart->updateCoupon($user_id, $coupon);
+            $discount = $total * ($couponDiscount / 100);
+            $total -= $discount;
+        }
+
+        // Add a delivery fee
+        $total += 5;
+        $update = $this->cart->updateTotal($user_id, $total);
+        return number_format($total, 2);
+    }
+
+    public function placeOrder()
+    {
+        $user_id = $_SESSION['user_id'];
+        return $this->cart->placeOrder($user_id);
     }
 }
