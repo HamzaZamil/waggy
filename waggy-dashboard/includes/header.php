@@ -30,7 +30,8 @@ if (!$userDetails) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Buttons</title>
+    <title>Admin-Dashboard</title>
+    <link rel="shortcut icon" href="../images/waggy_logo.png" type="image/x-icon">
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,12 +79,7 @@ if (!$userDetails) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt" style="color:#000; "></i>
-                    <span style="color:#000; font-weight: bold;">Dashboard</span></a>
-            </li>
-
+           
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -121,11 +117,7 @@ if (!$userDetails) {
                 <i class="bi bi-gift" style="color:#000"></i>
                     <span style="color:#000; font-weight: bold;">Coupon</span></a>
             </li>
-            <li class="nav-item" >
-                <a class="nav-link" href="contactForm.php">
-                <i class="bi bi-envelope" style="color:#000"></i>
-                    <span style="color:#000; font-weight: bold;">Contact Form</span></a>
-            </li>
+            
             
 
 
