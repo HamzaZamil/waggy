@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 confirmButtonText: 'Ok'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'login_register.php'; // Redirect to login
+                    window.location.href = 'login.php'; // Redirect to login
                 }
             });
         <?php else: ?>
@@ -134,7 +134,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         Swal.fire({
                             icon: 'success',
                             title: 'Product added to cart successfully',
-                            timer: 1500
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'shop2.php?categ-id=1'; // Redirect to login
+                            }
                         });
                     } else {
                         Swal.fire({

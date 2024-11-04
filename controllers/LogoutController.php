@@ -4,7 +4,7 @@ session_start();
 class LogoutController {
     public function logout() {
         session_destroy();
-        header("Location: ../views/login_register.php");
+        header("Location: ../views/login.php");
         exit();
     }
 }

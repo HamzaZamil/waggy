@@ -297,7 +297,7 @@ if (isset($_SESSION['sweetalert'])): ?>
         title: '<?= $_SESSION['sweetalert']['type'] === 'success' ? 'Success' : 'Error'; ?>',
         text: '<?= $_SESSION['sweetalert']['message']; ?>',
         confirmButtonColor: '#000',
-        iconColor: '<?= $_SESSION['sweetalert']['type'] === 'success' ? '#000' : '#000'; ?>'
+        iconColor: '<?= $_SESSION['sweetalert']['type'] === 'success' ? 'green' : 'red'; ?>'
     });
     </script>
     <?php

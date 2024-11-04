@@ -26,7 +26,7 @@
                     <div class="content-wrapper slide-two-text col-md-4 p-3 mb-4 text-start" style="margin-bottom: 15px;margin-right: 150px; font-height:1rem;">
                         <h2 class="banner-title fw-normal">Unlock the secret to your cat's happiness with 9 Lives products where every meal is a delicious adventure and every purr tells a story!</h2>
                         <div class="secondary-font text-uppercase mb-0" style="color: #C65D23; justify-content: center;">
-                            <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                            <a href="shop2.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                 Shop Now
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                     <use xlink:href="#arrow-right"></use>
@@ -46,7 +46,7 @@
                         <h2 class="banner-title fw-normal">Give your pet the nourishment they deserve with Purina—because every tail wag and happy purr starts with a balanced diet!</h2>
                         <div class="secondary-font text-uppercase mb-0" style="color: #C65D23;">
                             Check out our treat collection
-                            <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                            <a href="shop2.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                 Shop Now
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                     <use xlink:href="#arrow-right"></use>
@@ -173,7 +173,7 @@ var swiper = new Swiper('.main-swiper', {
         <div class="section-header d-md-flex justify-content-between align-items-center mb-1">
             <h2 class="display-5 fw-normal">New Items</h2>
             <div>
-                <a href="./shop2.php?categ-id=1" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                <a href="shop2.php?categ-id=1" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                     shop now
                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                         <use xlink:href="#arrow-right"></use>
@@ -434,7 +434,7 @@ var swiper = new Swiper('.main-swiper', {
                 </h2>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="./login_register.php"
+                    <button type="submit" class="btn btn-dark btn-lg rounded-1"><a href="register.php"
                             style="color: white;">Register it now</a></button>
                 </div>
             </div>

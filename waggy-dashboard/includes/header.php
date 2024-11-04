@@ -71,7 +71,7 @@ if (!$userDetails) {
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink" style="color:#000;"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3" style="color:#000;">Admin</div>
+                <div class="sidebar-brand-text mx-3" style="color:#000;">WAGGY</div>
             </a>
 
             <!-- Divider -->
@@ -121,6 +121,11 @@ if (!$userDetails) {
                 <i class="bi bi-gift" style="color:#000"></i>
                     <span style="color:#000; font-weight: bold;">Coupon</span></a>
             </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="contactForm.php">
+                <i class="bi bi-envelope" style="color:#000"></i>
+                    <span style="color:#000; font-weight: bold;">Contact Form</span></a>
+            </li>
             
 
 
@@ -151,7 +156,7 @@ if (!$userDetails) {
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    <!-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -163,7 +168,7 @@ if (!$userDetails) {
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
