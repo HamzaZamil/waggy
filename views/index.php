@@ -11,152 +11,110 @@
                 <div class="row banner-content"
                     style="position: absolute; top: 0; left: 0; padding: 20px; width: 100%;">
                     <div class="content-wrapper col-md-4 p-3 mb-5 text-start">
-                    <br>
-                    
-                        <h2 class="banner-title display-1 fw-normal fs-2">The Essentials to Keep Tails Wagging<span>and
-                                Pets Purring</span></h2>
-                               
-                              
-                        <div class="secondary-font text-uppercase mb-4" style="color: #C65D23;">The Best for Your Bestie
+                        <br>
+                        <h2 class="banner-title fw-normal">The Essentials to Keep Tails Wagging<span> and Pets Purring</span></h2>
+                        <div class="secondary-font text-uppercase mb-4" style="color: #C65D23;">The Best for Your Bestie</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide py-3"
+                style="height: 100vh; background-image: url('../images/catad.png'); background-size: cover; background-position: 20% center; position: relative;">
+                <div class="row banner-content"
+                    style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; display: flex; justify-content: center; align-items: flex-end; padding: 20px;">
+                    <div class="content-wrapper slide-two-text col-md-4 p-3 mb-4 text-start" style="margin-bottom: 15px;margin-right: 150px; font-height:1rem;">
+                        <h2 class="banner-title fw-normal">Unlock the secret to your cat's happiness with 9 Lives products where every meal is a delicious adventure and every purr tells a story!</h2>
+                        <div class="secondary-font text-uppercase mb-0" style="color: #C65D23; justify-content: center;">
+                            <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                Shop Now
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                                    <use xlink:href="#arrow-right"></use>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-            <!-- Slide 2 -->
-            <div class="swiper-slide py-3">
-                <div class="row banner-content align-items-center">
-                    <div class="img-wrapper col-12 col-md-5">
-                        <img src="../images/catAD.png" class="img-fluid" style="object-fit: cover;">
-                    </div>
-                    <div class="content-wrapper col-12 col-md-7 p-5 mb-5">
-                        <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                        <h2 class="banner-title display-1 fw-normal">Best destination for <span
-                                class="text-primary">your pets</span></h2>
-                        <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                            shop now
-                            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                                <use xlink:href="#arrow-right"></use>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="swiper-slide py-3">
-                <div class="row banner-content align-items-center">
-                    <div class="img-wrapper col-md-5">
-                        <img src="../images/banner-img4.png" class="img-fluid">
-                    </div>
-                    <div class="content-wrapper col-md-7 p-5 mb-5">
-                        <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                        <h2 class="banner-title display-1 fw-normal">Best destination for <span
-                                class="text-primary">your pets</span>
-                        </h2>
-                        <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                            shop now
-                            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                                <use xlink:href="#arrow-right"></use>
-                            </svg></a>
+            <!-- Slide 3 -->
+            <div class="swiper-slide py-3"
+                style="height: 100vh; background-image: url('../images/newdogad.png'); background-size: cover; background-position: 20% center; position: relative;">
+                <div class="row banner-content"
+                    style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); padding: 20px; width: 100%; text-align: center;">
+                    <div class="content-wrapper col-md-4 p-3 mb-0" style="margin-bottom: 50px;">
+                        <h2 class="banner-title fw-normal">Give your pet the nourishment they deserve with Purina—because every tail wag and happy purr starts with a balanced diet!</h2>
+                        <div class="secondary-font text-uppercase mb-0" style="color: #C65D23;">
+                            Check out our treat collection
+                            <a href="shop.php" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                Shop Now
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                                    <use xlink:href="#arrow-right"></use>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="swiper-pagination mb-5"></div>
         </div>
-
-        <div class="swiper-pagination mb-5"></div>
     </div>
 </section>
+
 <style>
 #banner {
     width: 100%;
     overflow: hidden;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .swiper-slide {
-        height: 80vh;
-        /* Slightly shorter for medium screens */
-    }
-}
-
 .swiper-slide {
-
     background-size: cover;
     background-position: 20% center;
     height: 100vh;
 }
 
-.swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Default font size on large screens */
+.banner-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
 }
 
-.img-wrapper img {
-    height: 100%;
-    width: auto;
-    object-fit: cover;
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .swiper-slide {
+        height: 80vh;
+    }
+    .banner-title {
+        font-size: 1.6rem;
+    }
 }
-
-.h-100 {
-    height: 100%;
-}
-
-.content-wrapper {
-    padding-left: 0px;
-
-}
-
 
 @media (max-width: 768px) {
     .swiper-slide {
-        height: 60vh;
-        background-position: 15% center;
-
+        height: 70vh;
     }
-
-    .img-wrapper img {
-        height: auto;
-        max-height: 50vh;
-    }
-
-    /* .content-wrapper {
-        padding-left: 15px;
-    } */
-
-    /* @media (max-width: 768px) {}
-
     .banner-title {
-        font-size: 2rem;
-
+        font-size: 1.4rem;
     }
-
-    .content-wrapper {
-        padding: 20px;
-
-    } */
 }
 
 @media (max-width: 576px) {
     .swiper-slide {
-        height: 50vh;
-        background-position: 10% center;
+        height: 60vh;
     }
-
     .banner-title {
-        font-size: 1.5rem;
-
-    }
-
-    .content-wrapper {
-        padding: 10px;
+        font-size: 1.2rem;
     }
 }
+
+/* Specific margin for Slide 2 */
+.slide-two-text {
+    margin-left: 40px; /* Adjust as needed */
+}
 </style>
+
+
 <!-- Swiper JS Initialization -->
 <script>
 var swiper = new Swiper('.main-swiper', {
@@ -225,12 +183,12 @@ var swiper = new Swiper('.main-swiper', {
         </div>
 
         <div class="row justify-content-center">
-            <div class="swiper bestselling-swiper mb-4"> 
+            <div class="swiper bestselling-swiper mb-4">
                 <div class="swiper-wrapper">
 
                     <div class="swiper-slide">
                         <div class="card" style="background:#f9f9fa;">
-                            <a href="single-product.html"><img src="../inserted_img/fresh_kisses_treats.jpg"
+                            <a href="shop2.php"><img src="../inserted_img/fresh_kisses_treats.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
@@ -245,7 +203,7 @@ var swiper = new Swiper('.main-swiper', {
 
                     <div class="swiper-slide">
                         <div class="card " style="background:#f9f9fa;">
-                            <a href="single-product.html"><img src="../inserted_img/sweater.jpg"
+                            <a href="shop2.php"><img src="../inserted_img/sweater.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
@@ -260,7 +218,7 @@ var swiper = new Swiper('.main-swiper', {
 
                     <div class="swiper-slide">
                         <div class="card " style="background:#f9f9fa;">
-                            <a href="single-product.html"><img src="../inserted_img/9lives.jpg"
+                            <a href="shop2.php"><img src="../inserted_img/9lives.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
@@ -275,7 +233,7 @@ var swiper = new Swiper('.main-swiper', {
 
                     <div class="swiper-slide">
                         <div class="card " style="background:#f9f9fa;">
-                            <a href="single-product.html"><img src="../inserted_img/chew_toy.png"
+                            <a href="shop2.php"><img src="../inserted_img/chew_toy.png"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
@@ -290,7 +248,7 @@ var swiper = new Swiper('.main-swiper', {
 
                     <div class="swiper-slide">
                         <div class="card " style="background:#f9f9fa;">
-                            <a href="single-product.html"><img src="../inserted_img/hoodie.jpg"
+                            <a href="shop2.php"><img src="../inserted_img/hoodie.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
@@ -305,7 +263,7 @@ var swiper = new Swiper('.main-swiper', {
 
                     <div class="swiper-slide">
                         <div class="card position-relative" style="background:#f9f9fa;">
-                            <a href="single-product.html"><img src="../inserted_img/3pcs.jpg"
+                            <a href="shop2.php"><img src="../inserted_img/3pcs.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">

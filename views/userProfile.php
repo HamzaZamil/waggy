@@ -84,7 +84,7 @@ $orders = $orderController->showUserOrders($userId);
                                     <p>Order Total: $<?= htmlspecialchars($order['order_total']) ?></p>
                                     <p>Order Status: <?= htmlspecialchars($order['order_status']) ?></p>
                                     <p>Product Name: <?= htmlspecialchars($order['product_name']) ?></p>
-                                    <p>Description: <?= htmlspecialchars($order['product_description']) ?></p>
+                                    <!-- <p>Description: <?= htmlspecialchars($order['product_description']) ?></p> -->
                                     <p>Price: $<?= htmlspecialchars($order['product_price']) ?></p>
                                     <p>Quantity: <?= htmlspecialchars($order['quantity']) ?></p>
                                     <hr>
