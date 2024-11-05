@@ -69,10 +69,14 @@ if (!$userDetails) {
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-                <div class="sidebar-brand-icon rotate-n-15">
+                <!-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink" style="color:#000;"></i>
+                </div> -->
+                <div>
+                    <img src="../images/logosamiiii.png" alt="" style="width:40px;">
                 </div>
                 <div class="sidebar-brand-text mx-3" style="color:#000;">WAGGY</div>
+                
             </a>
 
             <!-- Divider -->
@@ -82,7 +86,12 @@ if (!$userDetails) {
            
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+<!-- Nav Item - Dashboard -->
+<li class="nav-item">
+                <a class="nav-link" href="index.php">
+                    <i class="fas fa-fw fa-tachometer-alt" style="color:#000; "></i>
+                    <span style="color:#000; font-weight: bold;">Dashboard</span></a>
+            </li>
             <!-- Heading -->
             <div class="sidebar-heading" style="color:#000;">
                 Interface

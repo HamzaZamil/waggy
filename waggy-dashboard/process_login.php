@@ -2,6 +2,7 @@
 session_start(); 
 require_once 'model/User.php'; 
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $email = trim($_POST['email']);

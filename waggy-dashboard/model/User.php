@@ -115,7 +115,6 @@ class User {
                 if (!($userData['user_role'] === 'Admin' || $userData['user_role'] === 'Superadmin')) {
                     return "Unauthorized access: You do not have permission to log in.";
                 } else {
-                    
                     return "success login"; 
                 }
             } else {

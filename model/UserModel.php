@@ -22,9 +22,9 @@ class UserModel extends DBConnection {
     }
 
     public function loginUser($email, $password) {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE user_email = ?");
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE user_email = ? AND user_role = 'User'"); // Only allows users with 'User' role
         $stmt->execute([$email]);
-
+    
         if ($stmt->rowCount() === 1) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             
@@ -32,6 +32,6 @@ class UserModel extends DBConnection {
                 return $user['user_id'];
             }
         }
-        return false;
+        return false; 
     }
 }

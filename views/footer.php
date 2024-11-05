@@ -30,10 +30,10 @@
                      <h3>Quick Links</h3>
                      <ul class="menu-list list-unstyled">
                          <li class="menu-item">
-                             <a href="#" class="nav-link">Home</a>
+                             <a href="index.php" class="nav-link">Home</a>
                          </li>
                          <li class="menu-item">
-                             <a href="./shop.php" class="nav-link">Shop</a>
+                         <a href="./shop2.php?categ-id=1" class="nav-link">Shop</a>
                          </li>
                          <li class="menu-item">
                              <a href="./contact_us.php" class="nav-link">Conatct Us</a>
