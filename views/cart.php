@@ -1,6 +1,6 @@
 <?php
 include './header.php';
-include '../controllers/cartController.php';
+// include '../controllers/cartController.php';
 
 $cartController = new CartController();
 $cartItems = $cartController->getCartItems();
@@ -81,19 +81,22 @@ $address = $cartController->getAddress();
                     <input id="address" class="form-control" placeholder="<?= $address ?>" style="margin-top:-20px;">
 
                     <!-- Coupon Dropdown and Add Coupon Button -->
-                    <p>Available Coupons</p>
-                    <select name="couponSelect" class="form-control mb-3" style="margin-top:-20px;">
-                        <?php
-                        if (!empty($coupons)) :
-                            foreach ($coupons as $coupon) :
-                        ?>
-                                <option class="text-muted" value="<?= $coupon['coupon_id'] ?>"><?= $coupon['coupon_name'] ?></option>
-                            <?php endforeach; ?>
-                        <?php else : ?>
-                            <option class="text-muted">No coupons Available</option>
-                        <?php endif; ?>
-                    </select>
-                    <input type="submit" name="submit_button" value="Add Coupon" style="width:100px;margin-top:-10px;" class="btn btn-primary btn-sm ">
+                    <p>Coupon</p>
+                    <input id="couponInput" name="coupon" class="form-control" placeholder="Enter your coupon" style="margin-top:-20px;">
+
+                    <input type="submit" id="applyCoupon" name="submit_button" value="Add Coupon" style="width:100px;margin-top:-10px;" class="btn btn-primary btn-sm ">
+                    <div class="row">
+                        <div class="col text-left .fs-6">Disc. Price :</div>
+                        <div class="col text-right">
+                            <?php
+                            if (isset($_GET['discount'])) {
+                                echo $_GET['discount'];
+                            } else {
+                                echo '0';
+                            }
+                            ?>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col text-left">Delivery fee :</div>
                         <div class="col text-right"> 5 JOD</div>
@@ -103,8 +106,9 @@ $address = $cartController->getAddress();
                     <div class="col">TOTAL PRICE</div>
                     <div class="totalCartAfterCoupon col text-right">
                         <?php
-                        if (isset($_GET['total'])) {
-                            echo $_GET['total'];
+                        if (isset($_GET['discount'])) {
+                            $priceAfterDiscount = $cartController->totalCart() - $_GET['discount'];
+                            echo $priceAfterDiscount + 5;
                         } else {
                             echo $cartController->totalCart() + 5;
                         }
@@ -283,6 +287,42 @@ $address = $cartController->getAddress();
         }
 
         //--------- Cehckout Section AJAX ------------
+
+        // --- handle coupon part----
+        document.getElementById('applyCoupon').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            const couponCode = document.getElementById('couponInput').value;
+
+            // Send the coupon code via AJAX
+            fetch('../controllers/couponController.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        coupon: couponCode
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success === false) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: data.message
+                        });
+                    } else {
+                        // Coupon is valid, redirect to the cart with the discount applied
+                        window.location.href = `../views/cart.php?discount=${encodeURIComponent(data.discount)}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+
+
         document.getElementById("address").addEventListener("change", function() {
             const newAddress = this.value;
             updateShippingAddress(newAddress);
@@ -308,50 +348,52 @@ $address = $cartController->getAddress();
         }
     });
 
+
+
     //-------- Handle Place Order Button ----------
     document.querySelector(".btn.btn-primary.btn-block.mt-3.fs-6").addEventListener("click", function() {
-    <?php if (!isset($_SESSION['user_id'])): ?>
-        // Show login alert if the user is not logged in
-        Swal.fire({
-            icon: 'warning',
-            title: 'You must log in',
-            confirmButtonText: 'Ok'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'login.php'; // Redirect to login
-            }
-        });
-    <?php else: ?>
-        // User is logged in, proceed with placing the order
-        fetch('../controllers/placeProduct.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+        <?php if (!isset($_SESSION['user_id'])): ?>
+            // Show login alert if the user is not logged in
+            Swal.fire({
+                icon: 'warning',
+                title: 'You must log in',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'login.php'; // Redirect to login
                 }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Order Placed Successfully!',
-                        confirmButtonText: 'Ok'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = 'index.php'; // Redirect to homepage
-                        }
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Failed to place the order',
-                        timer: 5000,
-                        showConfirmButton: false
-                    });
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    <?php endif; ?>
+            });
+        <?php else: ?>
+            // User is logged in, proceed with placing the order
+            fetch('../controllers/placeProduct.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Order Placed Successfully!',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'index.php'; // Redirect to homepage
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Failed to place the order',
+                            timer: 5000,
+                            showConfirmButton: false
+                        });
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        <?php endif; ?>
     });
 </script>
 

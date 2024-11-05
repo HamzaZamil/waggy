@@ -130,6 +130,10 @@ class CartController
 
     public function totalCart($outputJson = false)
     {
+        if (!isset($_SESSION['user_id'])) {
+            $total = 0;
+            return $total;
+        }
         $user_id = $_SESSION['user_id'];
         $cart = $this->getCartItems();
         $total = 0;
@@ -170,6 +174,21 @@ class CartController
         echo json_encode(['success' => $success]);
     }
 
+    public function checkCoupon($coupon_name)
+    {
+        $coupons = $this->getCoupons();
+        foreach ($coupons as $coupon) {
+            if ($coupon['coupon_name'] == $coupon_name) {
+                return [
+                    'coupon_name' => $coupon['coupon_name'],
+                    'coupon_id' => $coupon['coupon_id'],
+                    'coupon_discount' => $coupon['coupon_discount']
+                ];
+            }
+        }
+        return false;
+    }
+
 
     public function getCoupons()
     {
@@ -180,20 +199,11 @@ class CartController
         return $this->cart->availableCoupons($userId);
     }
 
-    private function getDiscount($coupon_id) {
-        $coupons = $this->getCoupons();
-        foreach ($coupons as $coupon) {
-            if ($coupon['coupon_id'] == $coupon_id) {
-                return $coupon['coupon_discount'];
-            }
-        }
-        return 0;
-    }
-
-    public function calculateTotalAfterCoupon($coupon)
+    public function calculateDiscount($coupon)
     {
         $user_id = $_SESSION['user_id'];
-        $couponDiscount = $this->getDiscount($coupon);
+        $couponDiscount = $coupon['coupon_discount'];
+        $couponId = $coupon['coupon_id'];
 
         // Get cart items and calculate total
         $cart = $this->getCartItems();
@@ -203,18 +213,15 @@ class CartController
             $total += $item['quantity'] * $item['product_price'];
         }
 
-        
-        // Apply discount if a coupon is provided
-        if ($coupon) {
-            $this->cart->updateCoupon($user_id, $coupon);
-            $discount = $total * ($couponDiscount / 100);
-            $total -= $discount;
-        }
+        $this->cart->updateCoupon($user_id, $couponId);
+        $discount = $total * ($couponDiscount / 100);
+        $total -= $discount;
+
 
         // Add a delivery fee
         $total += 5;
         $update = $this->cart->updateTotal($user_id, $total);
-        return number_format($total, 2);
+        return number_format($discount, 2);
     }
 
     public function placeOrder()
