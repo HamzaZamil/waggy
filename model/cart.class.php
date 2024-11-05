@@ -157,7 +157,7 @@ class Cart
     public function getUserAddress($userId)
     {
         try {
-            $addressStmt = $this->db->prepare("SELECT user_address_line_one FROM orders WHERE user_id = :user_id");
+            $addressStmt = $this->db->prepare("SELECT user_address_line_one FROM users WHERE user_id = :user_id");
             $addressStmt->execute(["user_id" => $userId]);
             $address = $addressStmt->fetch(PDO::FETCH_ASSOC);
             return $address["user_address_line_one"];
