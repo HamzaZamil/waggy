@@ -74,7 +74,7 @@ $orders = $orderController->showUserOrders($userId);
                         <div class="row g-0">
                             <div class="col-md-3">
                                 <img src="../images/<?php echo !empty($order['item_image']) ? htmlspecialchars($order['item_image']) : 'box_image.jpg'; ?>"
-                                    class="img-fluid rounded-start" alt="Item Image" style="height:100px; padding_top:10px">
+                                    class="img-fluid rounded-start" alt="Item Image" style="height:100px; padding-top:10px">
                                    
                             </div>
                             <div class="col-md-9">
