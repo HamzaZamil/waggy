@@ -50,8 +50,8 @@
             
              <div class="col-md-4">
                  <div>
-                     <h3>Our Newsletter</h3>
-                     <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
+                     <h3>Ads</h3>
+                     <p class="blog-paragraph fs-6">For more information contact us.</p>
                      <div class="search-bar border rounded-pill border-dark-subtle px-2">
                          <form class="text-center d-flex align-items-center" action="" method="">
                              <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here" />
