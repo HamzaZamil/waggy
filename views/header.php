@@ -314,8 +314,8 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <!-- NAVBAR -->
     <header>
-    <div class="container py-1">
-        <div class="row py-2 align-items-center"> <!-- Adjusted to keep everything centered -->
+    <div class="container py-1" >
+        <div class="row py-2 align-items-center"> 
             <div class="col-sm-4 col-lg-3 text-center text-sm-start d-flex align-items-center justify-content-start">
                 <!-- Logo aligned left -->
                 <div class="main-logo me-3">

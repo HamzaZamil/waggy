@@ -60,7 +60,6 @@ class OrderModel extends DBConnection {
             JOIN products p ON oi.product_id = p.product_id
             WHERE o.user_id = :userId";
 
-// Execute your query and fetch results...
 
         
         $stmt = $this->db->prepare($sql);
@@ -69,7 +68,7 @@ class OrderModel extends DBConnection {
         if ($stmt->execute()) {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } else {
-            return []; // Handle error as needed
+            return []; 
         }
     }
 

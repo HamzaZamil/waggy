@@ -5,10 +5,11 @@ include './header.php';
 include '../controllers/productController.php';
 include '../controllers/wishlistController.php';
 
-$categId = $_GET['categ-id']; //if it's 1->All 2-> Cats 3->Dogs
+$categId = isset($_GET['categ-id']) ? $_GET['categ-id'] : null; 
 $categories = [];
 $products = [];
 $wishlistItems = [];
+
 
 $productController = new ProductController();
 $productController->shop($categories, $products);
@@ -28,13 +29,19 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
 
 ?>
 
-<!-- Clothing Section -->
+<!-- Search Section -->
 <section id="clothing" class="my-5">
     <div class="container my-5 py-5">
-        <div class="section-header d-md-flex justify-content-between align-items-center">
+        <div class="section-header d-flex justify-content-between align-items-center mb-4">
             <h2 class="display-3 fw-normal">Clothing</h2>
+            <div class="input-group w-25 h-25">
+            <form class="d-flex" role="search" method="get" action="product_search_view.php?action=search">
+                    <input class="form-control me-2" type="search" name="find" placeholder="Search" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </form>
+            </div>
         </div>
-
+        <!-- Clothing Section -->
         <div class="isotope-container row">
             <?php
             foreach ($products as $product_item) {
@@ -44,50 +51,61 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                     ($categId == 3 && $product_item["category_id"] == $dogs_clothing_id) // Dog clothing only
                 ) {
             ?>
-                    <div class="item col-md-4 col-lg-3 my-4">
-                        <div class="card position-relative">
+            <div class="item col-md-4 col-lg-3 my-4">
+                <div class="card position-relative" style="border-radius: 15px">
 
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
-
-
-                            <div class="card-body d-flex flex-column align-items-center">
-                                <a href="single-product.html">
-                                    <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
-                                </a>
-
-                                <div class="card-text d-flex flex-column align-items-center">
-                                    <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h4>
-
-                                    <div class="d-flex gap-3 mt-2">
-                                        <div class="d-flex gap-3 mt-3">
-                                            <form action="item_details.php?product_id=<?= $product_item['product_id'] ?>" method="POST" style="display:inline;">
-                                                <input type="hidden" name="img" value="<?= htmlspecialchars($product_item['product_img']) ?>">
-                                                <input type="hidden" name="name" value="<?= htmlspecialchars($product_item['product_name']) ?>">
-                                                <input type="hidden" name="description" value="<?= htmlspecialchars($product_item['product_description']) ?>">
-                                                <input type="hidden" name="price" value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
-                                                <button type="submit" class="btn-cart px-2 pt-3 pb-3" style="background:none; border:1px solid lightgrey; border-radius:6px;">
-                                                    <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
-                                                </button>
-                                            </form>
+                    <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
 
 
-                                            <a href="#" class="btn-wishlist px-4 pt-3">
-                                                <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
-                                                    <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
-                                                    <input type="hidden" name="action" value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
-                                                    <button type="submit" style="border: none; background: none;">
-                                                        <iconify-icon icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>" class="fs-5"></iconify-icon>
-                                                    </button>
-                                                </form>
-                                            </a>
-                                        </div>
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <a href="single-product.html">
+                            <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
+                        </a>
 
-                                    </div>
+                        <div class="card-text d-flex flex-column align-items-center">
+                            <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h4>
 
+                            <div class="d-flex gap-3 mt-2">
+                                <div class="d-flex gap-3 mt-3">
+                                    <form action="item_details.php?product_id=<?= $product_item['product_id'] ?>"
+                                        method="POST" style="display:inline;">
+                                        <input type="hidden" name="img"
+                                            value="<?= htmlspecialchars($product_item['product_img']) ?>">
+                                        <input type="hidden" name="name"
+                                            value="<?= htmlspecialchars($product_item['product_name']) ?>">
+                                        <input type="hidden" name="description"
+                                            value="<?= htmlspecialchars($product_item['product_description']) ?>">
+                                        <input type="hidden" name="price"
+                                            value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
+                                        <button type="submit" class="btn-cart px-2 pt-3 pb-3"
+                                            style="background:none; border:1px solid lightgrey; border-radius:6px;">
+                                            <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
+                                        </button>
+                                    </form>
+
+
+                                    <a href="#" class="btn-wishlist px-4 pt-3">
+                                        <form method="POST" action="../controllers/WishlistController.php"
+                                            style="display: inline;">
+                                            <input type="hidden" name="product_id"
+                                                value="<?= $product_item["product_id"] ?>">
+                                            <input type="hidden" name="action"
+                                                value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
+                                            <button type="submit" style="border: none; background: none;">
+                                                <iconify-icon
+                                                    icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>"
+                                                    class="fs-5"></iconify-icon>
+                                            </button>
+                                        </form>
+                                    </a>
                                 </div>
+
                             </div>
+
                         </div>
                     </div>
+                </div>
+            </div>
             <?php
                 }
             }
@@ -105,7 +123,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
             <h2 class="display-3 fw-normal">Foodies</h2>
         </div>
 
-        <div class="isotope-container row">
+        <div class="isotope-container row ">
             <?php
             foreach ($products as $product_item) {
                 if (
@@ -114,46 +132,57 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                     ($categId == 3 && $product_item["category_id"] == $dog_food_id) // Dog clothing only
                 ) {
             ?>
-                    <div class="item col-md-4 col-lg-3 my-4">
-                        <div class="card position-relative">
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
-                            <div class="card-body d-flex flex-column align-items-center">
-                                <a href="single-product.html">
-                                    <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
-                                </a>
+            <div class="item col-md-4 col-lg-3 my-4">
+                <div class="card position-relative" style="border-radius: 15px">
+                    <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <a href="single-product.html">
+                            <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
+                        </a>
 
-                                <div class="card-text d-flex flex-column align-items-center">
-                                    <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h4>
+                        <div class="card-text d-flex flex-column align-items-center">
+                            <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h4>
 
-                                    <div class="d-flex gap-3 mt-2">
-                                        <div class="d-flex gap-3 mt-3">
-                                            <form action="item_details.php?product_id=<?= $product_item['product_id'] ?>" method="POST" style="display:inline;">
-                                                <input type="hidden" name="img" value="<?= htmlspecialchars($product_item['product_img']) ?>">
-                                                <input type="hidden" name="name" value="<?= htmlspecialchars($product_item['product_name']) ?>">
-                                                <input type="hidden" name="description" value="<?= htmlspecialchars($product_item['product_description']) ?>">
-                                                <input type="hidden" name="price" value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
-                                                <button type="submit" class="btn-cart px-2 pt-3 pb-3" style="background:none; border:1px solid lightgrey; border-radius:6px;">
-                                                    <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
-                                                </button>
-                                            </form>
+                            <div class="d-flex gap-3 mt-2">
+                                <div class="d-flex gap-3 mt-3">
+                                    <form action="item_details.php?product_id=<?= $product_item['product_id'] ?>"
+                                        method="POST" style="display:inline;">
+                                        <input type="hidden" name="img"
+                                            value="<?= htmlspecialchars($product_item['product_img']) ?>">
+                                        <input type="hidden" name="name"
+                                            value="<?= htmlspecialchars($product_item['product_name']) ?>">
+                                        <input type="hidden" name="description"
+                                            value="<?= htmlspecialchars($product_item['product_description']) ?>">
+                                        <input type="hidden" name="price"
+                                            value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
+                                        <button type="submit" class="btn-cart px-2 pt-3 pb-3"
+                                            style="background:none; border:1px solid lightgrey; border-radius:6px;">
+                                            <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
+                                        </button>
+                                    </form>
 
 
-                                            <a href="#" class="btn-wishlist px-4 pt-3">
-                                                <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
-                                                    <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
-                                                    <input type="hidden" name="action" value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
-                                                    <button type="submit" style="border: none; background: none;">
-                                                        <iconify-icon icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>" class="fs-5"></iconify-icon>
-                                                    </button>
-                                                </form>
-                                            </a>
-                                        </div>
-
-                                    </div>
+                                    <a href="#" class="btn-wishlist px-4 pt-3">
+                                        <form method="POST" action="../controllers/WishlistController.php"
+                                            style="display: inline;">
+                                            <input type="hidden" name="product_id"
+                                                value="<?= $product_item["product_id"] ?>">
+                                            <input type="hidden" name="action"
+                                                value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
+                                            <button type="submit" style="border: none; background: none;">
+                                                <iconify-icon
+                                                    icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>"
+                                                    class="fs-5"></iconify-icon>
+                                            </button>
+                                        </form>
+                                    </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
             <?php
                 }
             }
@@ -178,45 +207,56 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                     ($categId == 3 && $product_item["category_id"] == $dog_toys_tools_id) // Dog clothing only
                 ) {
             ?>
-                    <div class="item col-md-4 col-lg-3 my-4">
-                        <div class="card position-relative">
-                            <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
-                            <div class="card-body d-flex flex-column align-items-center ">
-                                <a href="single-product.html">
-                                    <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
-                                </a>
+            <div class="item col-md-4 col-lg-3 my-4">
+                <div class="card position-relative">
+                    <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
+                    <div class="card-body d-flex flex-column align-items-center ">
+                        <a href="single-product.html">
+                            <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
+                        </a>
 
-                                <div class="card-text d-flex flex-column align-items-center">
-                                    <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h4>
+                        <div class="card-text d-flex flex-column align-items-center">
+                            <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD</h4>
 
-                                    <div class="d-flex gap-3 mt-2">
-                                        <div class="d-flex gap-3 mt-3">
-                                            <form action="item_details.php?product_id=<?= $product_item['product_id'] ?>" method="POST" style="display:inline;">
-                                                <input type="hidden" name="img" value="<?= htmlspecialchars($product_item['product_img']) ?>">
-                                                <input type="hidden" name="name" value="<?= htmlspecialchars($product_item['product_name']) ?>">
-                                                <input type="hidden" name="description" value="<?= htmlspecialchars($product_item['product_description']) ?>">
-                                                <input type="hidden" name="price" value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
-                                                <button type="submit" class="btn-cart px-2 pt-3 pb-3" style="background:none; border:1px solid lightgrey; border-radius:6px;">
-                                                    <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
-                                                </button>
-                                            </form>
+                            <div class="d-flex gap-3 mt-2">
+                                <div class="d-flex gap-3 mt-3">
+                                    <form action="item_details.php?product_id=<?= $product_item['product_id'] ?>"
+                                        method="POST" style="display:inline;">
+                                        <input type="hidden" name="img"
+                                            value="<?= htmlspecialchars($product_item['product_img']) ?>">
+                                        <input type="hidden" name="name"
+                                            value="<?= htmlspecialchars($product_item['product_name']) ?>">
+                                        <input type="hidden" name="description"
+                                            value="<?= htmlspecialchars($product_item['product_description']) ?>">
+                                        <input type="hidden" name="price"
+                                            value="<?= htmlspecialchars($product_item['product_price'] . ' JOD') ?>">
+                                        <button type="submit" class="btn-cart px-2 pt-3 pb-3"
+                                            style="background:none; border:1px solid lightgrey; border-radius:6px;">
+                                            <h5 class="text-uppercase m-0 fs-6">Add to Cart</h5>
+                                        </button>
+                                    </form>
 
-                                            <a href="#" class="btn-wishlist px-4 pt-3">
-                                                <form method="POST" action="../controllers/WishlistController.php" style="display: inline;">
-                                                    <input type="hidden" name="product_id" value="<?= $product_item["product_id"] ?>">
-                                                    <input type="hidden" name="action" value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
-                                                    <button type="submit" style="border: none; background: none;">
-                                                        <iconify-icon icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>" class="fs-5"></iconify-icon>
-                                                    </button>
-                                                </form>
-                                            </a>
-                                        </div>
-
-                                    </div>
+                                    <a href="#" class="btn-wishlist px-4 pt-3">
+                                        <form method="POST" action="../controllers/WishlistController.php"
+                                            style="display: inline;">
+                                            <input type="hidden" name="product_id"
+                                                value="<?= $product_item["product_id"] ?>">
+                                            <input type="hidden" name="action"
+                                                value="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'remove' : 'add' ?>">
+                                            <button type="submit" style="border: none; background: none;">
+                                                <iconify-icon
+                                                    icon="<?= $wishlistController->isInWishlist($product_item["product_id"]) ? 'mdi:heart' : 'mdi:heart-outline' ?>"
+                                                    class="fs-5"></iconify-icon>
+                                            </button>
+                                        </form>
+                                    </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
             <?php
                 }
             }
@@ -226,34 +266,34 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
 </section>
 
 <script>
-    function updateQuantity(change) {
-        const quantityInput = document.getElementById('quantity');
-        let currentQuantity = parseInt(quantityInput.value);
-        currentQuantity += change;
-        if (currentQuantity < 1) currentQuantity = 1; // Minimum quantity is 1
-        quantityInput.value = currentQuantity;
-    }
+function updateQuantity(change) {
+    const quantityInput = document.getElementById('quantity');
+    let currentQuantity = parseInt(quantityInput.value);
+    currentQuantity += change;
+    if (currentQuantity < 1) currentQuantity = 1; // Minimum quantity is 1
+    quantityInput.value = currentQuantity;
+}
 
-    function addToCart(productId) {
-        const quantity = document.getElementById('quantity').value;
-        $.ajax({
-            type: 'POST',
-            url: '../controllers/cartController.php',
-            data: {
-                action: 'add',
-                product_id: productId,
-                quantity: quantity
-            },
-            success: function(response) {
-                const result = JSON.parse(response);
-                if (result.success) {
-                    Swal.fire("Success", result.success, "success");
-                } else {
-                    Swal.fire("Error", result.error, "error");
-                }
+function addToCart(productId) {
+    const quantity = document.getElementById('quantity').value;
+    $.ajax({
+        type: 'POST',
+        url: '../controllers/cartController.php',
+        data: {
+            action: 'add',
+            product_id: productId,
+            quantity: quantity
+        },
+        success: function(response) {
+            const result = JSON.parse(response);
+            if (result.success) {
+                Swal.fire("Success", result.success, "success");
+            } else {
+                Swal.fire("Error", result.error, "error");
             }
-        });
-    }
+        }
+    });
+}
 </script>
 
 

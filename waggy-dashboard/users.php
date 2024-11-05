@@ -47,19 +47,7 @@ $isSuperAdmin = $_SESSION['user_role'] === 'Superadmin';
 
 
         <div class="row">
-            <div>
-                <button type="button" class="button1" style="background-color:#000;" onclick="openAddModal()">
-                    <span class="button__text">Add New User</span>
-                    <span class="button__icon" style="background-color:#000;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2"
-                            stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none"
-                            class="svg">
-                            <line y2="19" y1="5" x2="12" x1="12"></line>
-                            <line y2="12" y1="12" x2="19" x1="5"></line>
-                        </svg>
-                    </span>
-                </button>
-            </div>
+
             <div class="table_pro_item">
             <div class="pt-5 pb-3">
                 <h2>Users Table</h2>
@@ -186,69 +174,7 @@ $isSuperAdmin = $_SESSION['user_role'] === 'Superadmin';
 
 
         <!-- Add User Modal -->
-        <div class="modal" id="addModal"
-            style="display: none; justify-content: center; align-items: center; height: 100vh;">
-            <div class="modal-content" style="width: 50%; text-align: center;">
-                <button class="close-btn delete-btn" style="background:#db4f4f;" onclick="closeAddModal()">X</button>
-                <h3 style="text-align: center;">Add New User</h3>
-                <form id="addForm" method="POST" action="process_user.php">
-                    <div class="form-group">
-                        <label for="newFirstName">First Name:</label>
-                        <input type="text" id="newFirstName" name="newFirstName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newLastName">Last Name:</label>
-                        <input type="text" id="newLastName" name="newLastName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newEmail">Email:</label>
-                        <input type="email" id="newEmail" name="newEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newPassword">Password:</label>
-                        <input type="password" id="newPassword" name="newPassword" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newGender">Gender:</label>
-                        <select id="newGender" name="newGender" required>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="newBirthDate">Birth Date:</label>
-                        <input type="date" id="newBirthDate" name="newBirthDate" max="<?= date('Y-m-d'); ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newPhone">Phone Number:</label>
-                        <input type="text" id="newPhone" name="newPhone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newAddress">Address:</label>
-                        <input type="text" id="newAddress" name="newAddress" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newState">State:</label>
-                        <select id="newState" name="newState" required>
-                            <option value="Active">Active</option>
-                            <option value="Deactivate">Deactivate</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="role">Role:</label>
-                        <select id="role" name="newRole">
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                        </select>
-                    </div>
-                    
-                    <button class="save-btn edit-btn" type="submit"
-                        style="background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;">Save
-                    </button>
-                </form>
-            </div>
-        </div>
+        
 
 
 

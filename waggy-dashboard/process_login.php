@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
         // Redirect to index.php for both Admin and Super Admin
-        header("Location: index.php");
+        header("Location: users.php");
         exit();
     } else {
         // Login failed, set an error message
