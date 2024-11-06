@@ -105,7 +105,7 @@ try {
 </style>
 <body>
 
-<section id="contact" class="my-5">
+<section id="contact" class="my-5 pt-5">
     <div class="container">
         <h2 class="text-center display-3 fw-normal">Contact Us</h2>
         <div class="row justify-content-center my-5">

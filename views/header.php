@@ -25,7 +25,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap"
         rel="stylesheet">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="../css/profileStyle.css">
 
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -38,17 +38,18 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
+        
     </script>
 
     <!-- Cart Style -->
     <link rel="stylesheet" href="../css/cart_style.css">
 
+<style>
 
-    <style>
+
     .heart-icon {
         cursor: pointer;
         font-size: 1.5em;
-        color: red;
     }
 
     .heart-icon.filled {
@@ -71,13 +72,13 @@ $isLoggedIn = isset($_SESSION['user_id']);
         border-radius: 20px !important;
     }
 
-    /* Container styling */
+    /* Container Styling */
     .section {
         padding-top: 2rem;
         background-color: #f8f9fa;
     }
 
-    /* Card styling */
+    /* Card Styling */
     .card1 {
         border: none;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -93,7 +94,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
         height: auto;
     }
 
-    /* Footer button */
+    /* Footer Button */
     .card-footer button {
         background-color: #dfb074;
         color: white;
@@ -108,16 +109,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
         background-color: #c6a56b;
     }
 
-    .main-logo {
-        margin-right: 15px;
-        /* Adjust this value as needed */
-    }
-
-    .icon-cart {
-        display: flex;
-        align-items: center;
-    }
-
+    /* Cart Page Styling */
     #cart_page .title {
         margin-bottom: 5vh;
     }
@@ -126,15 +118,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
         margin: auto;
         max-width: 950px;
         width: 90%;
-        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.19);
         border-radius: 1rem;
         border: transparent;
-    }
-
-    @media(max-width:767px) {
-        #cart_page .card {
-            margin: 3vh auto;
-        }
     }
 
     #cart_page .cart {
@@ -142,14 +128,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
         padding: 4vh 5vh;
         border-bottom-left-radius: 1rem;
         border-top-left-radius: 1rem;
-    }
-
-    @media(max-width:767px) {
-        #cart_page .cart {
-            padding: 4vh;
-            border-bottom-left-radius: unset;
-            border-top-right-radius: 1rem;
-        }
     }
 
     #cart_page .summary {
@@ -160,17 +138,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
         color: rgb(65, 65, 65);
     }
 
-    @media(max-width:767px) {
-        #cart_page .summary {
-            border-top-right-radius: unset;
-            border-bottom-left-radius: 1rem;
-        }
-    }
-
-    #cart_page .summary .col-2 {
-        padding: 0;
-    }
-
+    #cart_page .summary .col-2,
     #cart_page .summary .col-10 {
         padding: 0;
     }
@@ -229,18 +197,10 @@ $isLoggedIn = isset($_SESSION['user_id']);
         padding: 2vh 0;
     }
 
-    #cart_page select {
-        border: 1px solid rgba(0, 0, 0, 0.137);
-        padding: 1.5vh 1vh;
-        margin-bottom: 4vh;
-        outline: none;
-        width: 100%;
-        background-color: rgb(247, 247, 247);
-    }
-
+    #cart_page select,
     #cart_page input {
         border: 1px solid rgba(0, 0, 0, 0.137);
-        padding: 1vh;
+        padding: 1.5vh 1vh;
         margin-bottom: 4vh;
         outline: none;
         width: 100%;
@@ -265,11 +225,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     #cart_page .btn:focus {
         box-shadow: none;
         outline: none;
-        box-shadow: none;
         color: white;
-        -webkit-box-shadow: none;
-        user-select: none;
-        transition: none;
     }
 
     #cart_page .btn:hover {
@@ -291,17 +247,53 @@ $isLoggedIn = isset($_SESSION['user_id']);
         background-position-x: 95%;
         background-position-y: center;
     }
-    @media (max-width: 576px) {
-    .icon-container {
-        justify-content: flex-start; 
-        width: 100%; 
+
+    /* Navbar Styling */
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px 20px;
     }
-    
-    .icon-container li {
-        margin-right: 10px; 
+
+    #logo, #links, #icons {
+        display: flex;
+        align-items: center;
     }
-}
-    </style>
+
+    #icons {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    #logo img {
+        max-width: 120px;
+    }
+
+    .navbar-toggler {
+        margin-right: 10px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        #cart_page .card {
+            margin: 3vh auto;
+        }
+
+        #cart_page .cart {
+            padding: 4vh;
+            border-bottom-left-radius: unset;
+            border-top-right-radius: 1rem;
+        }
+
+        #cart_page .summary {
+            border-top-right-radius: unset;
+            border-bottom-left-radius: 1rem;
+        }
+    }
+
+  
+</style>
 
 
 </head>
@@ -314,30 +306,32 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <!-- NAVBAR -->
     <header>
-    <div class="container py-1" >
-        <div class="row py-2 align-items-center"> 
-            <div class="col-sm-4 col-lg-3 text-center text-sm-start d-flex align-items-center justify-content-start">
-                <!-- Logo aligned left -->
-                <div class="main-logo me-3">
-                    <a href="index.php">
-                        <img src="../images/logo.png" alt="logo" class="img-fluid">
-                    </a>
+        <div class="container py-1">
+            <nav class="navbar navbar-expand-lg justify-content-center fixed-top p-3 px-5"
+                style="background-color: rgba(255, 255, 255, 0.8);">
+                <div id="logo" class="col-sm-4 col-lg-3 text-center text-sm-start d-flex align-items-center justify-content-start"
+                    >
+                    <!-- Logo aligned left -->
+                    <div class="main-logo me-3">
+                        <a href="index.php">
+                            <img src="../images/logo.png" alt="logo" class="img-fluid">
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-sm-8 col-lg-6">
-                <!-- Center the navigation links -->
-                <nav class="navbar navbar-expand-lg justify-content-center">
+                <div class="col-sm-8 col-lg-6"  id="links">
+                    <!-- Center the navigation links -->
+
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                         aria-labelledby="offcanvasNavbarLabel">
                         <div class="offcanvas-header justify-content-center">
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
-                   
+
 
                         <div class="offcanvas-body justify-content-center">
-                        <?php
+                            <?php
                             // Get the current file name from the URL
                             $currentPage = basename($_SERVER['PHP_SELF']);
                         ?>
@@ -373,58 +367,62 @@ $isLoggedIn = isset($_SESSION['user_id']);
                         data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                </nav>
-            </div>
 
-            <div class="col-sm-4 col-lg-3 d-flex justify-content-end"> <!-- Adjusted to allow icons to align right -->
-                <ul class="d-flex list-unstyled mb-0 align-items-center">
-                    <div class="d-flex align-items-center icon-container"> <!-- Added class for icon container -->
-                        <?php if ($isLoggedIn): ?>
-                        <li class="dropdown">
-                            <a href="#" class="mx-2" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="userProfile.php">Profile</a>
-                                <a class="dropdown-item" href="../controllers/LogoutController.php">Logout</a>
-                            </ul>
-                        </li>
-                        <?php else: ?>
+                </div>
+
+                <div class="col-sm-4 col-lg-3 d-flex justify-content-end"  id="icons">
+                    <!-- Adjusted to allow icons to align right -->
+                    <ul class="d-flex list-unstyled mb-0 align-items-center">
+                        <div class="d-flex align-items-center icon-container">
+                            <!-- Added class for icon container -->
+                            <?php if ($isLoggedIn): ?>
                             <li class="dropdown">
-                            <a href="#" class="mx-2" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="register.php">Register</a>
-                                <a class="dropdown-item" href="login.php">Login</a>
-                            </ul>
-                        </li>
-                        <?php endif; ?>
+                                <a href="#" class="mx-2" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="userProfile.php">Profile</a>
+                                    <a class="dropdown-item" href="../controllers/LogoutController.php">Logout</a>
+                                </ul>
+                            </li>
+                            <?php else: ?>
+                            <li class="dropdown">
+                                <a href="#" class="mx-2" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="register.php">Register</a>
+                                    <a class="dropdown-item" href="login.php">Login</a>
+                                </ul>
+                            </li>
+                            <?php endif; ?>
 
-                        <li>
-                            <a href="wishlist.php" class="mx-3">
-                                <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="wishlist.php" class="mx-3">
+                                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="./cart.php" class="icon-cart">
-                                <svg style="margin-top:-15px;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="filled" viewBox="0 0 18 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
-                                </svg>
-                            </a>
-                        </li>
-                    </div>
-                </ul>
-            </div>
+                            <li>
+                                <a href="./cart.php" class="icon-cart">
+                                    <svg style="margin-top:-15px;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="filled" viewBox="0 0 18 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+
+
+                </div>
+            </nav>
         </div>
-    </div>
-</header>
+    </header>
 
 
     <!-- <div class="overlay"></div>

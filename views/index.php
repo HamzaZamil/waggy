@@ -1,11 +1,65 @@
 <?php include './header.php'; ?>
 
+
 <!-- Hero Section -->
-<section id="banner">
+<section id="banner" class="pt-4 h-50" style="height:300px;">
+    <div id="carouselExampleIndicators" class="carousel slide h-25" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner position-relative">
+
+            <div class="carousel-item active">
+                <img src="../images/tryHERO6.jpg" class="d-block w-100" alt="header">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 style="color:white; margin: 0; font-size: 1.5rem;">The Essentials to Keep Tails Wagging <span>and Pets Purring</span></h5>
+                    <hr>
+                    <p>The Best for Your Bestie</p>
+                </div>
+            </div>
+<style>
+    .carousel-inner{
+     height: 300px;
+}
+
+</style>
+            <!-- <div class="carousel-item active">
+                <img src="../images/tryHERO6.jpg" class="d-block w-100" alt="header">
+                <div class="position-absolute top-50 start-50 translate-middle text-center text-overlay"
+                     style="background: rgba(209, 190, 170, 0.8); padding: 5px; border-radius: 5px; width: 80%; max-width: 500px;">
+                    <h3 class="fw-normal" style="color:white; margin: 0; font-size: 1.5rem;">
+                        The Essentials to Keep Tails Wagging <span>and Pets Purring</span>
+                    </h3>
+                    <hr>
+                    <div class="secondary-font text-uppercase mb-2" style="color: #C65D23; font-size: 0.8rem;">The Best for Your Bestie</div>
+                </div>
+            </div> -->
+            <!-- Add more carousel items here -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+
+<!-- 
     <div class="swiper main-swiper">
         <div class="swiper-wrapper">
 
-            <!-- Slide 1 -->
+            Slide 1
             <div class="swiper-slide py-3"
                 style="height: 100vh; background-image: url('../images/tryHERO6.jpg'); background-size: cover; background-position: 20% center; position: relative;">
                 <div class="row banner-content"
@@ -18,7 +72,7 @@
                 </div>
             </div>
 
-            <!-- Slide 2
+            Slide 2
             <div class="swiper-slide py-3">
                 <div class="row banner-content align-items-center">
                     <div class="img-wrapper col-12 col-md-5">
@@ -36,91 +90,70 @@
                         </a>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
 
 
         </div>
     </div>
-</section>
-
+ -->
 <style>
-#banner {
-    width: 100%;
-    overflow: hidden;
-}
-
-.swiper-slide {
-    background-size: cover;
-    background-position: 20% center;
-    height: 100vh;
-}
-
-/* Default font size on large screens */
-.banner-title {
-    font-size: 1.8rem;
-    line-height: 1.2;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .swiper-slide {
-        height: 80vh;
-    }
-    .banner-title {
-        font-size: 1.6rem;
-    }
-}
-
 @media (max-width: 768px) {
-    .swiper-slide {
-        height: 70vh;
+    #banner .carousel-inner .carousel-item {
+        height: 300px;
+
     }
-    .banner-title {
-        font-size: 1.4rem;
+
+    #banner .carousel-inner img {
+        object-fit: cover;
     }
+
+    #banner .carousel-inner .text-overlay {
+        position: relative;
+        top: auto;
+        padding: 10px;
+        margin-top: 10px;
+        width: 90%;
+        max-width: none;
+        text-align: center;
+    }
+
 }
+
+
+/* Mobile Styles */
 
 @media (max-width: 576px) {
-    .swiper-slide {
-        height: 60vh;
+    #banner .carousel-inner .carousel-item {
+        height: auto;
     }
-    .banner-title {
-        font-size: 1.2rem;
-    }
-}
 
-/* Specific margin for Slide 2 */
-.slide-two-text {
-    margin-left: 40px; /* Adjust as needed */
+    #banner .carousel-inner img {
+        object-fit: cover;
+        height: auto;
+    }
+
+    #banner .carousel-inner .text-overlay {
+        position: relative;
+        top: auto;
+        padding: 10px;
+        margin-top: 10px;
+        width: 90%;
+        max-width: none;
+        text-align: center;
+    }
+
+    #banner h3 {
+        font-size: 1.2rem;
+        /* Smaller font size for mobile */
+    }
+
+    .secondary-font {
+        font-size: 0.8rem;
+        /* Adjust secondary font size */
+    }
 }
 </style>
-
-
-<!-- Swiper JS Initialization -->
-<script>
-var swiper = new Swiper('.main-swiper', {
-    loop: true,
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-    },
-    speed: 800,
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    // Adding CSS transitions for smoothness
-    on: {
-        transitionStart: function() {
-            this.slides.css('transition', 'transform 0.8s ease-in-out');
-        },
-        transitionEnd: function() {
-            this.slides.css('transition', 'transform 0.8s ease-in-out');
-        },
-    }
-});
-</script>
 
 
 <!-- Categories Section -->
@@ -155,11 +188,9 @@ var swiper = new Swiper('.main-swiper', {
         <div class="section-header d-md-flex justify-content-between align-items-center mb-1">
             <h2 class="display-5 fw-normal">New Items</h2>
             <div>
-                <a href="shop2.php?categ-id=1" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                <a href="shop2.php?categ-id=1" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1 p-4 mb-4">
                     shop now
-                    <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                        <use xlink:href="#arrow-right"></use>
-                    </svg>
+                    
                 </a>
             </div>
         </div>
@@ -169,7 +200,7 @@ var swiper = new Swiper('.main-swiper', {
                 <div class="swiper-wrapper">
 
                     <div class="swiper-slide">
-                        <div class="card" style="background:#f9f9fa;">
+                        <div class="card" style="background:#f9f9fa; border-radius:15px;">
                             <a href="./shop2.php?categ-id=1"><img src="../inserted_img/fresh_kisses_treats.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
@@ -184,7 +215,7 @@ var swiper = new Swiper('.main-swiper', {
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="card " style="background:#f9f9fa;">
+                        <div class="card " style="background:#f9f9fa;  border-radius:15px;">
                             <a href="./shop2.php?categ-id=1"><img src="../inserted_img/sweater.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
@@ -199,7 +230,7 @@ var swiper = new Swiper('.main-swiper', {
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="card " style="background:#f9f9fa;">
+                        <div class="card " style="background:#f9f9fa; border-radius:15px;">
                             <a href="./shop2.php?categ-id=1"><img src="../inserted_img/9lives.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
@@ -214,7 +245,7 @@ var swiper = new Swiper('.main-swiper', {
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="card " style="background:#f9f9fa;">
+                        <div class="card " style="background:#f9f9fa; border-radius:15px;">
                             <a href="./shop2.php?categ-id=1"><img src="../inserted_img/chew_toy.png"
                                     class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
@@ -229,9 +260,9 @@ var swiper = new Swiper('.main-swiper', {
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="card " style="background:#f9f9fa;">
-                            <a href="shop2.php"><img src="../inserted_img/hoodie.jpg"
-                                    class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card " style="background:#f9f9fa; border-radius:15px;">
+                            <a href="shop2.php"><img src="../inserted_img/hoodie.jpg" class="img-fluid rounded-4"
+                                    alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">Hoodie</h3>
@@ -244,9 +275,9 @@ var swiper = new Swiper('.main-swiper', {
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="card position-relative" style="background:#f9f9fa;">
-                            <a href="shop2.php"><img src="../inserted_img/3pcs.jpg"
-                                    class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card position-relative" style="background:#f9f9fa; border-radius:15px;">
+                            <a href="shop2.php"><img src="../inserted_img/3pcs.jpg" class="img-fluid rounded-4"
+                                    alt="image"></a>
                             <div class="card-body d-flex flex-column align-items-center">
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">3Pcs Outfit</h3>

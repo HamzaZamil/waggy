@@ -1,109 +1,11 @@
-<?php
-ob_start();
-
-include_once './header.php';
-include_once '../controllers/productController.php';
-include_once '../controllers/wishlistController.php';
-
-
-$productController = new ProductController();
-$products = [];
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['find']) && !empty(trim($_GET['find']))) {
-    $products = $productController->search();
-} else {
-    $productController->shop($categories, $products);
-}
-
-$searchTerm = isset($_GET['find']) ? htmlspecialchars($_GET['find']) : '';
-?>
-
-
-<style>
-.no-results-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 400px;
-    text-align: center;
-    background-color: rgba(209, 190, 170, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-}
-
-
-.no-results-message h5 {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.no-results-message p {
-    font-size: 1rem;
-    color: #777;
-}
-
-#search-form {
-    display: flex;
-    width: 100%;
-}
-
-
-@media (max-width: 767px) {
-    #search-form {
-        display: none;
-        margin-top: 5px;
-    }
-
-
-    #search-bar.active #search-form {
-        display: flex;
-        z-index: 100;
-    }
-
-
-    #search-input {
-        width: auto;
-        max-width: 200px;
-    }
-
-    .search {
-        width: auto;
-        max-width: 200px;
-        margin-left: 25px;
-    }
-}
-</style>
-
-
-<!-- search -->
-<section id="search-bar" class="mt-5 pt-5">
-    <div class="container ">
-        <div class="section-header d-flex justify-content-between align-items-center mb-4">
-            <h2 class="display-5 fw-normal">Products</h2>
-            <div class="input-group h-25" style="width:300px;">
-                <form class="d-flex w-100 search" role="search" method="get"
-                    action="product_search_view.php?action=search">
-                    <input class="form-control w-100" type="search" name="find" placeholder="Search" aria-label="Search"
-                        value="<?= $searchTerm ?>">
-
-
-
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- result -->
-<?php if (!empty($products)): ?>
-<div class="container my-1 py-1 " id="clothing">
+<div class="container my-5 py-5">
     <div class="isotope-container row">
-
-        <?php foreach ($products as $product_item): ?>
-        <div class="item col-md-4 col-lg-3 my-4">
-            <div class="card position-relative" style="border-radius:15px;">
-                <img src="../inserted_img/<?= $product_item['product_img'] ?>" class="img-fluid rounded-4" alt="image">
+        <?php if (!empty($products)): ?>
+            <?php foreach ($products as $product_item): ?>
+              
+                <div class="item col-md-4 col-lg-3 my-4">
+            <div class="card position-relative" style="border-radius: 15px">
+                <img src='<?= $product_item["product_img"] ?>' class="img-fluid rounded-4" alt="image">
                 <div class="card-body d-flex flex-column align-items-center">
                     <a href="single-product.php?product_id=<?= $product_item['product_id'] ?>">
                         <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
@@ -147,21 +49,14 @@ $searchTerm = isset($_GET['find']) ? htmlspecialchars($_GET['find']) : '';
                 </div>
             </div>
         </div>
-        <?php endforeach; ?>
-        <?php else: ?>
-        <div class="col-12 text-center">
-            <img src="../images/noproduct2.png" alt="No Products Found" style="height:300px">
-            <div class="no-results-message">
-                <h5 class="display-5 fw-normal">No Products Found</h5>
-                <p class="display-5">Sorry, we couldn't find products matching your search.</p>
-
+            <?php endforeach; ?>
+            <?php else: ?>
+            <div class="col-12 text-center my-4">
+                    <h5 class="alert-heading">No Products Found</h5>
+                    <hr>
             </div>
-
-        </div>
         <?php endif; ?>
-
     </div>
 </div>
-
 
 <?php include './footer.php'; ?>

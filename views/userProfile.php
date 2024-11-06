@@ -15,9 +15,10 @@ $user = $profileController->showProfile($userId);
 $orderController = new OrderController();
 $orders = $orderController->showUserOrders($userId);
 
+
 ?>
 
-<div class="container py-5">
+<div class="container my-5 pt-5">
     <div class="row">
         <!-- Left Column: Avatar and User Details -->
         <div class="col-md-4">
@@ -62,6 +63,7 @@ $orders = $orderController->showUserOrders($userId);
         </div>
 
         <!-- Right Column: Order Information -->
+
         <div class="col-md-8">
             <div class="card mb-3">
                 <div class="card-header bg-primary text-white">
@@ -69,36 +71,54 @@ $orders = $orderController->showUserOrders($userId);
                 </div>
                 <div class="card-body">
                     <?php if ($orders && count($orders) > 0): ?>
+
+                    <?php $currentOrderId = null; ?>
                     <?php foreach ($orders as $order): ?>
-                    <div class="card mb-3">
-                        <div class="row g-0">
+                    <?php if ($currentOrderId !== $order['order_id']): ?>
+                    <!-- Orders -->
+                    <?php if ($currentOrderId !== null): ?>
+                </div>
+            </div>
+            <?php endif;?>
+
+            <div class="card mb-4">
+                <div class="card-header bg-light d-flex justify-content-between">
+                    <strong>Order Number <?= htmlspecialchars($order['order_id']) ?></strong>
+                    <span>Status: <?= htmlspecialchars($order['order_status']) ?></span>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-0">Order Date: <?= htmlspecialchars($order['order_date']) ?></p>
+
+                        <p class="mb-0 text-end">Total: <?= htmlspecialchars($order['order_total']) ?> JD </p>
+                    </div>
+                    <hr>
+                    <h6>Items:</h6>
+                    <?php $currentOrderId = $order['order_id']; endif; ?>
+
+                    <!-- Items-->
+                    <div class="card mb-2 border-0">
+                        <div class="row g-0 align-items-center">
                             <div class="col-md-3">
-                                <img src="../images/<?php echo !empty($order['item_image']) ? htmlspecialchars($order['item_image']) : 'box_image.jpg'; ?>"
-                                    class="img-fluid rounded-start" alt="Item Image" style="height:100px; padding_top:10px">
-                                   
+                                <img src="../images/<?php echo !empty($order['product_img']) ? htmlspecialchars($order['product_img']) : 'box_image.jpg'; ?>"
+                                    class="img-fluid" alt="Product Image" style="height: 80px;">
                             </div>
                             <div class="col-md-9">
-                                <div class="card-body">
-                                    <!-- <h3>Order ID: <?= htmlspecialchars($order['order_id']) ?></h3> -->
-                                    <p>Order Date: <?= htmlspecialchars($order['order_date']) ?></p>
-                                    <p>Order Total: $<?= htmlspecialchars($order['order_total']) ?></p>
-                                    <p>Order Status: <?= htmlspecialchars($order['order_status']) ?></p>
-                                    <p>Product Name: <?= htmlspecialchars($order['product_name']) ?></p>
-                                    <!-- <p>Description: <?= htmlspecialchars($order['product_description']) ?></p> -->
-                                    <p>Price: $<?= htmlspecialchars($order['product_price']) ?></p>
-                                    <p>Quantity: <?= htmlspecialchars($order['quantity']) ?></p>
-                                    <hr>
-
+                                <div class="card-body py-2">
+                                    <p><strong>Product Name:</strong> <?= htmlspecialchars($order['product_name']) ?>
+                                    </p>
+                                    <p><strong>Price: </strong><?= htmlspecialchars($order['product_price']) ?> JD x
+                                        <?= htmlspecialchars($order['quantity']) ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <?php endforeach; ?>
-                    <?php else: ?>
-                    <p class="text-muted">No orders found.</p>
-                    <?php endif; ?>
                 </div>
             </div>
+            <?php else: ?>
+            <p class="text-muted">No orders found.</p>
+            <?php endif; ?>
         </div>
     </div>
 </div>

@@ -31,21 +31,20 @@ class UserProfileModel extends DBConnection {
         $stmt = $this->db->prepare("UPDATE users SET user_password = ? WHERE user_id = ?");
         return $stmt->execute([$hashedPassword, $userId]);
     }
-    
 }
 
 
 class OrderModel extends DBConnection {
-    protected $db;
-
-    public function __construct() {
-        $this->db = $this->connect();
-    }
-
-    public function getUserOrders($userId) {
- 
-        $sql= 
-           "SELECT 
+        protected $db;
+    
+        public function __construct() {
+            $this->db = $this->connect();
+        }
+    
+        public function getUserOrders($userId) {
+            $sql = "
+            SELECT 
+                o.order_id, -- Add order_id here
                 p.product_img, 
                 p.product_name,
                 p.product_description,
@@ -54,26 +53,25 @@ class OrderModel extends DBConnection {
                 o.order_date,
                 o.coupon_id,
                 o.order_total,
-                o.order_status 
+                o.order_status,
+                c.coupon_discount  
             FROM orders o
             JOIN order_items oi ON o.order_id = oi.orders_id
             JOIN products p ON oi.product_id = p.product_id
-            WHERE o.user_id = :userId";
-
-
-        
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-        
-        if ($stmt->execute()) {
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            return []; 
+            LEFT JOIN coupons c ON o.coupon_id = c.coupon_id
+            WHERE o.user_id = :userId
+            AND o.order_status IN ('Cancelled', 'Pending', 'Delivered')";
+        // Filter by order status
+    
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            
+            if ($stmt->execute()) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return []; 
+            }
         }
     }
-
-
-}    
-
-
+    
 ?>
