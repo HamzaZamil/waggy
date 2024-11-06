@@ -126,6 +126,11 @@ if (!$userDetails) {
                 <i class="bi bi-gift" style="color:#000"></i>
                     <span style="color:#000; font-weight: bold;">Coupon</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contactForm.php">
+                <i class="bi bi-envelope" style="color:#000"></i>
+                    <span style="color:#000; font-weight: bold;">Contact Form</span></a>
+            </li>
             
             
 

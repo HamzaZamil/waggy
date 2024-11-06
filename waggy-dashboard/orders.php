@@ -15,10 +15,10 @@ $allOrders=$orders->getAllOrders();
 
 
 <style>
-html {
-    overflow: hidden !important;
-}
-
+  html {
+        overflow: scroll !important;
+    
+    }
 .cart-wrap {
     padding: 40px 0;
     font-family: 'Open Sans', sans-serif;
