@@ -27,14 +27,14 @@
 
         .our-mission {
             padding-bottom: 1.35rem;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             background: url('../images/background-img.png') repeat;
         }
 
 
         .about-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.3rem;
         }
 
         .about-content p {
@@ -45,7 +45,7 @@
 
         .mission-content h2 {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .mission-content p {
@@ -53,12 +53,14 @@
             margin: 0 auto;
             font-size: 1.2rem;
             line-height: 1.9rem;
+            margin-bottom: 1.5rem;
         }
 
         /* Containers */
         #team {
             padding: 40px;
         }
+
         .box {
             padding: 40px;
             margin-bottom: 30px;
@@ -101,14 +103,15 @@
 <body>
 
     <!-- Main content wrapper with background applied -->
-    <div class="content-wrapper">
+    <div class="content-wrapper pt-5">
 
         <!-- About Section -->
         <section id="about">
             <div class="about-bg">
                 <div class="about-content">
                     <h1>Welcome to Waggy Shop</h1>
-                    <p>Waggy Shop is dedicated to providing premium products and care services for pets, ensuring that every pet lives a happy, healthy life.</p>
+                    <p>Waggy Shop is dedicated to providing premium products and care services for pets, ensuring that
+                        every pet lives a happy, healthy life.</p>
                 </div>
             </div>
         </section>
@@ -116,9 +119,14 @@
         <!-- Our Mission Section -->
         <section class="our-mission" id="mission">
             <div class="mission-content">
-                <h2>Our Mission</h2>
-                <p>At Waggy Shop, we’re passionate about elevating the quality of life for pets and their owners. Our mission is to bring pet owners the finest selection of tools, toys, and nutrition products, carefully crafted to support every stage of a pet's life. We believe that happy, healthy pets come from access to quality care products and expertly tailored foods, and we are committed to sourcing the best so you can focus on the joy of pet companionship.
-                    At Waggy Shop, we’re here to support a fulfilling pet lifestyle, helping you create memorable, happy moments every day.</p>
+                <h2 > Our Mission</h2>
+                <p>At Waggy Shop, we’re passionate about elevating the quality of life for pets and their owners. Our
+                    mission is to bring pet owners the finest selection of tools, toys, and nutrition products,
+                    carefully crafted to support every stage of a pet's life. We believe that happy, healthy pets come
+                    from access to quality care products and expertly tailored foods, and we are committed to sourcing
+                    the best so you can focus on the joy of pet companionship.
+                    At Waggy Shop, we’re here to support a fulfilling pet lifestyle, helping you create memorable, happy
+                    moments every day.</p>
             </div>
         </section>
 
@@ -174,6 +182,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
 
-<?php include './footer.php'; ?>
+    <?php include './footer.php'; ?>

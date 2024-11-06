@@ -15,9 +15,10 @@ $user = $profileController->showProfile($userId);
 $orderController = new OrderController();
 $orders = $orderController->showUserOrders($userId);
 
+
 ?>
 
-<div class="container py-5">
+<div class="container my-5 pt-5">
     <div class="row">
         <!-- Left Column: Avatar and User Details -->
         <div class="col-md-4">
@@ -62,6 +63,7 @@ $orders = $orderController->showUserOrders($userId);
         </div>
 
         <!-- Right Column: Order Information -->
+
         <div class="col-md-8">
             <div class="card mb-3">
                 <div class="card-header bg-primary text-white">
@@ -69,102 +71,124 @@ $orders = $orderController->showUserOrders($userId);
                 </div>
                 <div class="card-body">
                     <?php if ($orders && count($orders) > 0): ?>
+                    <?php $currentOrderId = null; ?>
                     <?php foreach ($orders as $order): ?>
-                    <div class="card mb-3">
-                        <div class="row g-0">
+                    <?php if ($currentOrderId !== $order['order_id']): ?>
+                    <?php if ($currentOrderId !== null): ?>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <!-- Order Card -->
+            <div class="card mb-4">
+                <div class="card-header bg-light d-flex justify-content-between order-header" style="cursor: pointer;"
+                    data-order-id="<?= htmlspecialchars($order['order_id']) ?>">
+                    <strong>Order Number <?= htmlspecialchars($order['order_id']) ?></strong>
+                    <span>Status: <?= htmlspecialchars($order['order_status']) ?></span>
+                </div>
+                <div class="card-body items-section" id="items-<?= htmlspecialchars($order['order_id']) ?>"
+                    style="display: none;">
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-0">Order Date: <?= htmlspecialchars($order['order_date']) ?></p>
+                        <p class="mb-0 text-end">Total: <?= htmlspecialchars($order['order_total']) ?> JD</p>
+                    </div>
+                    <hr>
+                    <h6>Items:</h6>
+                    <?php $currentOrderId = $order['order_id']; ?>
+                    <?php endif; ?>
+
+                    <!-- Item Card -->
+                    <div class="card mb-2 border-0">
+                        <div class="row g-0 align-items-center">
                             <div class="col-md-3">
-                                <img src="../images/<?php echo !empty($order['item_image']) ? htmlspecialchars($order['item_image']) : 'box_image.jpg'; ?>"
-                                    class="img-fluid rounded-start" alt="Item Image" style="height:100px; padding-top:10px">
-                                   
+                                <img src="../images/<?php echo !empty($order['product_img']) ? htmlspecialchars($order['product_img']) : 'box_image.jpg'; ?>"
+                                    class="img-fluid" alt="Product Image" style="height: 80px;">
                             </div>
                             <div class="col-md-9">
-                                <div class="card-body">
-                                    <!-- <h3>Order ID: <?= htmlspecialchars($order['order_id']) ?></h3> -->
-                                    <p>Order Date: <?= htmlspecialchars($order['order_date']) ?></p>
-                                    <p>Order Total: $<?= htmlspecialchars($order['order_total']) ?></p>
-                                    <p>Order Status: <?= htmlspecialchars($order['order_status']) ?></p>
-                                    <p>Product Name: <?= htmlspecialchars($order['product_name']) ?></p>
-                                    <p>Description: <?= htmlspecialchars($order['product_description']) ?></p>
-                                    <p>Price: $<?= htmlspecialchars($order['product_price']) ?></p>
-                                    <p>Quantity: <?= htmlspecialchars($order['quantity']) ?></p>
-                                    <hr>
-
+                                <div class="card-body py-2">
+                                    <p><strong>Product Name:</strong> <?= htmlspecialchars($order['product_name']) ?>
+                                    </p>
+                                    <p><strong>Price: </strong><?= htmlspecialchars($order['product_price']) ?> JD x
+                                        <?= htmlspecialchars($order['quantity']) ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <?php endforeach; ?>
-                    <?php else: ?>
-                    <p class="text-muted">No orders found.</p>
-                    <?php endif; ?>
                 </div>
+            </div>
+            <?php else: ?>
+            <p class="text-muted">No orders found.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+
+
+
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #fafafa">
+                <form method="POST" action="../controllers/UserProfileController.php?action=updateProfile"
+                    onsubmit="return validateEditProfileForm()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body p-2">
+                        <div class="mb-2">
+                            <label for="user_first_name" class="form-label">First Name:</label>
+                            <input type="text" class="form-control form-control-sm" id="user_first_name"
+                                name="user_first_name" value="<?php echo htmlspecialchars($user['user_first_name']); ?>"
+                                required>
+                        </div>
+                        <div class="mb-2">
+
+                            <label for="user_last_name" class="form-label">Last Name:</label>
+                            <input type="text" class="form-control form-control-sm" id="user_last_name"
+                                name="user_last_name" value="<?php echo htmlspecialchars($user['user_last_name']); ?>"
+                                required>
+                        </div>
+                        <div class="mb-2">
+
+                            <label for="user_email" class="form-label">Email:</label>
+                            <input type="email" class="form-control form-control-sm" id="user_email" name="user_email"
+                                value="<?php echo htmlspecialchars($user['user_email']); ?>" required>
+                            <span id="emailError" style="display: none;color: #FF0000;"></span>
+                        </div>
+                        <div class="mb-2">
+                            <!-- Reduce margin bottom here -->
+                            <label for="user_phone_number" class="form-label">Phone:</label>
+                            <input type="text" class="form-control form-control-sm" id="user_phone_number"
+                                name="user_phone_number"
+                                value="<?php echo htmlspecialchars($user['user_phone_number']); ?>" required>
+                            <span id="phoneError" style="display: none;color: #FF0000;"></span>
+                        </div>
+                        <div class="mb-2">
+                            <!-- Reduce margin bottom here -->
+                            <label for="user_address" class="form-label">Address:</label>
+                            <input type="text" class="form-control form-control-sm" id="user_address"
+                                name="user_address"
+                                value="<?php echo htmlspecialchars($user['user_address_line_one']); ?>" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer gap-2 d-md-flex ">
+
+                        <button type="submit" class="btn btn-outline-primary  w-100 h-25">Save Changes</button>
+                        <button type="button" class="btn btn-outline-secondary  w-100 h-25"
+                            data-bs-dismiss="modal">Cancel</button>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
 </div>
 
 
-
-<!-- Edit Profile Modal -->
-<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" style="background-color: #fafafa">
-            <form method="POST" action="../controllers/UserProfileController.php?action=updateProfile"
-                onsubmit="return validateEditProfileForm()">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                </div>
-                <div class="modal-body p-2">
-                    <div class="mb-2">
-                        <label for="user_first_name" class="form-label">First Name:</label>
-                        <input type="text" class="form-control form-control-sm" id="user_first_name"
-                            name="user_first_name" value="<?php echo htmlspecialchars($user['user_first_name']); ?>"
-                            required>
-                    </div>
-                    <div class="mb-2">
-
-                        <label for="user_last_name" class="form-label">Last Name:</label>
-                        <input type="text" class="form-control form-control-sm" id="user_last_name"
-                            name="user_last_name" value="<?php echo htmlspecialchars($user['user_last_name']); ?>"
-                            required>
-                    </div>
-                    <div class="mb-2">
-
-                        <label for="user_email" class="form-label">Email:</label>
-                        <input type="email" class="form-control form-control-sm" id="user_email" name="user_email"
-                            value="<?php echo htmlspecialchars($user['user_email']); ?>" required>
-                        <span id="emailError" style="display: none;color: #FF0000;"></span>
-                    </div>
-                    <div class="mb-2">
-                        <!-- Reduce margin bottom here -->
-                        <label for="user_phone_number" class="form-label">Phone:</label>
-                        <input type="text" class="form-control form-control-sm" id="user_phone_number"
-                            name="user_phone_number" value="<?php echo htmlspecialchars($user['user_phone_number']); ?>"
-                            required>
-                        <span id="phoneError" style="display: none;color: #FF0000;"></span>
-                    </div>
-                    <div class="mb-2">
-                        <!-- Reduce margin bottom here -->
-                        <label for="user_address" class="form-label">Address:</label>
-                        <input type="text" class="form-control form-control-sm" id="user_address" name="user_address"
-                            value="<?php echo htmlspecialchars($user['user_address_line_one']); ?>" required>
-                    </div>
-                </div>
-                <div class="modal-footer gap-2 d-md-flex ">
-
-                    <button type="submit" class="btn btn-outline-primary  w-100 h-25">Save Changes</button>
-                    <button type="button" class="btn btn-outline-secondary  w-100 h-25"
-                        data-bs-dismiss="modal">Cancel</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div>
-
-
+<?php include 'footer.php'; ?>
 
 
 <script>
@@ -229,6 +253,17 @@ function togglePasswordFields() {
     const passwordFields = document.getElementById("passwordFields");
     passwordFields.style.display = passwordFields.style.display === "none" ? "block" : "none";
 }
-</script>
 
-<?php require_once 'footer.php'; ?>
+// show-hide order items
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".order-header").forEach(function(header) {
+        header.addEventListener("click", function() {
+            var orderId = header.getAttribute("data-order-id");
+
+            var itemsSection = document.getElementById("items-" + orderId);
+            itemsSection.style.display = itemsSection.style.display === "none " ? "block" :
+                "none";
+        });
+    });
+});
+</script>
