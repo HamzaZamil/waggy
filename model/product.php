@@ -41,5 +41,17 @@ class Product extends DBConnection {
         return $result ? $result['category_id'] : null;
     }
 
+
+    public function searchProducts($searchTerm) {
+    $stmt = $this->db->prepare("SELECT * FROM products WHERE product_name LIKE :searchTerm");
+    $searchTerm = "%$searchTerm%"; // Use wildcard search
+    $stmt->bindParam(':searchTerm', $searchTerm, PDO::PARAM_STR);
     
+    if ($stmt->execute()) {
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    return []; 
+}
+
 }

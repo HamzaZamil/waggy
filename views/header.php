@@ -29,7 +29,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap"
         rel="stylesheet">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="../css/profileStyle.css">
 
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -42,6 +42,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
+        
     </script>
 
     <!-- Cart Style -->
@@ -306,8 +307,58 @@ $isLoggedIn = isset($_SESSION['user_id']);
                 margin-right: 10px;
             }
         }
-    </style>
+        #cart_page #code {
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+        background-repeat: no-repeat;
+        background-position-x: 95%;
+        background-position-y: center;
+        }
 
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 10px 20px;
+        }
+
+        #logo, #links, #icons {
+            display: flex;
+            align-items: center;
+        }
+
+        #icons {
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        #logo img {
+            max-width: 120px;
+        }
+
+        .navbar-toggler {
+            margin-right: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #cart_page .card {
+                margin: 3vh auto;
+            }
+
+            #cart_page .cart {
+                padding: 4vh;
+                border-bottom-left-radius: unset;
+                border-top-right-radius: 1rem;
+            }
+
+            #cart_page .summary {
+                border-top-right-radius: unset;
+                border-bottom-left-radius: 1rem;
+            }
+        }
+    </style>
+    
 
 </head>
 
@@ -320,8 +371,10 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <!-- NAVBAR -->
     <header>
         <div class="container py-1">
-            <div class="row py-2 align-items-center"> <!-- Adjusted to keep everything centered -->
-                <div class="col-sm-4 col-lg-3 text-center text-sm-start d-flex align-items-center justify-content-start">
+            <nav class="navbar navbar-expand-lg justify-content-center fixed-top p-2 px-5"
+                style="background-color: rgba(255, 255, 255, 0.8);">
+                <div id="logo" class="col-sm-4 col-lg-3 text-center text-sm-start d-flex align-items-center justify-content-start"
+                    >
                     <!-- Logo aligned left -->
                     <div class="main-logo me-3">
                         <a href="index.php">
