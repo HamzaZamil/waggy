@@ -94,7 +94,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                     ) {
                 ?>
                 <div class="item col-md-4 col-lg-3 my-4">
-                    <div class="card position-relative">
+                    <div class="card position-relative" style="background:#f9f9fa; border-radius:15px;">
 
                         <img src="../inserted_img/<?=$product_item['product_img']?>" class="img-fluid rounded-4"
                             alt="image">
@@ -177,7 +177,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                     ) {
                 ?>
                 <div class="item col-md-4 col-lg-3 my-4">
-                    <div class="card position-relative">
+                    <div class="card position-relative" style="background:#f9f9fa; border-radius:15px;">
                         <img src="../inserted_img/<?=$product_item['product_img']?>" class="img-fluid rounded-4"
                             alt="image">
                         <div class="card-body d-flex flex-column align-items-center">
@@ -254,7 +254,7 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
                     ) {
                 ?>
                 <div class="item col-md-4 col-lg-3 my-4">
-                    <div class="card position-relative">
+                    <div class="card position-relative " style="background:#f9f9fa; border-radius:15px;">
                         <img src="../inserted_img/<?=$product_item['product_img']?>" class="img-fluid rounded-4"
                             alt="image">
                         <div class="card-body d-flex flex-column align-items-center ">

@@ -57,49 +57,50 @@ try {
     <title>Contact Us | Waggy</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
+
 <style>
   
 
-#contact {
-    background: linear-gradient(to right, #faf4ed);
-}
-#contact h2 {
-    color: #343a40;
-    margin-bottom: 30px;
-}
+    #contact {
+        background: linear-gradient(to right, #faf4ed);
+    }
+    #contact h2 {
+        color: #343a40;
+        margin-bottom: 30px;
+    }
 
-#contactForm {
-    border: 2px solid #007bff; /* Light blue border */
-    transition: border-color 0.3s ease;
-    background: url('../images/background-img.png') no-repeat;
+    #contactForm {
+        border: 2px solid #007bff; /* Light blue border */
+        transition: border-color 0.3s ease;
+        background: url('../images/background-img.png') no-repeat;
 
-}
+    }
 
-#contactForm:hover {
-    border-color: #0056b3; /* Darker blue on hover */
-}
+    #contactForm:hover {
+        border-color: #0056b3; /* Darker blue on hover */
+    }
 
 
-.form-control {
-    border-radius: 0.5rem; /* Rounded corners for inputs */
-    border: 1px solid #ced4da; /* Default border color */
-    transition: border-color 0.3s ease; /* Smooth border color transition */
-}
+    .form-control {
+        border-radius: 0.5rem; /* Rounded corners for inputs */
+        border: 1px solid #ced4da; /* Default border color */
+        transition: border-color 0.3s ease; /* Smooth border color transition */
+    }
 
-.form-control:focus {
-    border-color: #faf4ed; /* Change border color on focus */
-    box-shadow: 0 0 5px #faf4ed; /* Add shadow on focus */
-}
+    .form-control:focus {
+        border-color: #faf4ed; /* Change border color on focus */
+        box-shadow: 0 0 5px #faf4ed; /* Add shadow on focus */
+    }
 
-/* Enhance the submit button */
-.btn-dark {
-    border-radius: 0.5rem; 
-    font-weight: bold; 
-    padding: 12px; 
-    background-color: #1a1a1a;
-    color: #ced4da;
-}
-    
+    /* Enhance the submit button */
+    .btn-dark {
+        border-radius: 0.5rem; 
+        font-weight: bold; 
+        padding: 12px; 
+        background-color: #1a1a1a;
+        color: #ced4da;
+    }
+        
     
 
 </style>
@@ -107,7 +108,7 @@ try {
 
 <section id="contact" class="my-5 pt-5">
     <div class="container">
-        <h2 class="text-center display-3 fw-normal">Contact Us</h2>
+        <h2 class="text-center display-5 fw-normal">Contact Us</h2>
         <div class="row justify-content-center my-5">
             <div class="col-md-8">
                 <form id="contactForm" class="p-4 border rounded-2 shadow-lg bg-light">

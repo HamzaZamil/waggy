@@ -20,59 +20,59 @@ $searchTerm = isset($_GET['find']) ? htmlspecialchars($_GET['find']) : '';
 
 
 <style>
-.no-results-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 400px;
-    text-align: center;
-    background-color: rgba(209, 190, 170, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-}
-
-
-.no-results-message h5 {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.no-results-message p {
-    font-size: 1rem;
-    color: #777;
-}
-
-#search-form {
-    display: flex;
-    width: 100%;
-}
-
-
-@media (max-width: 767px) {
-    #search-form {
-        display: none;
-        margin-top: 5px;
-    }
-
-
-    #search-bar.active #search-form {
+    .no-results-container {
         display: flex;
-        z-index: 100;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 400px;
+        text-align: center;
+        background-color: rgba(209, 190, 170, 0.5);
+        padding: 20px;
+        border-radius: 10px;
     }
 
 
-    #search-input {
-        width: auto;
-        max-width: 200px;
+    .no-results-message h5 {
+        font-size: 1.5rem;
+        font-weight: bold;
     }
 
-    .search {
-        width: auto;
-        max-width: 200px;
-        margin-left: 25px;
+    .no-results-message p {
+        font-size: 1rem;
+        color: #777;
     }
-}
+
+    #search-form {
+        display: flex;
+        width: 100%;
+    }
+
+
+    @media (max-width: 767px) {
+        #search-form {
+            display: none;
+            margin-top: 5px;
+        }
+
+
+        #search-bar.active #search-form {
+            display: flex;
+            z-index: 100;
+        }
+
+
+        #search-input {
+            width: auto;
+            max-width: 200px;
+        }
+
+        .search {
+            width: auto;
+            max-width: 200px;
+            margin-left: 25px;
+        }
+    }
 </style>
 
 

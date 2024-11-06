@@ -2,7 +2,7 @@
 
 
 <!-- Hero Section -->
-<section id="banner" class="pt-4 h-50" style="height:300px;">
+<section id="banner" class="pt-5 h-50 mt-4" style="height:300px;">
     <div id="carouselExampleIndicators" class="carousel slide h-25" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -22,12 +22,7 @@
                     <p>The Best for Your Bestie</p>
                 </div>
             </div>
-<style>
-    .carousel-inner{
-     height: 300px;
-}
 
-</style>
             <!-- <div class="carousel-item active">
                 <img src="../images/tryHERO6.jpg" class="d-block w-100" alt="header">
                 <div class="position-absolute top-50 start-50 translate-middle text-center text-overlay"
@@ -41,14 +36,14 @@
             </div> -->
             <!-- Add more carousel items here -->
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleIndicators"
             data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="carousel-control-prev-icon bg-transparent" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleIndicators"
             data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="carousel-control-next-icon bg-transparent" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
@@ -98,61 +93,61 @@
     </div>
  -->
 <style>
-@media (max-width: 768px) {
-    #banner .carousel-inner .carousel-item {
-        height: 300px;
+    @media (max-width: 768px) {
+        #banner .carousel-inner .carousel-item {
+            height: 300px;
+
+        }
+
+        #banner .carousel-inner img {
+            object-fit: cover;
+        }
+
+        #banner .carousel-inner .text-overlay {
+            position: relative;
+            top: auto;
+            padding: 10px;
+            margin-top: 10px;
+            width: 90%;
+            max-width: none;
+            text-align: center;
+        }
 
     }
 
-    #banner .carousel-inner img {
-        object-fit: cover;
+
+    /* Mobile Styles */
+
+    @media (max-width: 576px) {
+        #banner .carousel-inner .carousel-item {
+            height: auto;
+        }
+
+        #banner .carousel-inner img {
+            object-fit: cover;
+            height: auto;
+        }
+
+        #banner .carousel-inner .text-overlay {
+            position: relative;
+            top: auto;
+            padding: 10px;
+            margin-top: 10px;
+            width: 90%;
+            max-width: none;
+            text-align: center;
+        }
+
+        #banner h3 {
+            font-size: 1.2rem;
+            /* Smaller font size for mobile */
+        }
+
+        .secondary-font {
+            font-size: 0.8rem;
+            /* Adjust secondary font size */
+        }
     }
-
-    #banner .carousel-inner .text-overlay {
-        position: relative;
-        top: auto;
-        padding: 10px;
-        margin-top: 10px;
-        width: 90%;
-        max-width: none;
-        text-align: center;
-    }
-
-}
-
-
-/* Mobile Styles */
-
-@media (max-width: 576px) {
-    #banner .carousel-inner .carousel-item {
-        height: auto;
-    }
-
-    #banner .carousel-inner img {
-        object-fit: cover;
-        height: auto;
-    }
-
-    #banner .carousel-inner .text-overlay {
-        position: relative;
-        top: auto;
-        padding: 10px;
-        margin-top: 10px;
-        width: 90%;
-        max-width: none;
-        text-align: center;
-    }
-
-    #banner h3 {
-        font-size: 1.2rem;
-        /* Smaller font size for mobile */
-    }
-
-    .secondary-font {
-        font-size: 0.8rem;
-        /* Adjust secondary font size */
-    }
-}
 </style>
 
 
@@ -305,7 +300,7 @@
 <section id="testimonial" class="my-5 py-5">
     <div class="container">
         <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-            <h2 class="display-3 fw-normal">Celebrating 100+ Happy Customers and Counting!</h2>
+            <h2 class="display-5 fw-normal">Celebrating 100+ Happy Customers and Counting!</h2>
         </div>
         <div class="row align-items-stretch">
             <!-- Left Section for Testimonials Carousel -->
@@ -381,57 +376,57 @@
 </section>
 
 <style>
-.testimonial-box {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-}
-
-
-.testimonial-content {
-    text-align: center;
-}
-
-/* Match the height of the left and right sections */
-#testimonial .row {
-    height: 100%;
-    min-height: 500px;
-    /* Minimum height for large screens */
-}
-
-/* Carousel and Testimonial Box Styling */
-.carousel,
-.carousel-inner,
-.carousel-item,
-.testimonial-box {
-    height: 100%;
-}
-
-/* Right Section Image Styling */
-.testimonial-image {
-    background-image: url('../images/happydog.jpg');
-    /* Replace with actual image path */
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-}
-
-/* Carousel arrows in black */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: black;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-}
-
-/* Hide image on smaller screens */
-@media (max-width: 992px) {
-    .testimonial-image {
-        display: none;
+    ``.testimonial-box {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
     }
-}
+
+
+    .testimonial-content {
+        text-align: center;
+    }
+
+    /* Match the height of the left and right sections */
+    #testimonial .row {
+        height: 100%;
+        min-height: 500px;
+        /* Minimum height for large screens */
+    }
+
+    /* Carousel and Testimonial Box Styling */
+    .carousel,
+    .carousel-inner,
+    .carousel-item,
+    .testimonial-box {
+        height: 100%;
+    }
+
+    /* Right Section Image Styling */
+    .testimonial-image {
+        background-image: url('../images/happydog.jpg');
+        /* Replace with actual image path */
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+    }
+
+    /* Carousel arrows in black */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: black;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Hide image on smaller screens */
+    @media (max-width: 992px) {
+        .testimonial-image {
+            display: none;
+        }
+    }
 </style>
 
 
@@ -442,7 +437,7 @@
     <div class="container ">
         <div class="row my-5 py-5">
             <div class="offset-md-3 col-md-6 my-5 ">
-                <h2 class="display-3 fw-normal text-center">Get 20% Off on <span class="text-primary">first
+                <h2 class="display-5 fw-normal text-center">Get 20% Off on <span class="text-primary">first
                         Purchase</span>
                 </h2>
 
@@ -459,7 +454,7 @@
 <!-- Companies Logo Section -->
 <section id="banner-2" class="my-3" style="height: auto;">
     <div class="container">
-        <h2 class="display-3 fw-normal text-center">Favorite Brands Among Our Customers</h2>
+        <h2 class="display-5 fw-normal text-center">Favorite Brands Among Our Customers</h2>
         <div class="row my-5 align-items-center justify-content-center">
             <!-- Logo 1 -->
             <div class="col-6 col-md-2 text-center mb-4">
@@ -501,12 +496,12 @@
     </div>
 </section>
 
-
+<hr class="container">
 <!-- Services Section -->
 <section id="service">
     <div class="container py-5 my-5">
         <div class="row g-md-5 pt-4">
-            <h2 class="display-3 fw-normal text-center">Our Services</h2>
+            <h2 class="display-5 fw-normal text-center">Our Services</h2>
             <div class="col-6 col-md-3 my-3">
                 <div class="card border-0 text-center d-flex align-items-center justify-content-center"
                     style="min-height: 300px; padding: 10px;">
