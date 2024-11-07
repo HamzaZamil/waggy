@@ -18,10 +18,12 @@ $allOrders=$orders->getAllOrders();
       html 
     {
         overflow: hidden !important;
+        
+        overflow: scroll !important;
+    
+    
     }
-    body{margin-top:20px;
-background:#eee;
-}
+
 
 /* ========================================================================
  * MESSAGES
@@ -139,18 +141,36 @@ background:#eee;
     width:50px;
     height:50px;
 }
+.modal {
+    display: none; /* Hidden by default, will be shown with JavaScript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%; /* Responsive width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
 </style>
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Orders dashboard</h1>
 
-    <div class="row">
-        <!-- <div class="pt-5 pb-3">
-            <h2>Orders Table</h2>
-        </div> -->
-        <table class="responsive-table" id="myTable">
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800 text-center">Contact Form</h1>
+
+    <div class="row justify-content-center w-100">
+        <table class="table" id="myTable">
             <thead>
             <tr>
                 <th>Message Number</th>
@@ -161,16 +181,14 @@ background:#eee;
             </thead>
             <tbody>
                 <?php
-                // Check if $allOrders is defined and not empty
                 if (!empty($allOrders)) {
                     foreach ($allOrders as $order) {
                         echo "<tr id='order-row-{$order['order_id']}'>
                                 <td data-label='order ID'>{$order['order_id']}</td>
                                 <td data-label='order user_name'>{$order['user_name']}</td>
                                 <td data-label='order first Name'>{$order['order_date']}</td>
-                         
                                 <td>
-                                    <button class='edit-btn' style = 'style=background-color: #000; color: white; padding: 10px; border: none; cursor: pointer; width: 100px; margin-top: 20px;' onclick='openOrderModal(
+                                    <button class='edit-btn' onclick='openOrderModal(
                                         \"{$order['order_id']}\",
                                         \"{$order['user_name']}\",
                                         \"{$order['order_date']}\",
@@ -178,12 +196,11 @@ background:#eee;
                                         \"{$order['order_status']}\",
                                         \"{$order['order_discount']}\"
                                     )'>View order</button>
-                                    
                                 </td>
                             </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='7'>No orders found.</td></tr>";
+                    echo "<tr><td colspan='4'>No orders found.</td></tr>";
                 }
                 ?>
             </tbody>
@@ -191,35 +208,21 @@ background:#eee;
     </div>
 
     <!-- View Modal -->
-    <div class="modal" id="viewModal" style="display: none; justify-content: center; align-items: center; overflow: scroll;   ">
-        <div class="modal-content" style=" text-align: center; margin:auto;">
-            <button class="close-btn" style="background:#db4f4f;" onclick="closeEditModal()">X</button>
-            <div class="container">
-<div class="row message-wrapper rounded shadow mb-20">
-    
-    <div class="col-12 message-sideright" >
-        <div class="panel" style="margin:auto;">
-      
-                        <h4 class="media-heading">Rebecca Cabean</h4>
+<div class="modal" id="viewModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeEditModal()">X</button>
+        <h4>Rebecca Cabean</h4>
+        <p>Email:</p>
+        <hr>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <br>
+        <p>Thanks! <br>Rebecca.</p>
+    </div>
+</div>
 
-            <div class="panel-body">
-                <p class="lead">
-                    Email :
-                </p>
-                <hr>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <br>
-                <p>
-                    Thanks! <br>
-                    Rebecca.
-                </p>
-            </div><!-- /.panel-body -->
-        </div><!-- /.panel -->
-        
-</div>
-</div>
+
 <!-- End of Content Wrapper -->
 
 <!-- Scroll to Top Button-->
@@ -286,6 +289,18 @@ background:#eee;
             let table = new DataTable('#myTable', {
     // options
 });
+</script>
+<script>
+
+function closeEditModal() {
+    document.getElementById('viewModal').style.display = "none";
+}
+
+function openOrderModal() {
+    document.getElementById('viewModal').style.display = "flex";
+}
+
+
 </script>
 
 </body>

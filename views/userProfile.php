@@ -188,9 +188,6 @@ $orders = $orderController->showUserOrders($userId);
 </div>
 
 
-<?php include 'footer.php'; ?>
-
-
 <script>
 // Validate password change form
 function validatePasswordForm() {
@@ -266,4 +263,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+    
 </script>
+    <?php include 'footer.php'; ?>
+    
