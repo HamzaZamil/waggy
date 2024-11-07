@@ -17,8 +17,8 @@ $orders = $orderController->showUserOrders($userId);
 
 
 ?>
-
-<div class="container my-5 pt-5">
+<section>
+<div class="container my-5 py-5">
     <div class="row">
         <!-- Left Column: Avatar and User Details -->
         <div class="col-md-4">
@@ -123,73 +123,70 @@ $orders = $orderController->showUserOrders($userId);
         </div>
     </div>
 
+</div>
 
 
-    <!-- Edit Profile Modal -->
-    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" style="background-color: #fafafa">
-                <form method="POST" action="../controllers/UserProfileController.php?action=updateProfile"
-                    onsubmit="return validateEditProfileForm()">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #fafafa">
+            <form method="POST" action="../controllers/UserProfileController.php?action=updateProfile"
+                onsubmit="return validateEditProfileForm()">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
+                </div>
+                <div class="modal-body p-2">
+                    <div class="mb-2">
+                        <label for="user_first_name" class="form-label">First Name:</label>
+                        <input type="text" class="form-control form-control-sm" id="user_first_name"
+                            name="user_first_name" value="<?php echo htmlspecialchars($user['user_first_name']); ?>"
+                            required>
                     </div>
-                    <div class="modal-body p-2">
-                        <div class="mb-2">
-                            <label for="user_first_name" class="form-label">First Name:</label>
-                            <input type="text" class="form-control form-control-sm" id="user_first_name"
-                                name="user_first_name" value="<?php echo htmlspecialchars($user['user_first_name']); ?>"
-                                required>
-                        </div>
-                        <div class="mb-2">
+                    <div class="mb-2">
 
-                            <label for="user_last_name" class="form-label">Last Name:</label>
-                            <input type="text" class="form-control form-control-sm" id="user_last_name"
-                                name="user_last_name" value="<?php echo htmlspecialchars($user['user_last_name']); ?>"
-                                required>
-                        </div>
-                        <div class="mb-2">
-
-                            <label for="user_email" class="form-label">Email:</label>
-                            <input type="email" class="form-control form-control-sm" id="user_email" name="user_email"
-                                value="<?php echo htmlspecialchars($user['user_email']); ?>" required>
-                            <span id="emailError" style="display: none;color: #FF0000;"></span>
-                        </div>
-                        <div class="mb-2">
-                            <!-- Reduce margin bottom here -->
-                            <label for="user_phone_number" class="form-label">Phone:</label>
-                            <input type="text" class="form-control form-control-sm" id="user_phone_number"
-                                name="user_phone_number"
-                                value="<?php echo htmlspecialchars($user['user_phone_number']); ?>" required>
-                            <span id="phoneError" style="display: none;color: #FF0000;"></span>
-                        </div>
-                        <div class="mb-2">
-                            <!-- Reduce margin bottom here -->
-                            <label for="user_address" class="form-label">Address:</label>
-                            <input type="text" class="form-control form-control-sm" id="user_address"
-                                name="user_address"
-                                value="<?php echo htmlspecialchars($user['user_address_line_one']); ?>" required>
-                        </div>
+                        <label for="user_last_name" class="form-label">Last Name:</label>
+                        <input type="text" class="form-control form-control-sm" id="user_last_name"
+                            name="user_last_name" value="<?php echo htmlspecialchars($user['user_last_name']); ?>"
+                            required>
                     </div>
-                    <div class="modal-footer gap-2 d-md-flex ">
+                    <div class="mb-2">
 
-                        <button type="submit" class="btn btn-outline-primary  w-100 h-25">Save Changes</button>
-                        <button type="button" class="btn btn-outline-secondary  w-100 h-25"
-                            data-bs-dismiss="modal">Cancel</button>
+                        <label for="user_email" class="form-label">Email:</label>
+                        <input type="email" class="form-control form-control-sm" id="user_email" name="user_email"
+                            value="<?php echo htmlspecialchars($user['user_email']); ?>" required>
+                        <span id="emailError" style="display: none;color: #FF0000;"></span>
                     </div>
+                    <div class="mb-2">
+                        <!-- Reduce margin bottom here -->
+                        <label for="user_phone_number" class="form-label">Phone:</label>
+                        <input type="text" class="form-control form-control-sm" id="user_phone_number"
+                            name="user_phone_number" value="<?php echo htmlspecialchars($user['user_phone_number']); ?>"
+                            required>
+                        <span id="phoneError" style="display: none;color: #FF0000;"></span>
+                    </div>
+                    <div class="mb-2">
+                        <!-- Reduce margin bottom here -->
+                        <label for="user_address" class="form-label">Address:</label>
+                        <input type="text" class="form-control form-control-sm" id="user_address" name="user_address"
+                            value="<?php echo htmlspecialchars($user['user_address_line_one']); ?>" required>
+                    </div>
+                </div>
+                <div class="modal-footer gap-2 d-md-flex ">
 
-                </form>
-            </div>
+                    <button type="submit" class="btn btn-outline-primary  w-100 h-25">Save Changes</button>
+                    <button type="button" class="btn btn-outline-secondary  w-100 h-25"
+                        data-bs-dismiss="modal">Cancel</button>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
 
 
-<?php include 'footer.php'; ?>
-
+        
 
 <script>
 // Validate password change form
@@ -259,11 +256,14 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".order-header").forEach(function(header) {
         header.addEventListener("click", function() {
             var orderId = header.getAttribute("data-order-id");
-
             var itemsSection = document.getElementById("items-" + orderId);
-            itemsSection.style.display = itemsSection.style.display === "none " ? "block" :
+            itemsSection.style.display = itemsSection.style.display === "none" ? "block" :
                 "none";
         });
     });
 });
 </script>
+
+</section>
+
+<?php include 'footer.php'; ?>

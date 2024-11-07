@@ -1,8 +1,14 @@
 <?php include './header.php'; ?>
 
-
+<div class="carousel-item">
+  <img src="..." alt="...">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>...</h5>
+    <p>...</p>
+  </div>
+</div>
 <!-- Hero Section -->
-<section id="banner" class="pt-5 h-50 mt-4" style="height:300px;">
+<section id="banner" class="pt-5 h-50 mt-4">
     <div id="carouselExampleIndicators" class="carousel slide h-25" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -15,37 +21,37 @@
         <div class="carousel-inner position-relative">
 
             <div class="carousel-item active">
-                <img src="../images/tryHERO6.jpg" class="d-block w-100" alt="header">
+                <img src="../images/bgHERO.jpg" class="d-block w-100" alt="header" style="height:550px;" >
+                <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.7); padding: 1rem; border-radius: 8px;">
+    <h5 style="margin: 0; font-size: 2rem;">The Essentials to Keep Tails Wagging <span>and Pets Purring</span></h5>
+    <hr>
+    <p style="color:black; margin: 0;">The Best for Your Bestie</p>
+</div>
+
+            </div>
+            <div class="carousel-item ">
+                <img src="../images/addog.png" class="d-block w-100" alt="header" style="height:550px;">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color:white; margin: 0; font-size: 1.5rem;">The Essentials to Keep Tails Wagging <span>and Pets Purring</span></h5>
-                    <hr>
-                    <p>The Best for Your Bestie</p>
+                    
+                </div>
+            </div>
+            <div class="carousel-item ">
+                <img src="../images/catad0.png" class="d-block w-100" alt="header" style="height:550px;">
+                <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
 
-            <!-- <div class="carousel-item active">
-                <img src="../images/tryHERO6.jpg" class="d-block w-100" alt="header">
-                <div class="position-absolute top-50 start-50 translate-middle text-center text-overlay"
-                     style="background: rgba(209, 190, 170, 0.8); padding: 5px; border-radius: 5px; width: 80%; max-width: 500px;">
-                    <h3 class="fw-normal" style="color:white; margin: 0; font-size: 1.5rem;">
-                        The Essentials to Keep Tails Wagging <span>and Pets Purring</span>
-                    </h3>
-                    <hr>
-                    <div class="secondary-font text-uppercase mb-2" style="color: #C65D23; font-size: 0.8rem;">The Best for Your Bestie</div>
-                </div>
-            </div> -->
-            <!-- Add more carousel items here -->
+           
         </div>
-        <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon bg-transparent" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon bg-transparent" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span style="color: black; font-size: 2rem;">&#10094;</span> 
+    <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span style="color: black; font-size: 2rem;">&#10095;</span> 
+    <span class="visually-hidden">Next</span>
+</button>
+
     </div>
 </section>
 
