@@ -72,10 +72,7 @@ $address = $cartController->getAddress();
             <div class="col-md-4 summary">
                 <h5><b>Checkout</b></h5>
                 <hr>
-                <div class="row">
-                    <div class="col text-left">ITEMS: <?= $cartItemsNo ?></div>
-                    <div class="totalCart col text-right"> <?= $cartController->totalCart(); ?> JOD</div>
-                </div>
+
                 <form method="POST" action="../controllers/couponController.php" style="margin-bottom:-10px;">
                     <p>Shipping Address </p>
                     <input id="address" class="form-control" placeholder="<?= $address ?>" style="margin-top:-20px;">
@@ -85,8 +82,14 @@ $address = $cartController->getAddress();
                     <input id="couponInput" name="coupon" class="form-control" placeholder="Enter your coupon" style="margin-top:-20px;">
 
                     <input type="submit" id="applyCoupon" name="submit_button" value="Add Coupon" style="width:100px;margin-top:-10px;" class="btn btn-primary btn-sm ">
+
                     <div class="row">
-                        <div class="col text-left .fs-6">Disc. Price :</div>
+                        <div class="col text-left">Subtotal :</div>
+                        <div class="totalCart col text-right"> <?= $cartController->totalCart(); ?> JOD</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col text-left .fs-6">Discount:</div>
                         <div class="col text-right">
                             <?php
                             if (isset($_GET['discount'])) {
@@ -107,10 +110,11 @@ $address = $cartController->getAddress();
                     <div class="totalCartAfterCoupon col text-right">
                         <?php
                         if (isset($_GET['discount'])) {
-                            $priceAfterDiscount = $cartController->totalCart() - $_GET['discount'];
-                            echo $priceAfterDiscount + 5;
+                            $_SESSION['total_price'] = $cartController->totalCart() - $_GET['discount'] + 5;
+                            echo $_SESSION['total_price'] ;
                         } else {
-                            echo $cartController->totalCart() + 5;
+                            $_SESSION['total_price'] = $cartController->totalCart() + 5;
+                            echo $_SESSION['total_price'];
                         }
                         ?>
                         JOD

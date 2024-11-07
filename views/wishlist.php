@@ -34,9 +34,9 @@ include 'header.php';
                   <form method="POST" action="wishlist.php">
                     <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($item['product_id']); ?>">
                     <input type="hidden" name="action" value="remove">
-                    <button type="submit" class="btn-wishlist px-2 pt-3" style="border:1px solid lightgrey; border-radius:6px;padding:10px;background:none;">
+                    <button type="submit" class="btn-wishlist px-2 pt-3" style="border:1px solid lightgrey; border-radius:6px;padding:5px;background:none;">
                       <iconify-icon icon="mdi:heart" class="fs-6"></iconify-icon>
-                      <span class="fs-6">Remove</span>
+                      <!-- <span class="fs-6">Remove</span> -->
                     </button>
                   </form>
                 </div>
