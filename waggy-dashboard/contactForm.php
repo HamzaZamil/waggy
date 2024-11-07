@@ -166,8 +166,8 @@ $allOrders=$orders->getAllOrders();
 </style>
 
 
+<h1 class="h3 mb-4 text-gray-800 ">Contact Form</h1>
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800 text-center">Contact Form</h1>
 
     <div class="row justify-content-center w-100">
         <table class="table" id="myTable">
