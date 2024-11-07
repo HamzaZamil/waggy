@@ -34,12 +34,12 @@ class order
     $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
     $stmt->execute();
 
-    // Fetch the result after successful execution
+   
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    // Log the exception message or handle it as needed
+    
     echo "Error: " . $e->getMessage();
-    return false;  // Return false or an appropriate response in case of an error
+    return false;  
 }
 
     }
@@ -47,13 +47,13 @@ class order
     public function getTotalSales() {
         $query = "SELECT SUM(order_total) AS total_sales
                   FROM orders               
-                WHERE order_status IN ('Delivered', 'Pending')"; // Adjust the status as needed
+                WHERE order_status IN ('Delivered', 'Pending')"; 
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['total_sales'] ? (float)$result['total_sales'] : 0; // Return total sales or 0 if none
+        return $result['total_sales'] ? (float)$result['total_sales'] : 0; 
     }
 
     public function getOrderCount() {
@@ -63,7 +63,7 @@ class order
         $stmt->execute();
     
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['total_orders'] ? (int)$result['total_orders'] : 0; // Return total orders or 0 if none
+        return $result['total_orders'] ? (int)$result['total_orders'] : 0; 
     }
 
     public function getMonthlySales() {
