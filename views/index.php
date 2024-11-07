@@ -21,7 +21,7 @@
         <div class="carousel-inner position-relative">
 
             <div class="carousel-item active">
-                <img src="../images/bgHERO.jpg" class="d-block w-100" alt="header" style="height:550px;" >
+                <img src="../images/bgHERO.jpg" class="d-block w-100" alt="header" style="height:70%;" >
                 <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.7); padding: 1rem; border-radius: 8px;">
     <h5 style="margin: 0; font-size: 2rem;">The Essentials to Keep Tails Wagging <span>and Pets Purring</span></h5>
     <hr>
@@ -30,13 +30,13 @@
 
             </div>
             <div class="carousel-item ">
-                <img src="../images/addog.png" class="d-block w-100" alt="header" style="height:550px;">
+                <img src="../images/addog.png" class="d-block w-100" alt="header" style="height:70%;">
                 <div class="carousel-caption d-none d-md-block">
                     
                 </div>
             </div>
             <div class="carousel-item ">
-                <img src="../images/catad0.png" class="d-block w-100" alt="header" style="height:550px;">
+                <img src="../images/catad0.png" class="d-block w-100" alt="header" style="height:70%;">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
