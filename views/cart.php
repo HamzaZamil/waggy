@@ -11,7 +11,7 @@ $address = $cartController->getAddress();
 // print_r($coupons);
 ?>
 
-<div id="cart_page" class="container my-5">
+<div id="cart_page" class="container my-5 pt-5">
     <div class="card">
         <div class="row">
             <div class="col-md-8 cart">
