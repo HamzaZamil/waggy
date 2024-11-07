@@ -1,78 +1,15 @@
  <!-- Footer -->
-  
 
- <footer id="footer" style="margin-top:0;background: url('../images/background-img.png') no-repeat; margin-bottom: -100px;">
-     <div class="container my-5 py-5">
-         <div class="row">
-
-             <div class="col-md-4">
-                 <div class="footer-menu">
-                     <img src="../images/logo.png" alt="logo">
-                     <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
-                     <div class="social-links">
-                         <ul class="d-flex list-unstyled gap-2">
-                             <li class="social">
-                                 <a href="#">
-                                     <iconify-icon class="social-icon" icon="ri:facebook-fill"></iconify-icon>
-                                 </a>
-                             </li>
-                             <li class="social">
-                                 <a href="#">
-                                     <iconify-icon class="social-icon" icon="ri:instagram-fill"></iconify-icon>
-                                 </a>
-                             </li>
-                         </ul>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-4">
-                 <div class="footer-menu">
-                     <h3>Quick Links</h3>
-                     <ul class="menu-list list-unstyled">
-                         <li class="menu-item">
-                             <a href="index.php" class="nav-link">Home</a>
-                         </li>
-                         <li class="menu-item">
-                         <a href="./shop2.php?categ-id=1" class="nav-link">Shop</a>
-                         </li>
-                         <li class="menu-item">
-                             <a href="./contact_us.php" class="nav-link">Conatct Us</a>
-                         </li>
-                         <li class="menu-item">
-                             <a href="./about-us.php" class="nav-link">About Us</a>
-                         </li>
-                         <li class="menu-item">
-                             <a href="./faq.php" class="nav-link">FAQ</a>
-                         </li>
-                     </ul>
-                 </div>
-             </div>
-            
-             <div class="col-md-4">
-                 <div>
-                     <h3>Ads</h3>
-                     <p class="blog-paragraph fs-6">For more information contact us.</p>
-                     <div class="search-bar border rounded-pill border-dark-subtle px-2">
-                         <form class="text-center d-flex align-items-center" action="" method="">
-                             <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here" />
-                             <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
-                         </form>
-                     </div>
-                 </div>
-             </div>
-
-         </div>
-     </div>
-     <div id="footer-bottom" style="background: url('../images/background-img.png') no-repeat;">
-     <div class="container">
-         <hr class="m-0">
-         <div class="row mt-3">
-             <div class="col-md-6 copyright">
-                 <p class="secondary-font">© 2024 Waggy. All rights reserved.</p>
-             </div>
-         </div>
-     </div>
- </div>
+ <footer class="footer" style="margin-top:0;background: url('../images/background-img.png') no-repeat; margin-bottom: -100px;">
+     <nav class="nav justify-content-center">
+         <a class="nav-link" href="./index.php">Home</a>
+         <a class="nav-link" href="./shop2.php?categ-id=1">Shop</a>
+         <a class="nav-link" href="./contact_us.php">Conatct Us</a>
+         <a class="nav-link" href="./about-us.php">About Us</a>
+         <a class="nav-link" href="./FAQ.php">FAQs</a>
+     </nav>
+     <hr>
+     <p class="mb-3 text-center">&copy; 2024 Waggy. All rights reserved.</p>
  </footer>
 
  <script src="../js/regestration.js"></script>
@@ -86,11 +23,11 @@
  <script src="../js/script.js"></script>
  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
  <!-- Script for cart -->
-  <script src="../js/cart.js"></script>
-  <!-- SweetAlert -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="../js/cart.js"></script>
+ <!-- SweetAlert -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-</body>
+ </body>
 
  </html>

@@ -19,8 +19,6 @@
             color: #333;
             text-align: center;
         }
-
-        .about-bg,
         .our-mission {
             padding: 3rem 1rem;
         }
@@ -28,19 +26,6 @@
         .our-mission {
             padding-bottom: 1.35rem;
             margin-bottom: 60px;
-            background: url('../images/background-img.png') repeat;
-        }
-
-
-        .about-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.3rem;
-        }
-
-        .about-content p {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.2rem;
         }
 
         .mission-content h2 {
@@ -49,9 +34,9 @@
         }
 
         .mission-content p {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             line-height: 1.9rem;
             margin-bottom: 1.5rem;
         }
@@ -69,6 +54,11 @@
             transition: 0.4s;
             text-align: center;
             border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .box:hover {
+            transform: scale(0.9);
         }
 
         .box img {
@@ -97,6 +87,20 @@
             margin-bottom: 0;
             line-height: 20px;
         }
+
+       .section-divider {
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--secondColor);
+            background: #deae6f;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .waggy-shop {
+            font-weight: 600;
+            color: #deae6f;
+        }
     </style>
 </head>
 
@@ -104,23 +108,12 @@
 
     <!-- Main content wrapper with background applied -->
     <div class="content-wrapper pt-5">
-
-        <!-- About Section -->
-        <section id="about">
-            <div class="about-bg">
-                <div class="about-content">
-                    <h1>Welcome to Waggy Shop</h1>
-                    <p>Waggy Shop is dedicated to providing premium products and care services for pets, ensuring that
-                        every pet lives a happy, healthy life.</p>
-                </div>
-            </div>
-        </section>
-
         <!-- Our Mission Section -->
         <section class="our-mission" id="mission">
             <div class="mission-content">
-                <h2 > Our Mission</h2>
-                <p>At Waggy Shop, we’re passionate about elevating the quality of life for pets and their owners. Our
+                <h2> About Us</h2>
+                <span class="section-divider"></span>
+                <p>At <span class="waggy-shop">Waggy Shop</span>, we’re passionate about elevating the quality of life for pets and their owners. Our
                     mission is to bring pet owners the finest selection of tools, toys, and nutrition products,
                     carefully crafted to support every stage of a pet's life. We believe that happy, healthy pets come
                     from access to quality care products and expertly tailored foods, and we are committed to sourcing
