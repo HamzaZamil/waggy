@@ -9,4 +9,18 @@ class ProductController extends Product
         $product = $this->getProducts();
     }
 
+    public function search() {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['find'])) {
+            $searchTerm = trim($_GET['find']);
+            return $this->searchProducts($searchTerm); 
+        }
+    }
 }
+
+
+// echo   "searchTerm";
+
+?>
+
+
+

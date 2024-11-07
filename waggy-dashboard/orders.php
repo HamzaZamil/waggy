@@ -16,8 +16,9 @@ $allOrders=$orders->getAllOrders();
 
 <style>
 html {
-    overflow: hidden !important;
-}
+        overflow: scroll !important;
+    
+    }
 
 .cart-wrap {
     padding: 40px 0;

@@ -15,7 +15,7 @@ require_once '../controllers/UserProfileController.php';
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-<section id="auth" class="my-5">
+<section id="auth" class="my-5 py-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">

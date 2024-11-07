@@ -1,7 +1,6 @@
 <?php
 require_once '../model/UserProfileModel.php';
 
- 
 class UserProfileController extends UserProfileModel {
 
     public function showProfile($userId) {
@@ -17,6 +16,14 @@ class UserProfileController extends UserProfileModel {
     }
 }
 
+class OrderController extends OrderModel {
+
+    public function showUserOrders($userId) {
+        return $this->getUserOrders($userId);
+    }
+}
+
+// Check POST requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
     session_start();
     $userId = $_SESSION['user_id'];
@@ -46,12 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
         }
     }
 }
-class OrderController extends OrderModel {
 
-    public function showUserOrders($userId) {
-        return $this->getUserOrders($userId);
-    }
+// Fetch orders for display in userProfile.php
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_SESSION['user_id'])) {
+    $orderController = new OrderController();
+    $orders = $orderController->showUserOrders($_SESSION['user_id']);
 }
-
 ?>
-
