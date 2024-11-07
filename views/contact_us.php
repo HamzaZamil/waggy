@@ -6,7 +6,7 @@
 
     // Database connection parameters
     $host = 'localhost';
-    $dbName = 'waggy_shop';
+    $dbName = '';
     $username = 'root';
     $password = '';
 

@@ -91,6 +91,40 @@ class order
     
 
 
+    public function updateOrderStatus($orderId, $newStatus) {
+        // Define allowed values for the ENUM column in the database
+        $allowedStatuses = ['pending', 'cancelled', 'delivered'];
+
+        // Validate that the new status is one of the allowed values
+        if (!in_array($newStatus, $allowedStatuses)) {
+            return ['success' => false, 'message' => 'Invalid order status provided'];
+        }
+
+        try {
+            // Prepare the SQL query to update the order status
+            $query = "UPDATE orders SET order_status = :newStatus WHERE order_id = :orderId";
+            $stmt = $this->conn->prepare($query);
+
+            // Bind the parameters to prevent SQL injection
+            $stmt->bindParam(':newStatus', $newStatus, PDO::PARAM_STR);
+            $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+
+            // Execute the query
+            $stmt->execute();
+
+            // Check if any rows were updated (this also means the order exists)
+            if ($stmt->rowCount() > 0) {
+                return ['success' => true, 'message' => 'Order status updated successfully'];
+            } else {
+                // If no rows were updated, the order ID might not exist
+                return ['success' => false, 'message' => 'Order ID not found or status is the same'];
+            }
+        } catch (PDOException $e) {
+            // Log and return the database error
+            error_log("Error: " . $e->getMessage()); // You can log the error for debugging
+            return ['success' => false, 'message' => 'Database error: ' . $e->getMessage()];
+        }
+    }
 
 
 
