@@ -220,13 +220,14 @@ class CartController
 
         // Add a delivery fee
         $total += 5;
-        $update = $this->cart->updateTotal($user_id, $total);
         return number_format($discount, 2);
     }
 
     public function placeOrder()
     {
+        $total = $_SESSION['total_price'];
         $user_id = $_SESSION['user_id'];
+        $update = $this->cart->updateTotal($user_id, $total);
         return $this->cart->placeOrder($user_id);
     }
 }
