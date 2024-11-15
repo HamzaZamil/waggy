@@ -187,7 +187,7 @@
 <section id="bestselling" class="my-5" style="background:#f9f3ec; padding: 80px 0; height: 700px; ">
     <div class="container ">
         <div class="section-header d-md-flex justify-content-between align-items-center mb-1">
-            <h2 class="display-5 fw-normal">New Items</h2>
+            <h2 class="display-5 fw-normal">Special Items</h2>
             <div>
                 <a href="shop2.php?categ-id=1" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1 p-4 mb-4">
                     shop now
