@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("includes/header.php");
 include "model/Orders.php";
 $orders = new Order();
@@ -51,7 +52,7 @@ $allOrders = $orders->getAllOrders();
                                     <?php echo htmlspecialchars($order['order_status']); ?>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary" onclick="openOrderModal(
+                                    <button class="btn btn-dark" style="background:#000;" onclick="openOrderModal(
                                         '<?php echo htmlspecialchars($order['order_id']); ?>',
                                         '<?php echo htmlspecialchars($order['user_name']); ?>',
                                         '<?php echo htmlspecialchars($order['order_date']); ?>',
@@ -59,7 +60,7 @@ $allOrders = $orders->getAllOrders();
                                         '<?php echo htmlspecialchars($order['order_status']); ?>',
                                         '<?php echo htmlspecialchars($order['order_discount']); ?>'
                                     )">View</button>
-                                    <button class="btn btn-secondary" onclick="openEditStatusModal(
+                                    <button class="btn btn-danger" onclick="openEditStatusModal(
                                         '<?php echo htmlspecialchars($order['order_id']); ?>',
                                         '<?php echo htmlspecialchars($order['order_status']); ?>'
                                     )">Edit</button>
@@ -107,7 +108,7 @@ $allOrders = $orders->getAllOrders();
                     <option value="Delivered">Delivered</option>
                 </select>
                 <div class="save-btn-container">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary" style="background:#000;">Save</button>
                 </div>
             </form>
         </div>

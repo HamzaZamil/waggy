@@ -1,12 +1,12 @@
 <?php
 class Database {
-    private $host = 'localhost'; // Change if your database is hosted elsewhere
+    private $host = 'localhost'; 
     private $db_name = 'waggy_shop';
-    private $username = 'root'; // Your database username
-    private $password = ''; // Your database password
+    private $username = 'root'; 
+    private $password = ''; 
     public $conn;
 
-    // Get the database connection
+    
     public function getConnection() {
         $this->conn = null;
 
