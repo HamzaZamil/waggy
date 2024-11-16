@@ -38,7 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Allow certain file formats
         if (!in_array($imageFileType, ["jpg", "jpeg", "png", "gif"])) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $_SESSION['sweetalert'] = [
+                "type" => "warning",
+                "message" => "Sorry, only JPG, JPEG, PNG & GIF files are allowed."
+            ];
+            
             $uploadOk = 0;
         }
 
@@ -63,9 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit();
             } else {
                 echo "Sorry, there was an error uploading your file.";
+                header("Location: product.php");
+                exit();
             }
         } else {
             echo "Sorry, your file was not uploaded.";
+            header("Location: product.php");
+            exit();
         }
     }
 

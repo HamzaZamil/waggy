@@ -7,13 +7,14 @@ include "includes/header.php";
 require_once 'model/User.php';
 
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
+// if (!isset($_SESSION['admin'])) {
+//     header("Location: login.php"); 
+//     exit();
+// }
 
 
 $user = new User();
-$userDetails = $user->getUserById($_SESSION['admin']); 
+// $userDetails = $user->getUserById($_SESSION['admin']); 
 
 if (!$userDetails) {
     echo "Error: User details not found.";

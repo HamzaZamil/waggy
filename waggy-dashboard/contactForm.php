@@ -69,8 +69,8 @@ $allmessages = $messages->getAllMessages();
             <div id="messageDetailsContainer">
                 <p><strong>Sender:</strong> <span id="modalSender"></span></p>
                 <p><strong>Email:</strong> <span id="modalEmail"></span></p>
-                <p><strong>Subject:</strong> <span id="modalSubject"></span></p>
-                <p><strong>Message:</strong><br> <span id="modalMessage"></span></p>
+                <!-- <p><strong>Subject:</strong> <span id="modalSubject"></span></p>
+                <p><strong>Message:</strong><br> <span id="modalMessage"></span></p> -->
             </div>
             <button class="close-btn" onclick="closeMessageModal()">Close</button>
         </div>

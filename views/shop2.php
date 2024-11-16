@@ -101,9 +101,9 @@ $pet_toys_tools_ids = [$cat_toys_tools_id, $dog_toys_tools_id];
 
 
                         <div class="card-body d-flex flex-column align-items-center">
-                            <a href="single-product.html">
+                            <div>
                                 <h4 class="card-title pt-4 m-0"><?= $product_item["product_name"] ?></h4>
-                            </a>
+                    </div>
 
                             <div class="card-text d-flex flex-column align-items-center">
                                 <h4 class="secondary-font text-primary"><?= $product_item["product_price"] ?> JOD
