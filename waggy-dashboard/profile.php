@@ -1,13 +1,15 @@
 <?php
+ob_start();
+
 session_start();
+
 include "includes/header.php";
 require_once 'model/User.php';
 
 
-if (!isset($_SESSION['admin'])) {
-    header("Location: login.php"); 
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
     exit();
-}
 
 
 $user = new User();
@@ -18,7 +20,7 @@ if (!$userDetails) {
     exit();
 }
 
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -240,6 +242,7 @@ if (!$userDetails) {
                         <tr>
                             <td>Name :</td>
                             <!-- <td>:</td> -->
+                             <?=$userDetails?>
                             <td><?= htmlspecialchars($userDetails['user_first_name']) . ' ' . htmlspecialchars($userDetails['user_last_name']) ?>
                             </td>
                         </tr>
@@ -301,6 +304,3 @@ if (!$userDetails) {
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/modal.js"></script>
-</body>
-
-</html>
