@@ -21,7 +21,7 @@ if (!$userDetails) {
     exit();
 }
 
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -243,7 +243,6 @@ if (!$userDetails) {
                         <tr>
                             <td>Name :</td>
                             <!-- <td>:</td> -->
-                             <?=$userDetails?>
                             <td><?= htmlspecialchars($userDetails['user_first_name']) . ' ' . htmlspecialchars($userDetails['user_last_name']) ?>
                             </td>
                         </tr>
